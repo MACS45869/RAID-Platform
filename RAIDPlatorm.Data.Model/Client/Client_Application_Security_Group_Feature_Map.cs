@@ -1,4 +1,4 @@
-﻿namespace RAIDPlateform.Data.Model.Client.Client_Application_Security_Group_Feature_Map
+﻿namespace RAIDPlatform.Data.Model.Client.Client_Application_Security_Group_Feature_Map
 {
     public class Client_Application_Security_Group_Feature_Map
     {

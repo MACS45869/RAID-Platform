@@ -1,4 +1,4 @@
-﻿namespace RAIDPlateform.Data.Model.Master.Navigations
+﻿namespace RAIDPlatform.Data.Model.Master.Navigations
 {
     public class Navigations
     {

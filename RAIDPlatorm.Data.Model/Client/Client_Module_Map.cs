@@ -1,6 +1,6 @@
-﻿using RAIDPlateform.Data.Model.Master.Modules;
+﻿using RAIDPlatform.Data.Model.Master.Modules;
 
-namespace RAIDPlateform.Data.Model.Client.Client_Module_Map
+namespace RAIDPlatform.Data.Model.Client.Client_Module_Map
 {
     public class Client_Module_Map
     {

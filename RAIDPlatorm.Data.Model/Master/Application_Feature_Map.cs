@@ -1,4 +1,4 @@
-﻿namespace RAIDPlateform.Data.Model.Master.Application_Feature_Map
+﻿namespace RAIDPlatform.Data.Model.Master.Application_Feature_Map
 {
     public class Application_Feature_Map
     {

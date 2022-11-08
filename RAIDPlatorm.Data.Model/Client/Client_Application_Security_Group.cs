@@ -1,4 +1,4 @@
-﻿namespace RAIDPlateform.Data.Model.Client
+﻿namespace RAIDPlatform.Data.Model.Client
 {
     public class Client_Application_Security_Group
     {

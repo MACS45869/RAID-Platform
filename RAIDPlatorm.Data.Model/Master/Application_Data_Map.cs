@@ -1,4 +1,4 @@
-﻿namespace RAIDPlateform.Data.Model.Master.Application_Data_Map
+﻿namespace RAIDPlatform.Data.Model.Master.Application_Data_Map
 {
     public class Application_Data_Map
     {

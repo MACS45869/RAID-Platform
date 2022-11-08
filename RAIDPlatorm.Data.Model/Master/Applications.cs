@@ -1,4 +1,4 @@
-﻿namespace RAIDPlateform.Data.Model.Master.Applications
+﻿namespace RAIDPlatform.Data.Model.Master.Applications
 {
     public class Applications
     {

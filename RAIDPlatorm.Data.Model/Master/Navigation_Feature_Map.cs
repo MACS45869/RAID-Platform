@@ -1,4 +1,4 @@
-﻿namespace RAIDPlateform.Data.Model.Master.Navigation_Feature_Map
+﻿namespace RAIDPlatform.Data.Model.Master.Navigation_Feature_Map
 {
     public class Navigation_Feature_Map
     {

@@ -1,4 +1,4 @@
-﻿namespace RAIDPlateform.Data.Model.Client.User_Security_Group_Map
+﻿namespace RAIDPlatform.Data.Model.Client.User_Security_Group_Map
 {
     public class User_Security_Group_Map
     {

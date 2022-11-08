@@ -1,4 +1,4 @@
-﻿namespace RAIDPlateform.Data.Model.Client.Clients
+﻿namespace RAIDPlatform.Data.Model.Client.Clients
 {
     public class Clients
     {

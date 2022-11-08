@@ -1,4 +1,4 @@
-﻿namespace RAIDPlateform.Data.Model.Client.Client_Application_Category_Data_Values
+﻿namespace RAIDPlatform.Data.Model.Client.Client_Application_Category_Data_Values
 {
     public class Client_Application_Category_Data_Values
     {

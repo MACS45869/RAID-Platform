@@ -1,4 +1,4 @@
-﻿using RAIDPlateform.Data.Model.Client.Users;
+﻿using RAIDPlatform.Data.Model.Client.Users;
 using RAIDPlatform.Data.Repositories.Interfaces;
 
 namespace RAIDPlatform.Data.Repositories.Repositories

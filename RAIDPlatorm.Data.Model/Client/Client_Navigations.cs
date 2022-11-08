@@ -1,4 +1,4 @@
-﻿namespace RAIDPlateform.Data.Model.Client.Client_Navigations
+﻿namespace RAIDPlatform.Data.Model.Client.Client_Navigations
 {
     public class Client_Navigations
     {

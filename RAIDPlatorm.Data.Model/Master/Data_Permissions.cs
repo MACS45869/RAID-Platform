@@ -1,4 +1,4 @@
-﻿namespace RAIDPlateform.Data.Model.Master.Data_Permissions
+﻿namespace RAIDPlatform.Data.Model.Master.Data_Permissions
 {
     public class Data_Permissions
     {

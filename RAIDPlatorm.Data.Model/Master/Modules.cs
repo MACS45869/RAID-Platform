@@ -1,4 +1,4 @@
-﻿namespace RAIDPlateform.Data.Model.Master.Modules
+﻿namespace RAIDPlatform.Data.Model.Master.Modules
 {
     public class Modules
     {

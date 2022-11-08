@@ -1,4 +1,4 @@
-﻿namespace RAIDPlateform.Data.Model.Client.User_Category_Map
+﻿namespace RAIDPlatform.Data.Model.Client.User_Category_Map
 {
     public class User_Category_Map
     {

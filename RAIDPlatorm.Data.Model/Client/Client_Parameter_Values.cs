@@ -1,4 +1,4 @@
-﻿namespace RAIDPlateform.Data.Model.Client.Client_Parameter_Values
+﻿namespace RAIDPlatform.Data.Model.Client.Client_Parameter_Values
 {
     public class Client_Parameter_Values
     {

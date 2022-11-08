@@ -1,4 +1,4 @@
-﻿namespace RAIDPlateform.Data.Model.Master.Parameter_Values
+﻿namespace RAIDPlatform.Data.Model.Master.Parameter_Values
 {
     public class Parameter_Values
     {

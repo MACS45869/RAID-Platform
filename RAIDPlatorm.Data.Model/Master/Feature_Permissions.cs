@@ -1,4 +1,4 @@
-﻿namespace RAIDPlateform.Data.Model.Master.Feature_Permissions
+﻿namespace RAIDPlatform.Data.Model.Master.Feature_Permissions
 {
     public class Feature_Permissions
     {
