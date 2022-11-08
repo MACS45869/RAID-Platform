@@ -16,6 +16,6 @@
         public int Updated_By_ID { get; set; }
         public string Updated_By_Name { get; set; }
         public DateTime Updated_Date { get; set; }
-        public virtual Clients Clients { get; set; }
+        public virtual Clients.Clients Clients { get; set; }
     }
 }

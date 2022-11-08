@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RAIDPlatorm.Data.Model", "R
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RAIDPlatform.Data.Repositories", "RAIDPlatform.Data.Repositories\RAIDPlatform.Data.Repositories.csproj", "{6E4792C1-474D-4204-ACA7-43688EEFF13B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RAIDPlatform.Web.Api", "RAIDPlatform.Web.Api\RAIDPlatform.Web.Api.csproj", "{6F8E9681-0A41-4164-857D-8B186055ED9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RAIDPlatform.Web.Api", "RAIDPlatform.Web.Api\RAIDPlatform.Web.Api.csproj", "{6F8E9681-0A41-4164-857D-8B186055ED9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RAIDPlatform.Services", "RAIDPlatform.Services\RAIDPlatform.Services.csproj", "{DBF58D93-6A0B-4782-9175-E63D6E3ED9FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{6F8E9681-0A41-4164-857D-8B186055ED9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F8E9681-0A41-4164-857D-8B186055ED9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F8E9681-0A41-4164-857D-8B186055ED9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBF58D93-6A0B-4782-9175-E63D6E3ED9FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBF58D93-6A0B-4782-9175-E63D6E3ED9FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBF58D93-6A0B-4782-9175-E63D6E3ED9FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBF58D93-6A0B-4782-9175-E63D6E3ED9FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
