@@ -1,25 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Team X\\RAID-Platform\\RAIDPlatform\\RAIDPlatform.csproj": {}
+    "E:\\RAID-Platform-main\\RAIDPlatform\\RAIDPlatform.csproj": {}
   },
   "projects": {
-    "D:\\Team X\\RAID-Platform\\RAIDPlatform\\RAIDPlatform.csproj": {
+    "E:\\RAID-Platform-main\\RAIDPlatform\\RAIDPlatform.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Team X\\RAID-Platform\\RAIDPlatform\\RAIDPlatform.csproj",
+        "projectUniqueName": "E:\\RAID-Platform-main\\RAIDPlatform\\RAIDPlatform.csproj",
         "projectName": "RAIDPlatform",
-        "projectPath": "D:\\Team X\\RAID-Platform\\RAIDPlatform\\RAIDPlatform.csproj",
-        "packagesPath": "C:\\Users\\INIT-LPT-005\\.nuget\\packages\\",
-        "outputPath": "D:\\Team X\\RAID-Platform\\RAIDPlatform\\obj\\",
+        "projectPath": "E:\\RAID-Platform-main\\RAIDPlatform\\RAIDPlatform.csproj",
+        "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
+        "outputPath": "E:\\RAID-Platform-main\\RAIDPlatform\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\INIT-LPT-005\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\USER\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

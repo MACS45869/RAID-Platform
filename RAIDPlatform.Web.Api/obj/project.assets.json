@@ -646,26 +646,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\INIT-LPT-005\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\USER\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Team X\\RAID-Platform\\RAIDPlatform.Web.Api\\RAIDPlatform.Web.Api.csproj",
+      "projectUniqueName": "E:\\RAID-Platform-main\\RAIDPlatform.Web.Api\\RAIDPlatform.Web.Api.csproj",
       "projectName": "RAIDPlatform.Web.Api",
-      "projectPath": "D:\\Team X\\RAID-Platform\\RAIDPlatform.Web.Api\\RAIDPlatform.Web.Api.csproj",
-      "packagesPath": "C:\\Users\\INIT-LPT-005\\.nuget\\packages\\",
-      "outputPath": "D:\\Team X\\RAID-Platform\\RAIDPlatform.Web.Api\\obj\\",
+      "projectPath": "E:\\RAID-Platform-main\\RAIDPlatform.Web.Api\\RAIDPlatform.Web.Api.csproj",
+      "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
+      "outputPath": "E:\\RAID-Platform-main\\RAIDPlatform.Web.Api\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\INIT-LPT-005\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\USER\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
