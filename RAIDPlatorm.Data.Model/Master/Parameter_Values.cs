@@ -1,7 +1,9 @@
-﻿namespace RAIDPlatform.Data.Model.Master.Parameter_Values
+﻿using System.ComponentModel.DataAnnotations;
+namespace RAIDPlatform.Data.Model.Master.Parameter_Values
 {
     public class Parameter_Values
     {
+        [Key]
         public int Parameter_Value_ID { get; set; }
         public int Parameter_ID { get; set; }
         public string Parameter_Value_Name { get; set; }

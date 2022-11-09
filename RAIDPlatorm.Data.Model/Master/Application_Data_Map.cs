@@ -1,7 +1,10 @@
-﻿namespace RAIDPlatform.Data.Model.Master.Application_Data_Map
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace RAIDPlatform.Data.Model.Master.Application_Data_Map
 {
     public class Application_Data_Map
     {
+        [Key]
         public int Application_Data_Map_ID { get; set; }
         public int Application_ID { get; set; }
         public int Data_Permission_ID { get; set; }

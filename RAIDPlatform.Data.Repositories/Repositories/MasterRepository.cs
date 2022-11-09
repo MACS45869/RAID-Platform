@@ -56,7 +56,8 @@ namespace RAIDPlatform.Data.Repositories.Repositories
         }
         public async Task<List<Applications>> GetAllApplications()
         {
-            return await Applications.ToListAsync();
+            var apps = await Applications.ToListAsync();
+            return apps;
         }
 
         public async Task<Applications> GetApplicationByID(int appId)

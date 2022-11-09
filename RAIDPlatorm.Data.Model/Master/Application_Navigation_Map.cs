@@ -1,7 +1,10 @@
-﻿namespace RAIDPlatform.Data.Model.Master.Application_Navigation_Map
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace RAIDPlatform.Data.Model.Master.Application_Navigation_Map
 {
     public class Application_Navigation_Map
     {
+        [Key]
         public int Application_Navigation_Map_ID { get; set; }
         public int Application_ID { get; set; }
         public int Navigation_ID { get; set; }

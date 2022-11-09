@@ -18,7 +18,7 @@ namespace RAIDPlatform.Data.Repositories.Context
 {
     public class MasterContext : BaseDbContext<MasterContext>
     {
-        public MasterContext(DbContextOptions<MasterContext> options) : base(options) {}
+        
        
             public DbSet<Application_Data_Map> application_Data_Maps { get; set; }
             public DbSet<Application_Feature_Map> application_Feature_Maps { get; set; }
@@ -33,7 +33,9 @@ namespace RAIDPlatform.Data.Repositories.Context
             public DbSet<Navigations> navigations { get; set; }
             public DbSet<Parameter_Values> parameter_Values { get; set; }
             public DbSet<Parameters> parameters { get; set; }
-            
+
+        public MasterContext(DbContextOptions<MasterContext> options) : base(options) { }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Application_Data_Map>().ToTable("Application_Data_Map");

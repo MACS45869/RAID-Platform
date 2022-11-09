@@ -1,7 +1,9 @@
-﻿namespace RAIDPlatform.Data.Model.Master.Modules
+﻿using System.ComponentModel.DataAnnotations;
+namespace RAIDPlatform.Data.Model.Master.Modules
 {
     public class Modules
     {
+        [Key]
         public int Modules_ID { get; set; }
         public string Modules_Name { get; set; }
         public string Modules_Key { get; set; }

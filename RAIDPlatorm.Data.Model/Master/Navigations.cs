@@ -1,7 +1,9 @@
-﻿namespace RAIDPlatform.Data.Model.Master.Navigations
+﻿using System.ComponentModel.DataAnnotations;
+namespace RAIDPlatform.Data.Model.Master.Navigations
 {
     public class Navigations
     {
+        [Key]
         public int Navigation_ID { get; set; }
         public string Navigation_Name { get; set; }
         public string Navigation_Key { get; set; }

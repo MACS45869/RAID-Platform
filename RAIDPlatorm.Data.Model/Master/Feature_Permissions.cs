@@ -1,7 +1,10 @@
-﻿namespace RAIDPlatform.Data.Model.Master.Feature_Permissions
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace RAIDPlatform.Data.Model.Master.Feature_Permissions
 {
     public class Feature_Permissions
     {
+        [Key]
         public int Feature_Permission_ID { get; set; }
         public string Feature_Permission_Name { get; set; }
         public string Feature_Permission_Key { get; set; }

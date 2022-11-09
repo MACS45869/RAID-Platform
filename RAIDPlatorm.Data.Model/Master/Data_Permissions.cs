@@ -1,7 +1,10 @@
-﻿namespace RAIDPlatform.Data.Model.Master.Data_Permissions
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace RAIDPlatform.Data.Model.Master.Data_Permissions
 {
     public class Data_Permissions
     {
+        [Key]
         public int Data_Permission_ID { get; set; }
         public string Data_Permission_Name { get; set; }
         public string Data_Permission_Key { get; set; }

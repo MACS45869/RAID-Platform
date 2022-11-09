@@ -1,7 +1,10 @@
-﻿namespace RAIDPlatform.Data.Model.Master.Application_Feature_Map
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace RAIDPlatform.Data.Model.Master.Application_Feature_Map
 {
     public class Application_Feature_Map
     {
+        [Key]
         public int Application_Feature_Map_ID { get; set; }
         public int Application_ID { get; set; }
         public int Feature_Permission_ID { get; set; }

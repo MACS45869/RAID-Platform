@@ -1506,19 +1506,26 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\USER\\.nuget\\packages\\": {}
+    "C:\\Users\\INIT-LPT-005\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\RAID-Platform\\RAIDPlatform.Data.Repositories\\RAIDPlatform.Data.Repositories.csproj",
+      "projectUniqueName": "D:\\Team X\\RAID-Platform\\RAIDPlatform.Data.Repositories\\RAIDPlatform.Data.Repositories.csproj",
       "projectName": "RAIDPlatform.Data.Repositories",
-      "projectPath": "D:\\RAID-Platform\\RAIDPlatform.Data.Repositories\\RAIDPlatform.Data.Repositories.csproj",
-      "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
-      "outputPath": "D:\\RAID-Platform\\RAIDPlatform.Data.Repositories\\obj\\",
+      "projectPath": "D:\\Team X\\RAID-Platform\\RAIDPlatform.Data.Repositories\\RAIDPlatform.Data.Repositories.csproj",
+      "packagesPath": "C:\\Users\\INIT-LPT-005\\.nuget\\packages\\",
+      "outputPath": "D:\\Team X\\RAID-Platform\\RAIDPlatform.Data.Repositories\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\USER\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\INIT-LPT-005\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1532,8 +1539,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\RAID-Platform\\RAIDPlatorm.Data.Model\\RAIDPlatorm.Data.Model.csproj": {
-              "projectPath": "D:\\RAID-Platform\\RAIDPlatorm.Data.Model\\RAIDPlatorm.Data.Model.csproj"
+            "D:\\Team X\\RAID-Platform\\RAIDPlatorm.Data.Model\\RAIDPlatorm.Data.Model.csproj": {
+              "projectPath": "D:\\Team X\\RAID-Platform\\RAIDPlatorm.Data.Model\\RAIDPlatorm.Data.Model.csproj"
             }
           }
         }
@@ -1580,7 +1587,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
       }
     }
   }

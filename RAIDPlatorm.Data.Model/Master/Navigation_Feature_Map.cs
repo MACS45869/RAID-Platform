@@ -1,7 +1,9 @@
-﻿namespace RAIDPlatform.Data.Model.Master.Navigation_Feature_Map
+﻿using System.ComponentModel.DataAnnotations;
+namespace RAIDPlatform.Data.Model.Master.Navigation_Feature_Map
 {
     public class Navigation_Feature_Map
     {
+        [Key]
         public int Navigation_Feature_Map_ID { get; set; }
         public int Navigation_ID { get; set; }
         public int Feature_Permission_ID { get; set; }
