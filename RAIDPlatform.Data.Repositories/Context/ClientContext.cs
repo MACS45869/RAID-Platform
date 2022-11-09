@@ -23,8 +23,6 @@ namespace RAIDPlatform.Data.Repositories.Context
 {
     public class ClientContext : BaseDbContext<ClientContext>
     {
-        public ClientContext(DbContextOptions<ClientContext> options) : base(options) { }
-
         public DbSet<Client_Application_Category> client_Application_Categories { get; set; }
         public DbSet<Users> Users { get; set; }
         public DbSet<Client_Application_Category_Data_Map> client_Application_Category_Data_Maps { get; set; }
@@ -42,6 +40,10 @@ namespace RAIDPlatform.Data.Repositories.Context
         public DbSet<Clients> clients { get; set; }
         public DbSet<User_Category_Map> user_Category_Map { get; set; }
         public DbSet<User_Security_Group_Map> user_Security_Group_Map{ get; set; }
+       
+        public ClientContext(DbContextOptions<ClientContext> options) : base(options)
+        {
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

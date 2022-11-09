@@ -1,7 +1,10 @@
-﻿namespace RAIDPlatform.Data.Model.Client.User_Category_Map
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace RAIDPlatform.Data.Model.Client.User_Category_Map
 {
     public class User_Category_Map
     {
+        [Key]
         public int User_Category_Map_ID { get; set; }
         public int User_ID { get; set; }
         public int Client_Application_Category_ID { get; set; }

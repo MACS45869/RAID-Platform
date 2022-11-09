@@ -1,9 +1,20 @@
-﻿using RAIDPlatform.Data.Model.Client.Users;
+﻿using RAIDPlatform.Data.Model.Client.Client_Application_Category;
+using RAIDPlatform.Data.Model.Client.Clients;
+using RAIDPlatform.Data.Model.Client.Users;
 
 namespace RAIDPlatform.Data.Repositories.Interfaces
 {
     public interface IClientRepository 
     {
-
+        Task<List<Clients>> GetAllClient();
+        Task<Clients> GetClientsByID(int clientId);
+        Task<int> AddClient(Clients clients);
+        Task UpdateClients(int clientId, Clients clients);
+        Task DeleteClients(int clientId);
+        Task<List<Client_Application_Category>> GetAllClientApplicationCategory();
+        Task<Client_Application_Category> GetClientApplicationCategoryByID(int clientCategoryId);
+        Task<int> AddClientApplicationCategory(Client_Application_Category client_Application_Category);
+        Task UpdateClientApplicationCategory(int clientApplicationCategoryId, Client_Application_Category client_Application_Category);
+        Task DeleteClientApplicationCategory(int clientApplicationCategoryId);
     }
 }

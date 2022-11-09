@@ -16,6 +16,7 @@ using RAIDPlatform.Data.Model.Master.Parameters;
 using RAIDPlatform.Data.Repositories.Context;
 using RAIDPlatform.Data.Repositories.Interfaces;
 using System.Net;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace RAIDPlatform.Data.Repositories.Repositories
 {
@@ -75,8 +76,8 @@ namespace RAIDPlatform.Data.Repositories.Repositories
                 Application_Name = app.Application_Name,
                 Application_Key = app.Application_Key,
                 Application_Description = app.Application_Description,
-                Application_Emblem = app.Application_Emblem,
-                Application_Logo = app.Application_Logo,
+              //  Application_Emblem = app.Application_Emblem,
+              //  Application_Logo = app.Application_Logo,
                 Created_By_ID = app.Created_By_ID,
                 Created_By_Name =app.Created_By_Name,
                 Created_Date =app.Created_Date,
@@ -88,6 +89,33 @@ namespace RAIDPlatform.Data.Repositories.Repositories
             await context.SaveChangesAsync();
 
             return app.Application_ID;
+        }
+        public async Task UpdateApplication(int appId, Applications app)
+        {
+            var ua = await context.applications.FindAsync(appId);
+            if (ua != null)
+            {
+                ua.Application_Name = app.Application_Name;
+                ua.Application_Key = app.Application_Key;
+                ua.Application_Description = app.Application_Description;
+                //  Application_Emblem = app.Application_Emblem,
+                //  Application_Logo = app.Application_Logo,
+                ua.Created_By_ID = app.Created_By_ID;
+                ua.Created_By_Name = app.Created_By_Name;
+                ua.Created_Date = app.Created_Date;
+                ua.Updated_By_ID = app.Updated_By_ID;
+                ua.Updated_By_Name = app.Updated_By_Name;
+                ua.Updated_Date = app.Updated_Date;
+              
+                await context.SaveChangesAsync();
+            }  
+        }
+        public async Task DeleteApplication(int appId)
+        {
+            var app = new Applications() { Application_ID = appId };
+
+            context.applications.Remove(app);
+            await context.SaveChangesAsync();
         }
     }
 }

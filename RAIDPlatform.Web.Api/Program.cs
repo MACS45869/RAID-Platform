@@ -15,6 +15,11 @@ builder.Services.AddControllers();
 builder.Services.AddScoped<MasterContext>();
 builder.Services.AddScoped<IMasterRepository, MasterRepository>();
 
+builder.Services.AddDbContext<ClientContext>(
+                options => options.UseSqlServer(builder.Configuration.GetConnectionString("RAIDPlatform")));
+builder.Services.AddScoped<ClientContext>();
+builder.Services.AddScoped<IClientRepository, ClientRepository>();
+
 builder.Services.AddMvc(options => options.EnableEndpointRouting = false);
 
 var app = builder.Build();

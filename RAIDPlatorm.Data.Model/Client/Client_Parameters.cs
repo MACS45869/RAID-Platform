@@ -1,7 +1,10 @@
-﻿namespace RAIDPlatform.Data.Model.Client.Client_Parameters
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace RAIDPlatform.Data.Model.Client.Client_Parameters
 {
     public class Client_Parameters
     {
+        [Key]
         public int Client_Parameter_ID { get; set; }
         public int Parameter_ID { get; set; }
         public int Client_ID { get; set; }

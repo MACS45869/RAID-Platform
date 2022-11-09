@@ -1,7 +1,10 @@
-﻿namespace RAIDPlatform.Data.Model.Client.User_Security_Group_Map
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace RAIDPlatform.Data.Model.Client.User_Security_Group_Map
 {
     public class User_Security_Group_Map
     {
+        [Key]
         public int User_Security_Group_Map_ID { get; set; }
         public int User_ID { get; set; }
         public int Client_Application_Security_Group_ID { get; set; }

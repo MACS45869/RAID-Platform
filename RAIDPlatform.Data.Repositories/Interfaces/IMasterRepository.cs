@@ -7,5 +7,7 @@ namespace RAIDPlatform.Data.Repositories.Interfaces
         Task<Applications> GetApplicationByID(int appId);
         Task<List<Applications>> GetAllApplications();
         Task<int> AddApplicationAsync(Applications app);
+        Task UpdateApplication(int appId, Applications app);
+        Task DeleteApplication(int appId);
     }
 }

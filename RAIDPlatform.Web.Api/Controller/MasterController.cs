@@ -23,26 +23,40 @@ namespace RAIDPlatform.Web.Api.Controller
                 return BadRequest(query);
         }
         
-        [HttpGet("{id}")]
+        [HttpGet("Application/getById/{id}")]
         public async Task<IActionResult> GetAppByID([FromRoute] int id)
         {
 
-            var books = await this.masterRepository.GetApplicationByID(id);
-            if (books == null)
+            var app = await this.masterRepository.GetApplicationByID(id);
+            if (app == null)
             {
                 return NotFound();
             }
-            return Ok(books);
+            return Ok(app);
         }
        
-        [HttpPost("add-app")]
-        public async Task<IActionResult> AddStudent([FromBody] Applications applications)
+        [HttpPost("add-application")]
+        public async Task<IActionResult> AddApplication([FromBody] Applications applications)
         {
             var query = await masterRepository.AddApplicationAsync(applications);
             if (query > 0)
                 return Ok(query);
             else
                 return BadRequest(query);
+        }
+
+        [HttpPost("Application/update/{id}")]
+        public async Task<IActionResult> UpdateApp([FromBody] Applications applications, [FromRoute] int id)
+        {
+            await this.masterRepository.UpdateApplication(id, applications);
+            return Ok(applications.Application_ID);
+        }
+
+        [HttpDelete("Application/delete/{id}")]
+        public async Task<IActionResult> DeleteApplication([FromRoute] int id)
+        {
+            await this.masterRepository.DeleteApplication(id);
+            return Ok();
         }
     }
 }

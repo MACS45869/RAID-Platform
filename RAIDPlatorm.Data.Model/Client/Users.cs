@@ -1,7 +1,10 @@
-﻿namespace RAIDPlatform.Data.Model.Client.Users
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace RAIDPlatform.Data.Model.Client.Users
 {
     public class Users
     {
+        [Key]
         public int User_ID { get; set; }
         public int Client_ID { get; set; }
         public int User_Type_ID { get; set; }

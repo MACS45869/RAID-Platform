@@ -1,7 +1,10 @@
-﻿namespace RAIDPlatform.Data.Model.Client.Client_Navigations
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace RAIDPlatform.Data.Model.Client.Client_Navigations
 {
     public class Client_Navigations
     {
+        [Key]
         public int Client_Navigation_ID { get; set; }
             public int Navigation_ID { get; set; }
             public int Client_ID { get; set; }

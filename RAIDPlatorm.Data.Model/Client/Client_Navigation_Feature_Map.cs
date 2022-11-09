@@ -1,7 +1,10 @@
-﻿namespace RAIDPlatform.Data.Model.Client.Client_Navigation_Feature_Map
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace RAIDPlatform.Data.Model.Client.Client_Navigation_Feature_Map
 {
     public class Client_Navigation_Feature_Map
     {
+        [Key]
         public int Client_Navigation_Feature_Map_ID { get; set; }
         public int Client_Navigation_ID { get; set; }
         public int Client_Feature_ID { get; set; }
