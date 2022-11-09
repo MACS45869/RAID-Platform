@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "MjlfDtsx9pEy88kkwxuqL2R/iIeyZkq95VB1VPahc67Ir5mMoU3i2gWUFMrSQY9BUngWW/Rf8D1zv4+6xICjtA==",
+  "dgSpecHash": "GrA8mA2cf/EqU8TGj5lhR7oq74jUqh9CMsLGQEYAsj/JpS4H06y2UTXtFxRUSSOi/zgjpU3NxeqLnPgsihBT/A==",
   "success": true,
-  "projectFilePath": "E:\\RAID-Platform-main\\RAIDPlatform.Web.Api\\RAIDPlatform.Web.Api.csproj",
+  "projectFilePath": "D:\\RAID-Platform\\RAIDPlatform.Web.Api\\RAIDPlatform.Web.Api.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\USER\\.nuget\\packages\\fluentassertions\\6.8.0\\fluentassertions.6.8.0.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\google.protobuf\\3.19.4\\google.protobuf.3.19.4.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\k4os.compression.lz4\\1.2.6\\k4os.compression.lz4.1.2.6.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\k4os.compression.lz4.streams\\1.2.6\\k4os.compression.lz4.streams.1.2.6.nupkg.sha512",

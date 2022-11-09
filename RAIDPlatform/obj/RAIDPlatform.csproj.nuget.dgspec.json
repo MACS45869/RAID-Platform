@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\RAID-Platform-main\\RAIDPlatform\\RAIDPlatform.csproj": {}
+    "D:\\RAID-Platform\\RAIDPlatform\\RAIDPlatform.csproj": {}
   },
   "projects": {
-    "E:\\RAID-Platform-main\\RAIDPlatform\\RAIDPlatform.csproj": {
+    "D:\\RAID-Platform\\RAIDPlatform\\RAIDPlatform.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\RAID-Platform-main\\RAIDPlatform\\RAIDPlatform.csproj",
+        "projectUniqueName": "D:\\RAID-Platform\\RAIDPlatform\\RAIDPlatform.csproj",
         "projectName": "RAIDPlatform",
-        "projectPath": "E:\\RAID-Platform-main\\RAIDPlatform\\RAIDPlatform.csproj",
+        "projectPath": "D:\\RAID-Platform\\RAIDPlatform\\RAIDPlatform.csproj",
         "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
-        "outputPath": "E:\\RAID-Platform-main\\RAIDPlatform\\obj\\",
+        "outputPath": "D:\\RAID-Platform\\RAIDPlatform\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\USER\\AppData\\Roaming\\NuGet\\NuGet.Config",

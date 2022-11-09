@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using RAIDPlatform.Data.Model.Client.Users;
 using RAIDPlatform.Data.Model.Master.Application_Data_Map;
 using RAIDPlatform.Data.Model.Master.Application_Feature_Map;
 using RAIDPlatform.Data.Model.Master.Application_Module_Map;
@@ -12,13 +13,13 @@ using RAIDPlatform.Data.Model.Master.Navigation_Feature_Map;
 using RAIDPlatform.Data.Model.Master.Navigations;
 using RAIDPlatform.Data.Model.Master.Parameter_Values;
 using RAIDPlatform.Data.Model.Master.Parameters;
-using RAIDPlatform.Data.Repositories.Base;
 using RAIDPlatform.Data.Repositories.Context;
 using RAIDPlatform.Data.Repositories.Interfaces;
+using System.Net;
 
 namespace RAIDPlatform.Data.Repositories.Repositories
 {
-    public class MasterRepository : BaseRepository<Applications, MasterContext>, IClientRepository
+    public class MasterRepository :  IMasterRepository
     {
         private DbSet<Application_Data_Map> Application_Data_Map;
         private DbSet<Application_Feature_Map> Application_Feature_Map;
@@ -34,13 +35,14 @@ namespace RAIDPlatform.Data.Repositories.Repositories
         private DbSet<Parameter_Values> Parameter_Values;
         private DbSet<Parameters> Parameters;
 
+        private readonly MasterContext context;
 
-        public MasterRepository(IUnitOfWork<MasterContext> uow) : base(uow)
+        public MasterRepository(MasterContext context) 
         {
-            var context = (MasterContext)uow.Context;
+            this.context = context;
             Application_Data_Map = context.application_Data_Maps;
             Application_Feature_Map = context.application_Feature_Maps;
-            Application_Module_Map = context.application_Module_Maps
+            Application_Module_Map = context.application_Module_Maps;
             Application_Navigation_Map = context.application_Navigation_Maps;
             Application_Parameter_Map = context.application_Parameter_Maps;
             Applications = context.applications;
@@ -51,6 +53,40 @@ namespace RAIDPlatform.Data.Repositories.Repositories
             Navigations = context.navigations;
             Parameter_Values = context.parameter_Values;
             Parameters = context.parameters;
+        }
+        public async Task<List<Applications>> GetAllApplications()
+        {
+            return await Applications.ToListAsync();
+        }
+
+        public async Task<Applications> GetApplicationByID(int appId)
+        {
+            var _qs = await Applications
+
+               .Where(x => x.Application_ID == appId).FirstOrDefaultAsync();
+
+            return _qs;
+        }
+        public async Task<int> AddApplicationAsync(Applications app)
+        {
+            var rec = new Applications()
+            {
+                Application_Name = app.Application_Name,
+                Application_Key = app.Application_Key,
+                Application_Description = app.Application_Description,
+                Application_Emblem = app.Application_Emblem,
+                Application_Logo = app.Application_Logo,
+                Created_By_ID = app.Created_By_ID,
+                Created_By_Name =app.Created_By_Name,
+                Created_Date =app.Created_Date,
+                Updated_By_ID =app.Updated_By_ID,
+                Updated_By_Name =app.Updated_By_Name,
+                Updated_Date =app.Updated_Date
+            };
+            context.applications.Add(rec);
+            await context.SaveChangesAsync();
+
+            return app.Application_ID;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Org.BouncyCastle.Security;
 using RAIDPlatform.Data.Model.Client;
 using RAIDPlatform.Data.Model.Client.Client_Application_Category;
 using RAIDPlatform.Data.Model.Client.Client_Application_Category_Data_Map;
@@ -22,29 +23,31 @@ using RAIDPlatform.Data.Repositories.Interfaces;
 
 namespace RAIDPlatform.Data.Repositories.Repositories
 {
-    public class ClientRepository : BaseRepository<Clients, ClientContext>, IClientRepository
+    public class ClientRepository : IClientRepository
     {
-        private DbSet<Client_Application_Category> Client_Application_Category;
-        private DbSet<Client_Application_Category_Data_Map> Client_Application_Category_Data_Map;
-        private DbSet<Client_Application_Category_Data_Values> Client_Application_Category_Data_Values;
-        private DbSet<Client_Application_Security_Group> Client_Application_Security_Group;
-        private DbSet<Client_Application_Security_Group_Category_Map> Client_Application_Security_Group_Category_Map;
-        private DbSet<Client_Application_Security_Group_Feature_Map> Client_Application_Security_Group_Feature_Map;
-        private DbSet<Client_Data> Client_Data;
-        private DbSet<Client_Features> Client_Features;
-        private DbSet<Client_Module_Map> Client_Module_Map;
-        private DbSet<Client_Navigation_Feature_Map> Client_Navigation_Feature_Map;
-        private DbSet<Client_Navigations> Client_Navigations;
-        private DbSet<Client_Parameter_Values> Client_Parameter_Values;
-        private DbSet<Client_Parameters> Client_Parameters;
-        private DbSet<Clients> Clients;
-        private DbSet<User_Category_Map> User_Category_Map;
-        private DbSet<User_Security_Group_Map> User_Security_Group_Map;
-        private DbSet<Users> Users;
+        private readonly DbSet<Client_Application_Category> Client_Application_Category;
+        private readonly DbSet<Client_Application_Category_Data_Map> Client_Application_Category_Data_Map;
+        private readonly DbSet<Client_Application_Category_Data_Values> Client_Application_Category_Data_Values;
+        private readonly DbSet<Client_Application_Security_Group> Client_Application_Security_Group;
+        private readonly DbSet<Client_Application_Security_Group_Category_Map> Client_Application_Security_Group_Category_Map;
+        private readonly DbSet<Client_Application_Security_Group_Feature_Map> Client_Application_Security_Group_Feature_Map;
+        private readonly DbSet<Client_Data> Client_Data;
+        private readonly DbSet<Client_Features> Client_Features;
+        private readonly DbSet<Client_Module_Map> Client_Module_Map;
+        private readonly DbSet<Client_Navigation_Feature_Map> Client_Navigation_Feature_Map;
+        private readonly DbSet<Client_Navigations> Client_Navigations;
+        private readonly DbSet<Client_Parameter_Values> Client_Parameter_Values;
+        private readonly DbSet<Client_Parameters> Client_Parameters;
+        private readonly DbSet<Clients> Clients;
+        private readonly DbSet<User_Category_Map> User_Category_Map;
+        private readonly DbSet<User_Security_Group_Map> User_Security_Group_Map;
+        private readonly DbSet<Users> Users;
 
-        public ClientRepository(IUnitOfWork<ClientContext> uow) : base(uow)
+        private readonly ClientContext context;
+
+        public ClientRepository(ClientContext context)
         {
-            var context = (ClientContext)uow.Context;
+            this.context = context;
             Client_Application_Category = context.client_Application_Categories;
             Client_Application_Category_Data_Map = context.client_Application_Category_Data_Maps;
             Client_Application_Category_Data_Values = context.client_Application_Category_Data_Values;
@@ -60,9 +63,33 @@ namespace RAIDPlatform.Data.Repositories.Repositories
             Clients = context.clients;
             User_Category_Map = context.user_Category_Map;
             User_Security_Group_Map = context.user_Security_Group_Map;
+            Client_Navigations = context.client_Navigation;
             Users = context.Users;
         }
 
-        
+        public Task<int> AddUsers(Users users)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> DeleteUsers(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<Users>> GetAllUsers()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Users> GetUsersById(int userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int> UpdateUser(Users users)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

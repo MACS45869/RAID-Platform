@@ -1,6 +1,8 @@
-﻿namespace RAIDPlatform.Data.Model.Client.Clients
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace RAIDPlatform.Data.Model.Client.Clients
 {
-    public class Clients
+    public class Clients : BaseEntity
     {
         public int Client_ID { get; set; }
         public string Client_Name { get; set; }
@@ -26,5 +28,16 @@
         public int Updated_By_ID { get; set; }
         public string Updated_By_Name { get; set; }
         public DateTime Updated_Date { get; set; }
+
+        [NotMapped]
+        public int CreatedBy { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        [NotMapped]
+        public int? UpdatedBy { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        [NotMapped]
+        public DateTime CreatedOn { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        [NotMapped]
+        public DateTime? UpdatedOn { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        [NotMapped]
+        public bool Active { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 }

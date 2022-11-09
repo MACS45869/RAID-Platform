@@ -1,0 +1,23 @@
+{
+  "Version": 1,
+  "Hash": "TltTbkmEwdiaH89SB2yIePx34e8EHx3W/TG4DHPP3P4=",
+  "Source": "RAIDPlatform.Data.Repositories",
+  "BasePath": "_content/RAIDPlatform.Data.Repositories",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "D:\\RAID-Platform\\RAIDPlatorm.Data.Model\\RAIDPlatorm.Data.Model.csproj",
+      "Version": 2,
+      "Source": "RAIDPlatorm.Data.Model",
+      "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier"
+    }
+  ],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

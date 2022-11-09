@@ -1,7 +1,14 @@
-var builder = WebApplication.CreateBuilder(args);
 
+using Microsoft.EntityFrameworkCore;
+using RAIDPlatform.Data.Repositories.Context;
+
+var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
-builder.Services.AddRazorPages();
+
+//DatabaseConnection
+builder.Services.AddDbContext<MasterContext>(
+                options => options.UseSqlServer(builder.Configuration.GetConnectionString("RAIDPlatform")));
+builder.Services.AddControllers();
 
 var app = builder.Build();
 
@@ -15,7 +22,5 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
-
-app.MapRazorPages();
 
 app.Run();
