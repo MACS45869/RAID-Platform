@@ -1,4 +1,5 @@
-﻿using RAIDPlatform.Data.Model.Client.Client_Application_Category;
+﻿using RAIDPlatform.Data.Model.Client;
+using RAIDPlatform.Data.Model.Client.Client_Application_Category;
 using RAIDPlatform.Data.Model.Client.Clients;
 using RAIDPlatform.Data.Model.Client.Users;
 
@@ -16,5 +17,10 @@ namespace RAIDPlatform.Data.Repositories.Interfaces
         Task<int> AddClientApplicationCategory(Client_Application_Category client_Application_Category);
         Task UpdateClientApplicationCategory(int clientApplicationCategoryId, Client_Application_Category client_Application_Category);
         Task DeleteClientApplicationCategory(int clientApplicationCategoryId);
+        Task<List<Client_Application_Security_Group>> GetAllClientApplicationSecurityGroup();
+        Task DeleteClientApplicationSecurityGroup(int clientApplicationSecurityGroupId);
+        Task UpdateClientApplicationSecurityGroup(int clientApplicationSecurityGroupId, Client_Application_Security_Group client_Application_Security_Group);
+        Task<int> AddClientApplicationSecurityGroup(Client_Application_Security_Group client_Application_Security_Group);
+        Task<Client_Application_Security_Group> GetClientApplicationSecurityGroupById(int clientApplicationSecurityGroupId);
     }
 }

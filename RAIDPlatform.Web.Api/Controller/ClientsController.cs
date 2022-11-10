@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RAIDPlatform.Data.Model.Client;
 using RAIDPlatform.Data.Model.Client.Client_Application_Category;
 using RAIDPlatform.Data.Model.Client.Clients;
 using RAIDPlatform.Data.Model.Master.Applications;
@@ -106,6 +107,52 @@ namespace RAIDPlatform.Web.Api.Controller
         {
             await this.clientRepository.DeleteClientApplicationCategory(id);
             return Ok(client_Application_Category.Client_Application_Category_Name);
+        }
+        
+        [HttpGet("client-application-security-group-all")]
+        public async Task<IActionResult> GetAllClientApplicationSecurityGroup()
+        {
+            var query = await clientRepository.GetAllClientApplicationSecurityGroup();
+            if (query != null)
+                return Ok(query);
+            else
+                return BadRequest(query);
+        }
+
+        [HttpGet("Client-Application-Security-Group/getById/{id}")]
+        public async Task<IActionResult> GetClientApplicationSecurityGroupByID([FromRoute] int id)
+        {
+
+            var cag = await this.clientRepository.GetClientApplicationSecurityGroupById(id);
+            if (cag == null)
+            {
+                return NotFound();
+            }
+            return Ok(cag);
+        }
+
+        [HttpPost("add/Client-Application-Security-Group")]
+        public async Task<IActionResult> AddClientApplicationSecurityGroup([FromBody] Client_Application_Security_Group client_Application_Security_Group)
+        {
+            var query = await clientRepository.AddClientApplicationSecurityGroup(client_Application_Security_Group);
+            if (query > 0)
+                return Ok(query);
+            else
+                return BadRequest(query);
+        }
+
+        [HttpPost("Client-Application-Security-Group/update/{id}")]
+        public async Task<IActionResult> UpdateClientApplicationSecurityGroup([FromBody] Client_Application_Security_Group client_Application_Security_Group, [FromRoute] int id)
+        {
+            await this.clientRepository.UpdateClientApplicationSecurityGroup(id, client_Application_Security_Group);
+            return Ok(client_Application_Security_Group.Client_Application_Security_Group_ID);
+        }
+
+        [HttpDelete("Client-Application-Security-Group/delete/{id}")]
+        public async Task<IActionResult> DeleteClientApplicationSecurityGroup(Client_Application_Security_Group client_Application_Security_Group, [FromRoute] int id)
+        {
+            await this.clientRepository.DeleteClientApplicationSecurityGroup(id);
+            return Ok(client_Application_Security_Group.Client_Application_Security_Group_Name);
         }
     }
 }

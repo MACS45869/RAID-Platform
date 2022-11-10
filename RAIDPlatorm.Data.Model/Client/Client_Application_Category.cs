@@ -22,6 +22,6 @@ namespace RAIDPlatform.Data.Model.Client.Client_Application_Category
 
         [ForeignKey("Client_ID")]
         public int Client_ID { get; set; }
-        public virtual Clients.Clients Clients { get; set; }
+        public virtual Clients.Clients Client { get; set; }
     }
 }

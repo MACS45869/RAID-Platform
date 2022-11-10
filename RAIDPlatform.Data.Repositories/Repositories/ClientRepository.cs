@@ -158,13 +158,13 @@ namespace RAIDPlatform.Data.Repositories.Repositories
         }
         public async Task<List<Client_Application_Category>> GetAllClientApplicationCategory()
         {
-            var category = await Client_Application_Category.Include(x => x.Clients).ToListAsync();
+            var category = await Client_Application_Category.Include(x => x.Client).ToListAsync();
             return category;
         }
         public async Task<Client_Application_Category> GetClientApplicationCategoryByID(int clientCategoryId)
         {
             var _qs = await Client_Application_Category
-           .Where(x => x.Client_ID == clientCategoryId).Include(x => x.Clients).FirstOrDefaultAsync();
+           .Where(x => x.Client_Application_Category_ID == clientCategoryId).Include(x => x.Client).FirstOrDefaultAsync();
             return _qs;
         }
         public async Task<int> AddClientApplicationCategory(Client_Application_Category client_Application_Category)
@@ -188,7 +188,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
             context.client_Application_Categories.Add(rec);
             await context.SaveChangesAsync();
 
-            return client_Application_Category.Client_ID;
+            return client_Application_Category.Client_Application_Category_ID;
         }
         public async Task UpdateClientApplicationCategory(int clientApplicationCategoryId, Client_Application_Category client_Application_Category)
         {
@@ -220,5 +220,69 @@ namespace RAIDPlatform.Data.Repositories.Repositories
             context.client_Application_Categories.Remove(ca);
             await context.SaveChangesAsync();
         }
+        public async Task<List<Client_Application_Security_Group>> GetAllClientApplicationSecurityGroup()
+        {
+            var sg = await Client_Application_Security_Group.Include(x => x.Client).ToListAsync();
+            return sg;
+        }
+        public async Task<Client_Application_Security_Group> GetClientApplicationSecurityGroupById(int clientApplicationSecurityGroupId)
+        {
+            var _qs = await Client_Application_Security_Group
+           .Where(x => x.Client_Application_Security_Group_ID == clientApplicationSecurityGroupId).Include(x => x.Client).FirstOrDefaultAsync();
+            return _qs;
+        }
+        public async Task<int> AddClientApplicationSecurityGroup(Client_Application_Security_Group client_Application_Security_Group)
+        {
+            var rec = new Client_Application_Security_Group()
+            {
+                Client_ID = client_Application_Security_Group.Client_ID,
+                Application_ID = client_Application_Security_Group.Application_ID,
+                Client_Application_Security_Group_Name = client_Application_Security_Group.Client_Application_Security_Group_Name,
+                Client_Application_Security_Group_Key = client_Application_Security_Group.Client_Application_Security_Group_Key,
+                Client_Application_Security_Group_Description = client_Application_Security_Group.Client_Application_Security_Group_Description,
+                Status_ID = client_Application_Security_Group.Status_ID,
+                Status_Value = client_Application_Security_Group.Status_Value,
+                Created_By_ID = client_Application_Security_Group.Created_By_ID,
+                Created_By_Name = client_Application_Security_Group.Created_By_Name,
+                Created_Date = client_Application_Security_Group.Created_Date,
+                Updated_By_ID = client_Application_Security_Group.Updated_By_ID,
+                Updated_By_Name = client_Application_Security_Group.Updated_By_Name,
+                Updated_Date = client_Application_Security_Group.Updated_Date
+            };
+            context.client_Application_Security_Groups.Add(rec);
+            await context.SaveChangesAsync();
+            return client_Application_Security_Group.Client_Application_Security_Group_ID;
+        }
+        public async Task UpdateClientApplicationSecurityGroup(int clientApplicationSecurityGroupId, Client_Application_Security_Group client_Application_Security_Group)
+        {
+            var ua = await context.client_Application_Security_Groups.FindAsync(clientApplicationSecurityGroupId);
+            if (ua != null)
+            {
+
+                ua.Client_ID = client_Application_Security_Group.Client_ID;
+                ua.Application_ID = client_Application_Security_Group.Application_ID;
+                ua.Client_Application_Security_Group_Name = client_Application_Security_Group.Client_Application_Security_Group_Name;
+                ua.Client_Application_Security_Group_Key = client_Application_Security_Group.Client_Application_Security_Group_Key;
+                ua.Client_Application_Security_Group_Description = client_Application_Security_Group.Client_Application_Security_Group_Description;
+                ua.Status_ID = client_Application_Security_Group.Status_ID;
+                ua.Status_Value = client_Application_Security_Group.Status_Value;
+                ua.Created_By_ID = client_Application_Security_Group.Created_By_ID;
+                ua.Created_By_Name = client_Application_Security_Group.Created_By_Name;
+                ua.Created_Date = client_Application_Security_Group.Created_Date;
+                ua.Updated_By_ID = client_Application_Security_Group.Updated_By_ID;
+                ua.Updated_By_Name = client_Application_Security_Group.Updated_By_Name;
+                ua.Updated_Date = client_Application_Security_Group.Updated_Date;
+
+                await context.SaveChangesAsync();
+            }
+        }
+        public async Task DeleteClientApplicationSecurityGroup(int clientApplicationSecurityGroupId)
+        {
+            var ca = new Client_Application_Security_Group() { Client_Application_Security_Group_ID = clientApplicationSecurityGroupId };
+
+            context.client_Application_Security_Groups.Remove(ca);
+            await context.SaveChangesAsync();
+        }
     }
+
 }
