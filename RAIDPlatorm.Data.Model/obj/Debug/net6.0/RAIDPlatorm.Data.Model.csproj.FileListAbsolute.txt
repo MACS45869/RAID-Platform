@@ -1,30 +1,3 @@
-D:\RAID-Platform\RAIDPlatorm.Data.Model\bin\Debug\net6.0\appsettings.Development.json
-D:\RAID-Platform\RAIDPlatorm.Data.Model\bin\Debug\net6.0\appsettings.json
-D:\RAID-Platform\RAIDPlatorm.Data.Model\bin\Debug\net6.0\RAIDPlatorm.Data.Model.exe
-D:\RAID-Platform\RAIDPlatorm.Data.Model\bin\Debug\net6.0\RAIDPlatorm.Data.Model.deps.json
-D:\RAID-Platform\RAIDPlatorm.Data.Model\bin\Debug\net6.0\RAIDPlatorm.Data.Model.runtimeconfig.json
-D:\RAID-Platform\RAIDPlatorm.Data.Model\bin\Debug\net6.0\RAIDPlatorm.Data.Model.dll
-D:\RAID-Platform\RAIDPlatorm.Data.Model\bin\Debug\net6.0\RAIDPlatorm.Data.Model.pdb
-D:\RAID-Platform\RAIDPlatorm.Data.Model\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
-D:\RAID-Platform\RAIDPlatorm.Data.Model\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
-D:\RAID-Platform\RAIDPlatorm.Data.Model\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
-D:\RAID-Platform\RAIDPlatorm.Data.Model\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
-D:\RAID-Platform\RAIDPlatorm.Data.Model\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
-D:\RAID-Platform\RAIDPlatorm.Data.Model\obj\Debug\net6.0\RAIDPlatorm.Data.Model.csproj.AssemblyReference.cache
-D:\RAID-Platform\RAIDPlatorm.Data.Model\obj\Debug\net6.0\RAIDPlatorm.Data.Model.GeneratedMSBuildEditorConfig.editorconfig
-D:\RAID-Platform\RAIDPlatorm.Data.Model\obj\Debug\net6.0\RAIDPlatorm.Data.Model.AssemblyInfoInputs.cache
-D:\RAID-Platform\RAIDPlatorm.Data.Model\obj\Debug\net6.0\RAIDPlatorm.Data.Model.AssemblyInfo.cs
-D:\RAID-Platform\RAIDPlatorm.Data.Model\obj\Debug\net6.0\RAIDPlatorm.Data.Model.csproj.CoreCompileInputs.cache
-D:\RAID-Platform\RAIDPlatorm.Data.Model\obj\Debug\net6.0\RAIDPlatorm.Data.Model.MvcApplicationPartsAssemblyInfo.cache
-D:\RAID-Platform\RAIDPlatorm.Data.Model\obj\Debug\net6.0\staticwebassets.build.json
-D:\RAID-Platform\RAIDPlatorm.Data.Model\obj\Debug\net6.0\staticwebassets.development.json
-D:\RAID-Platform\RAIDPlatorm.Data.Model\obj\Debug\net6.0\scopedcss\bundle\RAIDPlatorm.Data.Model.styles.css
-D:\RAID-Platform\RAIDPlatorm.Data.Model\obj\Debug\net6.0\RAIDPlatorm.Data.Model.csproj.CopyComplete
-D:\RAID-Platform\RAIDPlatorm.Data.Model\obj\Debug\net6.0\RAIDPlatorm.Data.Model.dll
-D:\RAID-Platform\RAIDPlatorm.Data.Model\obj\Debug\net6.0\refint\RAIDPlatorm.Data.Model.dll
-D:\RAID-Platform\RAIDPlatorm.Data.Model\obj\Debug\net6.0\RAIDPlatorm.Data.Model.pdb
-D:\RAID-Platform\RAIDPlatorm.Data.Model\obj\Debug\net6.0\RAIDPlatorm.Data.Model.genruntimeconfig.cache
-D:\RAID-Platform\RAIDPlatorm.Data.Model\obj\Debug\net6.0\ref\RAIDPlatorm.Data.Model.dll
 D:\Team X\RAID-Platform\RAIDPlatorm.Data.Model\bin\Debug\net6.0\appsettings.Development.json
 D:\Team X\RAID-Platform\RAIDPlatorm.Data.Model\bin\Debug\net6.0\appsettings.json
 D:\Team X\RAID-Platform\RAIDPlatorm.Data.Model\bin\Debug\net6.0\RAIDPlatorm.Data.Model.exe
@@ -52,3 +25,30 @@ D:\Team X\RAID-Platform\RAIDPlatorm.Data.Model\obj\Debug\net6.0\refint\RAIDPlato
 D:\Team X\RAID-Platform\RAIDPlatorm.Data.Model\obj\Debug\net6.0\RAIDPlatorm.Data.Model.pdb
 D:\Team X\RAID-Platform\RAIDPlatorm.Data.Model\obj\Debug\net6.0\RAIDPlatorm.Data.Model.genruntimeconfig.cache
 D:\Team X\RAID-Platform\RAIDPlatorm.Data.Model\obj\Debug\net6.0\ref\RAIDPlatorm.Data.Model.dll
+D:\RAID-Platform\RAIDPlatorm.Data.Model\bin\Debug\net6.0\appsettings.Development.json
+D:\RAID-Platform\RAIDPlatorm.Data.Model\bin\Debug\net6.0\appsettings.json
+D:\RAID-Platform\RAIDPlatorm.Data.Model\bin\Debug\net6.0\RAIDPlatorm.Data.Model.exe
+D:\RAID-Platform\RAIDPlatorm.Data.Model\bin\Debug\net6.0\RAIDPlatorm.Data.Model.deps.json
+D:\RAID-Platform\RAIDPlatorm.Data.Model\bin\Debug\net6.0\RAIDPlatorm.Data.Model.runtimeconfig.json
+D:\RAID-Platform\RAIDPlatorm.Data.Model\bin\Debug\net6.0\RAIDPlatorm.Data.Model.dll
+D:\RAID-Platform\RAIDPlatorm.Data.Model\bin\Debug\net6.0\RAIDPlatorm.Data.Model.pdb
+D:\RAID-Platform\RAIDPlatorm.Data.Model\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+D:\RAID-Platform\RAIDPlatorm.Data.Model\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\RAID-Platform\RAIDPlatorm.Data.Model\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\RAID-Platform\RAIDPlatorm.Data.Model\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+D:\RAID-Platform\RAIDPlatorm.Data.Model\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+D:\RAID-Platform\RAIDPlatorm.Data.Model\obj\Debug\net6.0\RAIDPlatorm.Data.Model.csproj.AssemblyReference.cache
+D:\RAID-Platform\RAIDPlatorm.Data.Model\obj\Debug\net6.0\RAIDPlatorm.Data.Model.GeneratedMSBuildEditorConfig.editorconfig
+D:\RAID-Platform\RAIDPlatorm.Data.Model\obj\Debug\net6.0\RAIDPlatorm.Data.Model.AssemblyInfoInputs.cache
+D:\RAID-Platform\RAIDPlatorm.Data.Model\obj\Debug\net6.0\RAIDPlatorm.Data.Model.AssemblyInfo.cs
+D:\RAID-Platform\RAIDPlatorm.Data.Model\obj\Debug\net6.0\RAIDPlatorm.Data.Model.csproj.CoreCompileInputs.cache
+D:\RAID-Platform\RAIDPlatorm.Data.Model\obj\Debug\net6.0\RAIDPlatorm.Data.Model.MvcApplicationPartsAssemblyInfo.cache
+D:\RAID-Platform\RAIDPlatorm.Data.Model\obj\Debug\net6.0\staticwebassets.build.json
+D:\RAID-Platform\RAIDPlatorm.Data.Model\obj\Debug\net6.0\staticwebassets.development.json
+D:\RAID-Platform\RAIDPlatorm.Data.Model\obj\Debug\net6.0\scopedcss\bundle\RAIDPlatorm.Data.Model.styles.css
+D:\RAID-Platform\RAIDPlatorm.Data.Model\obj\Debug\net6.0\RAIDPlatorm.Data.Model.csproj.CopyComplete
+D:\RAID-Platform\RAIDPlatorm.Data.Model\obj\Debug\net6.0\RAIDPlatorm.Data.Model.dll
+D:\RAID-Platform\RAIDPlatorm.Data.Model\obj\Debug\net6.0\refint\RAIDPlatorm.Data.Model.dll
+D:\RAID-Platform\RAIDPlatorm.Data.Model\obj\Debug\net6.0\RAIDPlatorm.Data.Model.pdb
+D:\RAID-Platform\RAIDPlatorm.Data.Model\obj\Debug\net6.0\RAIDPlatorm.Data.Model.genruntimeconfig.cache
+D:\RAID-Platform\RAIDPlatorm.Data.Model\obj\Debug\net6.0\ref\RAIDPlatorm.Data.Model.dll

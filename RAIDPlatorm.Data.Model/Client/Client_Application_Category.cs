@@ -20,8 +20,8 @@ namespace RAIDPlatform.Data.Model.Client.Client_Application_Category
         public string Updated_By_Name { get; set; }
         public DateTime Updated_Date { get; set; }
 
-        [ForeignKey("Client_ID")]
-        public int Client_ID { get; set; }
+        //[NotMapped]
+        //public int Client_ID { get; set; }
         public virtual Clients.Clients Client { get; set; }
     }
 }

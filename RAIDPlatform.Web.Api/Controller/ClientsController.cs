@@ -2,9 +2,7 @@
 using RAIDPlatform.Data.Model.Client;
 using RAIDPlatform.Data.Model.Client.Client_Application_Category;
 using RAIDPlatform.Data.Model.Client.Clients;
-using RAIDPlatform.Data.Model.Master.Applications;
 using RAIDPlatform.Data.Repositories.Interfaces;
-using RAIDPlatform.Data.Repositories.Repositories;
 
 
 namespace RAIDPlatform.Web.Api.Controller

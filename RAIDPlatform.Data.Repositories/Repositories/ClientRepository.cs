@@ -158,7 +158,9 @@ namespace RAIDPlatform.Data.Repositories.Repositories
         }
         public async Task<List<Client_Application_Category>> GetAllClientApplicationCategory()
         {
-            var category = await Client_Application_Category.Include(x => x.Client).ToListAsync();
+            var category = await Client_Application_Category
+                .Include(x => x.Client)
+                .ToListAsync();
             return category;
         }
         public async Task<Client_Application_Category> GetClientApplicationCategoryByID(int clientCategoryId)
@@ -171,7 +173,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
         {
             var rec = new Client_Application_Category()
             {
-                Client_ID = client_Application_Category.Client_ID,
+                //Client_ID = client_Application_Category.Client_ID,
                 Application_ID = client_Application_Category.Application_ID,
                 Client_Application_Category_Name = client_Application_Category.Client_Application_Category_Name,
                 Client_Application_Category_Key = client_Application_Category.Client_Application_Category_Key,
@@ -196,7 +198,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
             if (ua != null)
             {
 
-                ua.Client_ID = client_Application_Category.Client_ID;
+              //  ua.Client_ID = client_Application_Category.Client_ID;
                 ua.Application_ID = client_Application_Category.Application_ID;
                 ua.Client_Application_Category_Name = client_Application_Category.Client_Application_Category_Name;
                 ua.Client_Application_Category_Key = client_Application_Category.Client_Application_Category_Key;
@@ -235,7 +237,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
         {
             var rec = new Client_Application_Security_Group()
             {
-                Client_ID = client_Application_Security_Group.Client_ID,
+                //Client_ID = client_Application_Security_Group.Client_ID,
                 Application_ID = client_Application_Security_Group.Application_ID,
                 Client_Application_Security_Group_Name = client_Application_Security_Group.Client_Application_Security_Group_Name,
                 Client_Application_Security_Group_Key = client_Application_Security_Group.Client_Application_Security_Group_Key,
@@ -259,7 +261,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
             if (ua != null)
             {
 
-                ua.Client_ID = client_Application_Security_Group.Client_ID;
+               // ua.Client_ID = client_Application_Security_Group.Client_ID;
                 ua.Application_ID = client_Application_Security_Group.Application_ID;
                 ua.Client_Application_Security_Group_Name = client_Application_Security_Group.Client_Application_Security_Group_Name;
                 ua.Client_Application_Security_Group_Key = client_Application_Security_Group.Client_Application_Security_Group_Key;

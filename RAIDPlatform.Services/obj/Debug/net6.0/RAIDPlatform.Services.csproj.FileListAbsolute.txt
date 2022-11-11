@@ -1,6 +1,0 @@
-D:\RAID-Platform\RAIDPlatform.Services\obj\Debug\net6.0\RAIDPlatform.Services.csproj.AssemblyReference.cache
-D:\RAID-Platform\RAIDPlatform.Services\obj\Debug\net6.0\RAIDPlatform.Services.GeneratedMSBuildEditorConfig.editorconfig
-D:\RAID-Platform\RAIDPlatform.Services\obj\Debug\net6.0\RAIDPlatform.Services.AssemblyInfoInputs.cache
-D:\RAID-Platform\RAIDPlatform.Services\obj\Debug\net6.0\RAIDPlatform.Services.AssemblyInfo.cs
-D:\RAID-Platform\RAIDPlatform.Services\obj\Debug\net6.0\RAIDPlatform.Services.csproj.CoreCompileInputs.cache
-D:\RAID-Platform\RAIDPlatform.Services\obj\Debug\net6.0\RAIDPlatform.Services.MvcApplicationPartsAssemblyInfo.cache
