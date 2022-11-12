@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-namespace RAIDPlatform.Data.Model.Master.Parameters
+namespace RAIDPlatform.Data.Model.Master
 {
     public class Parameters
     {

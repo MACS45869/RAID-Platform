@@ -86,7 +86,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
         {
             var rec = new Clients()
             {
-                
+
                 Client_Name = clients.Client_Name,
                 Client_Key = clients.Client_Key,
                 Client_Description = clients.Client_Description,
@@ -158,15 +158,17 @@ namespace RAIDPlatform.Data.Repositories.Repositories
         }
         public async Task<List<Client_Application_Category>> GetAllClientApplicationCategory()
         {
-            var category = await Client_Application_Category
-                .Include(x => x.Client)
-                .ToListAsync();
+            var category = await Client_Application_Category.ToListAsync();
             return category;
         }
         public async Task<Client_Application_Category> GetClientApplicationCategoryByID(int clientCategoryId)
         {
             var _qs = await Client_Application_Category
-           .Where(x => x.Client_Application_Category_ID == clientCategoryId).Include(x => x.Client).FirstOrDefaultAsync();
+                .Include(x => x.Client)
+                .Include(x => x.Application)
+                .Include(x => x.Status).ThenInclude(x => x.Parameter)
+                .Where(x => x.Client_Application_Category_ID == clientCategoryId)
+                .FirstOrDefaultAsync();
             return _qs;
         }
         public async Task<int> AddClientApplicationCategory(Client_Application_Category client_Application_Category)
@@ -198,7 +200,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
             if (ua != null)
             {
 
-              //  ua.Client_ID = client_Application_Category.Client_ID;
+                //  ua.Client_ID = client_Application_Category.Client_ID;
                 ua.Application_ID = client_Application_Category.Application_ID;
                 ua.Client_Application_Category_Name = client_Application_Category.Client_Application_Category_Name;
                 ua.Client_Application_Category_Key = client_Application_Category.Client_Application_Category_Key;
@@ -261,7 +263,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
             if (ua != null)
             {
 
-               // ua.Client_ID = client_Application_Security_Group.Client_ID;
+                // ua.Client_ID = client_Application_Security_Group.Client_ID;
                 ua.Application_ID = client_Application_Security_Group.Application_ID;
                 ua.Client_Application_Security_Group_Name = client_Application_Security_Group.Client_Application_Security_Group_Name;
                 ua.Client_Application_Security_Group_Key = client_Application_Security_Group.Client_Application_Security_Group_Key;

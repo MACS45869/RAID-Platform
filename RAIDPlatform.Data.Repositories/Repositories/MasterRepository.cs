@@ -12,7 +12,7 @@ using RAIDPlatform.Data.Model.Master.Modules;
 using RAIDPlatform.Data.Model.Master.Navigation_Feature_Map;
 using RAIDPlatform.Data.Model.Master.Navigations;
 using RAIDPlatform.Data.Model.Master.Parameter_Values;
-using RAIDPlatform.Data.Model.Master.Parameters;
+using RAIDPlatform.Data.Model.Master;
 using RAIDPlatform.Data.Repositories.Context;
 using RAIDPlatform.Data.Repositories.Interfaces;
 using System.Net;

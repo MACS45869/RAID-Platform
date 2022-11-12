@@ -1,20 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "D:\\RAID-Platform\\RAIDPlatform\\RAIDPlatform.csproj": {}
+    "D:\\Team X\\RAID-Platform\\RAIDPlatform\\RAIDPlatform.csproj": {}
   },
   "projects": {
-    "D:\\RAID-Platform\\RAIDPlatform\\RAIDPlatform.csproj": {
+    "D:\\Team X\\RAID-Platform\\RAIDPlatform\\RAIDPlatform.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\RAID-Platform\\RAIDPlatform\\RAIDPlatform.csproj",
+        "projectUniqueName": "D:\\Team X\\RAID-Platform\\RAIDPlatform\\RAIDPlatform.csproj",
         "projectName": "RAIDPlatform",
-        "projectPath": "D:\\RAID-Platform\\RAIDPlatform\\RAIDPlatform.csproj",
-        "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
-        "outputPath": "D:\\RAID-Platform\\RAIDPlatform\\obj\\",
+        "projectPath": "D:\\Team X\\RAID-Platform\\RAIDPlatform\\RAIDPlatform.csproj",
+        "packagesPath": "C:\\Users\\INIT-LPT-005\\.nuget\\packages\\",
+        "outputPath": "D:\\Team X\\RAID-Platform\\RAIDPlatform\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\USER\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\INIT-LPT-005\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -64,7 +69,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }
