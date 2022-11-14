@@ -3,15 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RAIDPlatform", "RAIDPlatform\RAIDPlatform.csproj", "{1115AABD-2692-4B0D-B5CD-138FD05874C1}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RAIDPlatorm.Data.Model", "RAIDPlatorm.Data.Model\RAIDPlatorm.Data.Model.csproj", "{134B0CBA-DB0C-49F4-BCDD-4E629EFEACB9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RAIDPlatform.Data.Repositories", "RAIDPlatform.Data.Repositories\RAIDPlatform.Data.Repositories.csproj", "{6E4792C1-474D-4204-ACA7-43688EEFF13B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RAIDPlatform.Web.Api", "RAIDPlatform.Web.Api\RAIDPlatform.Web.Api.csproj", "{6F8E9681-0A41-4164-857D-8B186055ED9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RAIDPlatform.Services", "RAIDPlatform.Services\RAIDPlatform.Services.csproj", "{DBF58D93-6A0B-4782-9175-E63D6E3ED9FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RAIDPlatform.Services", "RAIDPlatform.Services\RAIDPlatform.Services.csproj", "{DBF58D93-6A0B-4782-9175-E63D6E3ED9FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1115AABD-2692-4B0D-B5CD-138FD05874C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1115AABD-2692-4B0D-B5CD-138FD05874C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1115AABD-2692-4B0D-B5CD-138FD05874C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1115AABD-2692-4B0D-B5CD-138FD05874C1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{134B0CBA-DB0C-49F4-BCDD-4E629EFEACB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{134B0CBA-DB0C-49F4-BCDD-4E629EFEACB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{134B0CBA-DB0C-49F4-BCDD-4E629EFEACB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
