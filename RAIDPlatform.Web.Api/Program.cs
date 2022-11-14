@@ -1,4 +1,5 @@
 
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using RAIDPlatform.Data.Repositories.Context;
 using RAIDPlatform.Data.Repositories.Interfaces;
@@ -21,6 +22,8 @@ builder.Services.AddScoped<ClientContext>();
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
 
 builder.Services.AddMvc(options => options.EnableEndpointRouting = false);
+
+builder.Services.AddAutoMapper(typeof(Program));
 
 var app = builder.Build();
 

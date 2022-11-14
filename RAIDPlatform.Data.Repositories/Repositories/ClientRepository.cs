@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using RAIDPlatform.Data.Models.Client;
 using RAIDPlatform.Data.Models.Client.Client_Application_Category;
 using RAIDPlatform.Data.Models.Client.Client_Application_Category_Data_Map;
@@ -119,7 +120,6 @@ namespace RAIDPlatform.Data.Repositories.Repositories
             var ua = await context.clients.FindAsync(clientId);
             if (ua != null)
             {
-
                 ua.Client_Name = clients.Client_Name;
                 ua.Client_Key = clients.Client_Key;
                 ua.Client_Description = clients.Client_Description;
@@ -173,7 +173,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
         {
             var rec = new Client_Application_Category()
             {
-                //Client_ID = client_Application_Category.Client_ID,
+                Client_ID = client_Application_Category.Client_ID,
                 Application_ID = client_Application_Category.Application_ID,
                 Client_Application_Category_Name = client_Application_Category.Client_Application_Category_Name,
                 Client_Application_Category_Key = client_Application_Category.Client_Application_Category_Key,
@@ -198,7 +198,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
             if (ua != null)
             {
 
-                //  ua.Client_ID = client_Application_Category.Client_ID;
+                ua.Client_ID = client_Application_Category.Client_ID;
                 ua.Application_ID = client_Application_Category.Application_ID;
                 ua.Client_Application_Category_Name = client_Application_Category.Client_Application_Category_Name;
                 ua.Client_Application_Category_Key = client_Application_Category.Client_Application_Category_Key;
@@ -217,7 +217,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
         }
         public async Task DeleteClientApplicationCategory(int clientApplicationCategoryId)
         {
-            var ca = new Client_Application_Category() { Client_Application_Category_ID = clientApplicationCategoryId };
+            Client_Application_Category ca = new Client_Application_Category() { Client_Application_Category_ID = clientApplicationCategoryId };
 
             context.client_Application_Categories.Remove(ca);
             await context.SaveChangesAsync();
@@ -230,14 +230,18 @@ namespace RAIDPlatform.Data.Repositories.Repositories
         public async Task<Client_Application_Security_Group> GetClientApplicationSecurityGroupById(int clientApplicationSecurityGroupId)
         {
             var _qs = await Client_Application_Security_Group
-           .Where(x => x.Client_Application_Security_Group_ID == clientApplicationSecurityGroupId).Include(x => x.Client).FirstOrDefaultAsync();
+                .Include(xx => xx.Client)
+                .Include(xx => xx.Application)
+                .Include(xx => xx.Status).ThenInclude(xx => xx.Parameter)
+                .Where(xx => xx.Client_Application_Security_Group_ID == clientApplicationSecurityGroupId)
+                .FirstOrDefaultAsync();
             return _qs;
         }
         public async Task<int> AddClientApplicationSecurityGroup(Client_Application_Security_Group client_Application_Security_Group)
         {
             var rec = new Client_Application_Security_Group()
             {
-                //Client_ID = client_Application_Security_Group.Client_ID,
+                Client_ID = client_Application_Security_Group.Client_ID,
                 Application_ID = client_Application_Security_Group.Application_ID,
                 Client_Application_Security_Group_Name = client_Application_Security_Group.Client_Application_Security_Group_Name,
                 Client_Application_Security_Group_Key = client_Application_Security_Group.Client_Application_Security_Group_Key,
@@ -260,8 +264,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
             var ua = await context.client_Application_Security_Groups.FindAsync(clientApplicationSecurityGroupId);
             if (ua != null)
             {
-
-                // ua.Client_ID = client_Application_Security_Group.Client_ID;
+                ua.Client_ID = client_Application_Security_Group.Client_ID;
                 ua.Application_ID = client_Application_Security_Group.Application_ID;
                 ua.Client_Application_Security_Group_Name = client_Application_Security_Group.Client_Application_Security_Group_Name;
                 ua.Client_Application_Security_Group_Key = client_Application_Security_Group.Client_Application_Security_Group_Key;
