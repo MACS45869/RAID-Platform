@@ -8,7 +8,7 @@ namespace RAIDPlatform.Data.Repositories.Interfaces
     * Repository interface specification
     * Define minimum repository functionality
     * */
-    public interface IRepository<T> where T : Model.BaseEntity
+    public interface IRepository<T> where T : Models.BaseEntity
     {
         /**
        * Get all records from the table

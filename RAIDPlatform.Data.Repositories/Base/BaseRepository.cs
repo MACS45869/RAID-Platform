@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using RAIDPlatform.Data.Model;
+using RAIDPlatform.Data.Models;
 using RAIDPlatform.Data.Repositories.Interfaces;
 using System.Linq.Expressions;
 

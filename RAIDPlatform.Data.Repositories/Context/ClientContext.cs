@@ -1,27 +1,27 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
-using RAIDPlatform.Data.Model.Client.Client_Application_Category_Data_Map;
-using RAIDPlatform.Data.Model.Client.Users;
-using RAIDPlatform.Data.Model.Client.Client_Application_Category;
+using RAIDPlatform.Data.Models.Client.Client_Application_Category_Data_Map;
+using RAIDPlatform.Data.Models.Client.Users;
+using RAIDPlatform.Data.Models.Client.Client_Application_Category;
 using RAIDPlatform.Data.Repositories.Base;
-using RAIDPlatform.Data.Model.Client.Client_Application_Category_Data_Values;
-using RAIDPlatform.Data.Model.Client;
-using RAIDPlatform.Data.Model.Client.Client_Application_Security_Group_Category_Map;
-using RAIDPlatform.Data.Model.Client.Client_Application_Security_Group_Feature_Map;
-using RAIDPlatform.Data.Model.Client.Client_Data;
-using RAIDPlatform.Data.Model.Client.Client_Features;
-using RAIDPlatform.Data.Model.Client.Client_Module_Map;
-using RAIDPlatform.Data.Model.Client.Client_Navigation_Feature_Map;
-using RAIDPlatform.Data.Model.Client.Client_Navigations;
-using RAIDPlatform.Data.Model.Client.Client_Parameter_Values;
-using RAIDPlatform.Data.Model.Client.Client_Parameters;
-using RAIDPlatform.Data.Model.Client.Clients;
-using RAIDPlatform.Data.Model.Client.User_Category_Map;
-using RAIDPlatform.Data.Model.Client.User_Security_Group_Map;
-using RAIDPlatform.Data.Model.Master.Applications;
-using RAIDPlatform.Data.Model.Master.Parameter_Values;
+using RAIDPlatform.Data.Models.Client.Client_Application_Category_Data_Values;
+using RAIDPlatform.Data.Models.Client;
+using RAIDPlatform.Data.Models.Client.Client_Application_Security_Group_Category_Map;
+using RAIDPlatform.Data.Models.Client.Client_Application_Security_Group_Feature_Map;
+using RAIDPlatform.Data.Models.Client.Client_Data;
+using RAIDPlatform.Data.Models.Client.Client_Features;
+using RAIDPlatform.Data.Models.Client.Client_Module_Map;
+using RAIDPlatform.Data.Models.Client.Client_Navigation_Feature_Map;
+using RAIDPlatform.Data.Models.Client.Client_Navigations;
+using RAIDPlatform.Data.Models.Client.Client_Parameter_Values;
+using RAIDPlatform.Data.Models.Client.Client_Parameters;
+using RAIDPlatform.Data.Models.Client.Clients;
+using RAIDPlatform.Data.Models.Client.User_Category_Map;
+using RAIDPlatform.Data.Models.Client.User_Security_Group_Map;
+using RAIDPlatform.Data.Models.Master.Applications;
+using RAIDPlatform.Data.Models.Master.Parameter_Values;
 using System.Reflection.Metadata;
-using RAIDPlatform.Data.Model.Master;
+using RAIDPlatform.Data.Models.Master;
 
 namespace RAIDPlatform.Data.Repositories.Context
 {

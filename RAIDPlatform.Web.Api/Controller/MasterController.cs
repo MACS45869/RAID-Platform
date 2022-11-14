@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RAIDPlatform.Data.Model.Master.Applications;
+using RAIDPlatform.Data.Models.Master.Applications;
 using RAIDPlatform.Data.Repositories.Interfaces;
 
 namespace RAIDPlatform.Web.Api.Controller

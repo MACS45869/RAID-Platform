@@ -1,7 +1,7 @@
-﻿using RAIDPlatform.Data.Model.Client;
-using RAIDPlatform.Data.Model.Client.Client_Application_Category;
-using RAIDPlatform.Data.Model.Client.Clients;
-using RAIDPlatform.Data.Model.Client.Users;
+﻿using RAIDPlatform.Data.Models.Client;
+using RAIDPlatform.Data.Models.Client.Client_Application_Category;
+using RAIDPlatform.Data.Models.Client.Clients;
+using RAIDPlatform.Data.Models.Client.Users;
 
 namespace RAIDPlatform.Data.Repositories.Interfaces
 {

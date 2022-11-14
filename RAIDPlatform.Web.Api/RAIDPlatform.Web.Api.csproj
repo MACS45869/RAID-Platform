@@ -7,14 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.0" />
     <PackageReference Include="FluentAssertions" Version="6.8.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.11" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\RAIDPlatform.Data.Repositories\RAIDPlatform.Data.Repositories.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\RAIDPlatform.Data.Models\RAIDPlatform.Data.Models.csproj" />
+		<ProjectReference Include="..\RAIDPlatform.Data.Repositories\RAIDPlatform.Data.Repositories.csproj" />
+		<ProjectReference Include="..\RAIDPlatform.Services\RAIDPlatform.Services.csproj" />
+	</ItemGroup>
 
 </Project>

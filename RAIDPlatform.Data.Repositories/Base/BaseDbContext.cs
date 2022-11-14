@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.SignalR;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using RAIDPlatform.Data.Repositories.Interfaces;
 
 namespace RAIDPlatform.Data.Repositories.Base

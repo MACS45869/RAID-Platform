@@ -1,4 +1,4 @@
-﻿using RAIDPlatform.Data.Model.Master.Applications;
+﻿using RAIDPlatform.Data.Models.Master.Applications;
 
 namespace RAIDPlatform.Data.Repositories.Interfaces
 {
