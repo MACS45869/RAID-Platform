@@ -22,5 +22,11 @@ namespace RAIDPlatform.Data.Repositories.Interfaces
         Task UpdateClientApplicationSecurityGroup(int clientApplicationSecurityGroupId, Client_Application_Security_Group client_Application_Security_Group);
         Task<int> AddClientApplicationSecurityGroup(Client_Application_Security_Group client_Application_Security_Group);
         Task<Client_Application_Security_Group> GetClientApplicationSecurityGroupById(int clientApplicationSecurityGroupId);
+        Task<List<Users>> GetAllUsers();
+        Task DeleteUsers(int userId);
+        Task UpdateUsers(int userId, Users users);
+        Task<int> AddUser(Users users);
+        Task<Users> GetUsersByID(int userId);
+
     }
 }

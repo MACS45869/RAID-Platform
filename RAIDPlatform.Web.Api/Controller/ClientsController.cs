@@ -2,6 +2,7 @@
 using RAIDPlatform.Data.Models.Client;
 using RAIDPlatform.Data.Models.Client.Client_Application_Category;
 using RAIDPlatform.Data.Models.Client.Clients;
+using RAIDPlatform.Data.Models.Client.Users;
 using RAIDPlatform.Data.Repositories.Interfaces;
 
 
@@ -62,7 +63,7 @@ namespace RAIDPlatform.Web.Api.Controller
             return Ok(clients.Client_Name);
         }
         
-        [HttpGet("client-application-category-all")]
+        [HttpGet("Client-Application-Category-all")]
         public async Task<IActionResult> GetAllClientApplicationCategory()
         {
             var query = await clientRepository.GetAllClientApplicationCategory();
@@ -83,7 +84,7 @@ namespace RAIDPlatform.Web.Api.Controller
             return Ok(cag);
         }
 
-        [HttpPost("add/Client-Application-Category")]
+        [HttpPost("Client-Application-Category/add")]
         public async Task<IActionResult> AddClientApplicationCategory([FromBody] Client_Application_Category client_Application_Category)
         {
             var query = await clientRepository.AddClientApplicationCategory(client_Application_Category);
@@ -107,7 +108,7 @@ namespace RAIDPlatform.Web.Api.Controller
             return Ok(client_Application_Category.Client_Application_Category_Name);
         }
         
-        [HttpGet("client-application-security-group-all")]
+        [HttpGet("Client-Application-Security-Group-all")]
         public async Task<IActionResult> GetAllClientApplicationSecurityGroup()
         {
             var query = await clientRepository.GetAllClientApplicationSecurityGroup();
@@ -129,7 +130,7 @@ namespace RAIDPlatform.Web.Api.Controller
             return Ok(cag);
         }
 
-        [HttpPost("add/Client-Application-Security-Group")]
+        [HttpPost("Client-Application-Security-Group/add")]
         public async Task<IActionResult> AddClientApplicationSecurityGroup([FromBody] Client_Application_Security_Group client_Application_Security_Group)
         {
             var query = await clientRepository.AddClientApplicationSecurityGroup(client_Application_Security_Group);
@@ -151,6 +152,52 @@ namespace RAIDPlatform.Web.Api.Controller
         {
             await this.clientRepository.DeleteClientApplicationSecurityGroup(id);
             return Ok(client_Application_Security_Group.Client_Application_Security_Group_Name);
+        }
+        
+        [HttpGet("User-all")]
+        public async Task<IActionResult> GetAllUser()
+        {
+            var query = await clientRepository.GetAllUsers();
+            if (query != null)
+                return Ok(query);
+            else
+                return BadRequest(query);
+        }
+
+        [HttpGet("User/getById/{id}")]
+        public async Task<IActionResult> GetUserByID([FromRoute] int id)
+        {
+
+            var cag = await this.clientRepository.GetUsersByID(id);
+            if (cag == null)
+            {
+                return NotFound();
+            }
+            return Ok(cag);
+        }
+
+        [HttpPost("User/add")]
+        public async Task<IActionResult> AddUser([FromBody] Users users)
+        {
+            var query = await clientRepository.AddUser(users);
+            if (query > 0)
+                return Ok(query);
+            else
+                return BadRequest(query);
+        }
+
+        [HttpPost("User/update/{id}")]
+        public async Task<IActionResult> UpdateUser([FromBody] Users users, [FromRoute] int id)
+        {
+            await this.clientRepository.UpdateUsers(id, users);
+            return Ok(users.User_ID);
+        }
+
+        [HttpDelete("User/delete/{id}")]
+        public async Task<IActionResult> DeleteUser(Users users, [FromRoute] int id)
+        {
+            await this.clientRepository.DeleteUsers(id);
+            return Ok(users.User_ID);
         }
     }
 }

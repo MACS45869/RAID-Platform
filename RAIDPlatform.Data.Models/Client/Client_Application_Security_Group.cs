@@ -20,9 +20,9 @@ namespace RAIDPlatform.Data.Models.Client
         public int Created_By_ID { get; set; }
         public string Created_By_Name { get; set; }
         public DateTime Created_Date { get; set; }
-        public int Updated_By_ID { get; set; }
-        public string Updated_By_Name { get; set; }
-        public DateTime Updated_Date { get; set; }
+        public int? Updated_By_ID { get; set; }
+        public string? Updated_By_Name { get; set; }
+        public DateTime? Updated_Date { get; set; }
 
         //[NotMapped]
         public int Client_ID { get; set; }

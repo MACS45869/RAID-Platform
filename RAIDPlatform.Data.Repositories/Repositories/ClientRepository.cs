@@ -67,6 +67,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
             User_Security_Group_Map = context.user_Security_Group_Map;
             Client_Navigations = context.client_Navigation;
             Users = context.Users;
+            Users.AsNoTracking();
         }
         public async Task<List<Clients>> GetAllClient()
         {
@@ -144,6 +145,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
                 ua.Updated_By_Name = clients.Updated_By_Name;
                 ua.Updated_Date = clients.Updated_Date;
 
+                Clients.Update(ua);
                 await context.SaveChangesAsync();
             }
         }
@@ -205,13 +207,11 @@ namespace RAIDPlatform.Data.Repositories.Repositories
                 ua.Client_Application_Category_Description = client_Application_Category.Client_Application_Category_Description;
                 ua.Status_ID = client_Application_Category.Status_ID;
                 ua.Status_Value = client_Application_Category.Status_Value;
-                ua.Created_By_ID = client_Application_Category.Created_By_ID;
-                ua.Created_By_Name = client_Application_Category.Created_By_Name;
-                ua.Created_Date = client_Application_Category.Created_Date;
                 ua.Updated_By_ID = client_Application_Category.Updated_By_ID;
                 ua.Updated_By_Name = client_Application_Category.Updated_By_Name;
-                ua.Updated_Date = client_Application_Category.Updated_Date;
+                ua.Updated_Date = DateTime.Now.Date;
 
+                Client_Application_Category.Update(ua);
                 await context.SaveChangesAsync();
             }
         }
@@ -271,13 +271,11 @@ namespace RAIDPlatform.Data.Repositories.Repositories
                 ua.Client_Application_Security_Group_Description = client_Application_Security_Group.Client_Application_Security_Group_Description;
                 ua.Status_ID = client_Application_Security_Group.Status_ID;
                 ua.Status_Value = client_Application_Security_Group.Status_Value;
-                ua.Created_By_ID = client_Application_Security_Group.Created_By_ID;
-                ua.Created_By_Name = client_Application_Security_Group.Created_By_Name;
-                ua.Created_Date = client_Application_Security_Group.Created_Date;
                 ua.Updated_By_ID = client_Application_Security_Group.Updated_By_ID;
                 ua.Updated_By_Name = client_Application_Security_Group.Updated_By_Name;
-                ua.Updated_Date = client_Application_Security_Group.Updated_Date;
+                ua.Updated_Date = DateTime.Now.Date;
 
+                Client_Application_Security_Group.Update(ua);
                 await context.SaveChangesAsync();
             }
         }
@@ -286,6 +284,105 @@ namespace RAIDPlatform.Data.Repositories.Repositories
             var ca = new Client_Application_Security_Group() { Client_Application_Security_Group_ID = clientApplicationSecurityGroupId };
 
             context.client_Application_Security_Groups.Remove(ca);
+            await context.SaveChangesAsync();
+        }
+
+        public async Task<List<Users>> GetAllUsers()
+        {
+            var users = await Users
+                .ToListAsync();
+            return users;
+        }
+        public async Task<Users> GetUsersByID(int userId)
+        {
+            var _us = await Users.Include(x => x.Client)
+                .Include(x => x.User_Type)
+                .Include(x => x.Status)
+                .Include(x => x.Designation)
+                .Include(x => x.Reporting_To)
+                .Include(x => x.Org_Hierarchy)
+                .Where(x => x.User_ID == userId)
+                .AsNoTracking()
+                .FirstOrDefaultAsync();
+            return _us;
+        }
+        public async Task<int> AddUser(Users users)
+        {
+            var rec = new Users()
+            {
+                User_ID = users.User_ID,
+                Client_ID = users.Client_ID,
+                User_Type_ID = users.User_Type_ID,
+                User_Type_Value = users.User_Type_Value,
+                Is_AD_User  = users.Is_AD_User,
+                User_Email = users.User_Email,
+                User_Name = users.User_Name,
+                Phone_Number = users.Phone_Number,
+                Designation_ID = users.Designation_ID,
+                Designation_Value = users.Designation_Value,
+                Reporting_To_ID = users.Reporting_To_ID,
+                Reporting_To_Name = users.Reporting_To_Name,
+                Org_Hierarchy_ID = users.Org_Hierarchy_ID,
+                Org_Hierarchy_Value = users.Org_Hierarchy_Value,
+                User_Password = users.User_Password,
+                User_OTP = users.User_OTP,
+                User_OTP_Expiry = users.User_OTP_Expiry,
+                User_OTP_Expired = users.User_OTP_Expired,
+                Status_ID = users.Status_ID,
+                Status_Value = users.Status_Value,
+                Created_By_ID = users.Created_By_ID,
+                Created_By_Name = users.Created_By_Name,
+                Created_Date = users.Created_Date,
+                Updated_By_ID = users.Updated_By_ID,
+                Updated_By_Name = users.Updated_By_Name,
+                Updated_Date = users.Updated_Date
+
+            };
+            context.Users.Add(rec);
+            await context.SaveChangesAsync();
+
+            return users.User_ID;
+        }
+        public async Task UpdateUsers(int userId, Users users)
+        {
+            var ua = await context.Users.FindAsync(userId);
+            if (ua != null)
+            {
+                ua.User_ID = users.User_ID;
+                ua.Client_ID = users.Client_ID;
+                ua.User_Type_ID = users.User_Type_ID;
+                ua.User_Type_Value = users.User_Type_Value;
+                ua.Is_AD_User = users.Is_AD_User;
+                ua.User_Email = users.User_Email;
+                ua.User_Name = users.User_Name;
+                ua.Phone_Number = users.Phone_Number;
+                ua.Designation_ID = users.Designation_ID;
+                ua.Designation_Value = users.Designation_Value;
+                ua.Reporting_To_ID = users.Reporting_To_ID;
+                ua.Reporting_To_Name = users.Reporting_To_Name;
+                ua.Org_Hierarchy_ID = users.Org_Hierarchy_ID;
+                ua.Org_Hierarchy_Value = users.Org_Hierarchy_Value;
+                ua.User_Password = users.User_Password;
+                ua.User_OTP = users.User_OTP;
+                ua.User_OTP_Expiry = users.User_OTP_Expiry;
+                ua.User_OTP_Expired = users.User_OTP_Expired;
+                ua.Status_ID = users.Status_ID;
+                ua.Status_Value = users.Status_Value;
+                ua.Updated_By_ID = users.Updated_By_ID;
+                ua.Updated_By_Name = users.Updated_By_Name;
+                ua.Updated_Date = DateTime.Now.Date;
+                    Users.Add(ua);
+                await context.SaveChangesAsync();
+            }
+        }
+        public async Task DeleteUsers(int userId)
+        {
+            var ca = new Users() 
+            {
+                User_ID = userId 
+            };
+
+            context.Users.Remove(ca);
             await context.SaveChangesAsync();
         }
     }

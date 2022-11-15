@@ -68,7 +68,16 @@ namespace RAIDPlatform.Data.Repositories.Context
                 //.HasOne(x => x.Client)
                 //.WithOne()
                 //.HasForeignKey<Clients>(fk => fk.Client_ID);
-            modelBuilder.Entity<Users>().ToTable("Users");
+            modelBuilder.Entity<Users>(entity =>
+            {
+                entity.HasOne(x => x.Client).WithOne().HasForeignKey<Clients>(fk => fk.Client_ID);
+                entity.HasOne(x => x.Status).WithOne().HasForeignKey<Parameter_Values>(fk => fk.Parameter_Value_ID);
+                entity.HasOne(x => x.Designation).WithOne().HasForeignKey<Parameter_Values>(fk => fk.Parameter_Value_ID);
+                entity.HasOne(x => x.Reporting_To).WithOne().HasForeignKey<Parameter_Values>(fk => fk.Parameter_Value_ID);
+                entity.HasOne(x => x.Org_Hierarchy).WithOne().HasForeignKey<Parameter_Values>(fk => fk.Parameter_Value_ID);
+                entity.HasOne(x => x.User_Type).WithOne().HasForeignKey<Parameter_Values>(fk => fk.Parameter_Value_ID);
+                entity.ToTable("Users");
+            });
 
             modelBuilder.Entity<Client_Application_Category_Data_Map>().ToTable("Client_Application_Category_Data_Map");
 
