@@ -64,20 +64,22 @@ namespace RAIDPlatform.Data.Repositories.Context
             });
             modelBuilder.Entity<Parameter_Values>().ToTable("Parameter_Values")
                 .HasOne(x => x.Parameter).WithOne().HasForeignKey<Parameters>(fk => fk.Parameter_ID);
-                //.ToTable("Client_Application_Category")
-                //.HasOne(x => x.Client)
-                //.WithOne()
-                //.HasForeignKey<Clients>(fk => fk.Client_ID);
+            //.ToTable("Client_Application_Category")
+            //.HasOne(x => x.Client)
+            //.WithOne()
+            //.HasForeignKey<Clients>(fk => fk.Client_ID);
             modelBuilder.Entity<Users>(entity =>
             {
                 entity.HasOne(x => x.Client).WithOne().HasForeignKey<Clients>(fk => fk.Client_ID);
-                entity.HasOne(x => x.Status).WithOne().HasForeignKey<Parameter_Values>(fk => fk.Parameter_Value_ID);
-                entity.HasOne(x => x.Designation).WithOne().HasForeignKey<Parameter_Values>(fk => fk.Parameter_Value_ID);
-                entity.HasOne(x => x.Reporting_To).WithOne().HasForeignKey<Parameter_Values>(fk => fk.Parameter_Value_ID);
-                entity.HasOne(x => x.Org_Hierarchy).WithOne().HasForeignKey<Parameter_Values>(fk => fk.Parameter_Value_ID);
-                entity.HasOne(x => x.User_Type).WithOne().HasForeignKey<Parameter_Values>(fk => fk.Parameter_Value_ID);
+                entity.HasOne(x => x.Status).WithMany(x => x.Statuses).HasForeignKey(fk => fk.Status_ID);
+                entity.HasOne(x => x.Designation).WithMany(x => x.Designations).HasForeignKey(fk => fk.Designation_ID);
+                entity.HasOne(x => x.Reporting_To).WithMany(x => x.Reporting_Tos).HasForeignKey(fk => fk.Reporting_To_ID);
+                entity.HasOne(x => x.Org_Hierarchy).WithMany(x => x.Org_Hierarchies).HasForeignKey(fk => fk.Org_Hierarchy_ID);
+                entity.HasOne(x => x.User_Type).WithMany(x => x.User_Types).HasForeignKey(fk => fk.User_Type_ID);
                 entity.ToTable("Users");
             });
+
+
 
             modelBuilder.Entity<Client_Application_Category_Data_Map>().ToTable("Client_Application_Category_Data_Map");
 
