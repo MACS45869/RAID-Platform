@@ -2,6 +2,7 @@
 using RAIDPlatform.Data.Models.Client.Client_Application_Category;
 using RAIDPlatform.Data.Models.Client.Clients;
 using RAIDPlatform.Data.Models.Client.Users;
+using RAIDPlatform.Data.Models.Master.Applications;
 
 namespace RAIDPlatform.Data.Repositories.Interfaces
 {
@@ -27,6 +28,13 @@ namespace RAIDPlatform.Data.Repositories.Interfaces
         Task UpdateUsers(int userId, Users users);
         Task<int> AddUser(Users users);
         Task<Users> GetUsersByID(int userId);
+        Task<List<Client_Application_Category>> GetAllClientApplicationCategoryByApplication(int appID);
+        Task<List<Client_Application_Category>> GetAllClientApplicationCategoryByClient(int clientID);
+        Task<List<Client_Application_Security_Group>> GetAllClientApplicationSecurityGroupByClient(int clientID);
+        Task<List<Users>> GetAllUserByClient(int clientID);
+
+
+
 
     }
 }

@@ -22,6 +22,7 @@ using RAIDPlatform.Data.Repositories.Base;
 using RAIDPlatform.Data.Repositories.Context;
 using RAIDPlatform.Data.Repositories.Interfaces;
 using System;
+using System.Diagnostics.Metrics;
 
 namespace RAIDPlatform.Data.Repositories.Repositories
 {
@@ -156,6 +157,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
             context.clients.Remove(ca);
             await context.SaveChangesAsync();
         }
+       
         public async Task<List<Client_Application_Category>> GetAllClientApplicationCategory()
         {
             var category = await Client_Application_Category.ToListAsync();
@@ -171,6 +173,28 @@ namespace RAIDPlatform.Data.Repositories.Repositories
                 .FirstOrDefaultAsync();
             return _qs;
         }
+
+        public async Task<List<Client_Application_Category>> GetAllClientApplicationCategoryByApplication(int appID)
+        {
+                var _qs = await Client_Application_Category
+                .Include(x => x.Application)
+                .Where(x => x.Application_ID == appID)
+                .ToListAsync();
+            return _qs;
+
+        }
+        public async Task<List<Client_Application_Category>> GetAllClientApplicationCategoryByClient(int clientID)
+        {
+            var _qs = await Client_Application_Category
+
+                .Include(x => x.Client)
+                .Include(x => x.Application)
+                .Include(x => x.Status).ThenInclude(x => x.Parameter)
+                .Where(x => x.Client_ID == clientID).ToListAsync();
+
+            return _qs;
+        }
+
         public async Task<int> AddClientApplicationCategory(Client_Application_Category client_Application_Category)
         {
             var rec = new Client_Application_Category()
@@ -227,6 +251,18 @@ namespace RAIDPlatform.Data.Repositories.Repositories
             var sg = await Client_Application_Security_Group.Include(x => x.Client).ToListAsync();
             return sg;
         }
+        public async Task<List<Client_Application_Security_Group>> GetAllClientApplicationSecurityGroupByClient(int clientID)
+        {
+            var _qs = await Client_Application_Security_Group
+
+                .Include(x => x.Client)
+                .Include(x => x.Application)
+                .Include(x => x.Status).ThenInclude(x => x.Parameter)
+                .Where(x => x.Client_ID == clientID).ToListAsync();
+
+            return _qs;
+        }
+
         public async Task<Client_Application_Security_Group> GetClientApplicationSecurityGroupById(int clientApplicationSecurityGroupId)
         {
             var _qs = await Client_Application_Security_Group
@@ -295,7 +331,8 @@ namespace RAIDPlatform.Data.Repositories.Repositories
         }
         public async Task<Users> GetUsersByID(int userId)
         {
-            var _us = await Users.Include(x => x.Client)
+            var _us = await Users
+                .Include(x => x.Client)
                 .Include(x => x.User_Type)
                 .Include(x => x.Status)
                 .Include(x => x.Designation)
@@ -306,6 +343,21 @@ namespace RAIDPlatform.Data.Repositories.Repositories
                 .FirstOrDefaultAsync();
             return _us;
         }
+        public async Task<List<Users>> GetAllUserByClient(int clientID)
+        {
+            var _qs = await Users
+
+                .Include(x => x.Client)
+                .Include(x => x.User_Type)
+                .Include(x => x.Status)
+                .Include(x => x.Designation)
+                .Include(x => x.Reporting_To)
+                .Include(x => x.Org_Hierarchy)
+                .Where(x => x.Client_ID == clientID).ToListAsync();
+
+            return _qs;
+        }
+
         public async Task<int> AddUser(Users users)
         {
             var rec = new Users()

@@ -76,6 +76,7 @@ namespace RAIDPlatform.Data.Repositories.Context
                 entity.HasOne(x => x.Reporting_To).WithMany(x => x.Reporting_Tos).HasForeignKey(fk => fk.Reporting_To_ID);
                 entity.HasOne(x => x.Org_Hierarchy).WithMany(x => x.Org_Hierarchies).HasForeignKey(fk => fk.Org_Hierarchy_ID);
                 entity.HasOne(x => x.User_Type).WithMany(x => x.User_Types).HasForeignKey(fk => fk.User_Type_ID);
+                entity.HasKey(x => x.User_ID);
                 entity.ToTable("Users");
             });
 

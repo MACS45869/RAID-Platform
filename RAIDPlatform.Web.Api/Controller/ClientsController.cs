@@ -3,6 +3,7 @@ using RAIDPlatform.Data.Models.Client;
 using RAIDPlatform.Data.Models.Client.Client_Application_Category;
 using RAIDPlatform.Data.Models.Client.Clients;
 using RAIDPlatform.Data.Models.Client.Users;
+using RAIDPlatform.Data.Models.Master.Applications;
 using RAIDPlatform.Data.Repositories.Interfaces;
 
 
@@ -72,6 +73,25 @@ namespace RAIDPlatform.Web.Api.Controller
             else
                 return BadRequest(query);
         }
+        [HttpGet("Client-Application-Category-all/application/{id}")]
+        public async Task<IActionResult> GetAllClientApplicationCategoryByApplication([FromRoute] int id)
+        {
+            var query = await clientRepository.GetAllClientApplicationCategoryByApplication(id);
+            if (query != null)
+                return Ok(query);
+            else
+                return BadRequest(query);
+        }
+
+        [HttpGet("Client-Application-Category-all/client/{id}")]
+        public async Task<IActionResult> GetAllClientApplicationCategoryByClient([FromRoute]int id)
+        {
+            var query = await clientRepository.GetAllClientApplicationCategoryByClient(id);
+            if (query != null)
+                return Ok(query);
+            else
+                return BadRequest(query);
+        }
         [HttpGet("Client-Application-Category/getById/{id}")]
         public async Task<IActionResult> GetClientApplicationCategoryByID([FromRoute] int id)
         {
@@ -117,7 +137,15 @@ namespace RAIDPlatform.Web.Api.Controller
             else
                 return BadRequest(query);
         }
-
+        [HttpGet("Client-Application-Security-Group-all/ByClient/{id}")]
+        public async Task<IActionResult> GetAllClientApplicationSecurityGroupByClient(int id)
+        {
+            var query = await clientRepository.GetAllClientApplicationSecurityGroupByClient(id);
+            if (query != null)
+                return Ok(query);
+            else
+                return BadRequest(query);
+        }
         [HttpGet("Client-Application-Security-Group/getById/{id}")]
         public async Task<IActionResult> GetClientApplicationSecurityGroupByID([FromRoute] int id)
         {
@@ -163,7 +191,15 @@ namespace RAIDPlatform.Web.Api.Controller
             else
                 return BadRequest(query);
         }
-
+        [HttpGet("User/all/ByClient/{id}")]
+        public async Task<IActionResult> GetAllUserByClient(int id)
+        {
+            var query = await clientRepository.GetAllUserByClient(id);
+            if (query != null)
+                return Ok(query);
+            else
+                return BadRequest(query);
+        }
         [HttpGet("User/getById/{id}")]
         public async Task<IActionResult> GetUserByID([FromRoute] int id)
         {
