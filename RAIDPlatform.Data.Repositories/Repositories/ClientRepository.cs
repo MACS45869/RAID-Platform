@@ -423,7 +423,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
                 ua.Updated_By_ID = users.Updated_By_ID;
                 ua.Updated_By_Name = users.Updated_By_Name;
                 ua.Updated_Date = DateTime.Now.Date;
-                    Users.Add(ua);
+                    Users.Update(ua);
                 await context.SaveChangesAsync();
             }
         }

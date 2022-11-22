@@ -1,11 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using AutoMapper;
 using RAIDPlatform.Data.Models.Client;
 using RAIDPlatform.Data.Models.Client.Client_Application_Category;
 using RAIDPlatform.Data.Models.Client.Clients;
 using RAIDPlatform.Data.Models.Client.Users;
 using RAIDPlatform.Data.Models.Master.Applications;
 using RAIDPlatform.Data.Repositories.Interfaces;
-
+using RAIDPlatform.Services.ClientService;
+using RAIDPlatform.Utilities;
+using RAIDPlatform.Web.Api.DTO.ClientDTO;
+using Microsoft.EntityFrameworkCore;
+using RAIDPlatform.Web.Api.Pages;
 
 namespace RAIDPlatform.Web.Api.Controller
 {
@@ -17,6 +22,97 @@ namespace RAIDPlatform.Web.Api.Controller
         {
             this.clientRepository = _clientRepo;
         }
+        //For Services:
+        //private readonly IClientService _clientService;
+        //private readonly IMapper _mapper;
+        //public ClientsController(IClientService clientService, IMapper mapper)
+        //{
+        //    _clientService = clientService;
+        //    _mapper = mapper;
+        //}
+
+        //[HttpGet]
+        //[Route("Client-Application-Category-all")]
+        //public async Task<IActionResult> GetAllClientApplicationCategory()
+        //{
+        //    try
+        //    {
+        //        var query = await _clientService.GetAllApplicationCategory();
+        //        List<Client_Application_Category_Dto> _doc = _mapper.Map<List<Client_Application_Category_Dto>>(query.Data);
+
+        //        if (query.Success)
+        //        {
+        //            return Ok(new Response<List<Client_Application_Category_Dto>>()
+        //            {
+        //                Success = query.Success,
+        //                Message = query.Message,
+        //                Data = _doc
+        //            });
+        //        }
+        //        else
+        //        {
+        //            return BadRequest(query);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return (CatchStatements(ex, "Application Category fetching failed due to"));
+        //    }
+        //}
+        //[HttpGet]
+        //[Route("Client-Application-Category/getById/{id}")]
+        //public async Task<IActionResult> GetClientApplicationCategoryByID([FromRoute] int id)
+        //{
+        //    try
+        //    {
+        //        var query = await _clientService.GetClientApplicationCategoryByIdAsync(id);
+
+        //        if (query.Success)
+        //        {
+        //            return Ok(new Response<Client_Application_Category_Dto>()
+        //            {
+        //                Success = query.Success,
+        //                Message = query.Message,
+        //                Data = _mapper.Map<Client_Application_Category_Dto>(query.Data)
+        //            });
+        //        }
+        //        else
+        //        {
+        //            return BadRequest(query);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return (CatchStatements(ex, "Application Category fetching failed due to "));
+        //    }
+        //}
+        //private IActionResult CatchStatements(Exception exe, string msg)
+        //{
+
+        //    if (exe.InnerException != null && exe.InnerException is DbUpdateException)
+        //        return BadRequest(new Response<int>()
+        //        {
+        //            Success = false,
+        //            Message = exe.InnerException.ToString(),
+        //            Error = new Error()
+        //            {
+        //                Code = ErrorCodes.DB_ERROR,
+        //                Cause = exe.Message + (exe.InnerException != null && !String.IsNullOrEmpty(exe.InnerException.Message) ? $"INNEX [{exe.InnerException.Message}]" : "")
+        //            }
+        //        });
+        //    return BadRequest(new Response<int>()
+        //    {
+        //        Success = false,
+        //        Message = $"[{msg}] [{exe.Message}]",
+        //        Error = new Error()
+        //        {
+        //            Code = ErrorCodes.UNKNOWN_ERROR,
+        //            Cause = exe.Message
+        //        }
+        //    });
+        //}
+    
+      
 
         [HttpGet("client-all")]
         public async Task<IActionResult> GetAllClients()
