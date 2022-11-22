@@ -5,9 +5,10 @@ namespace RAIDPlatform.Data.Models.Client.Client_Parameters
     public class Client_Parameters
     {
         [Key]
-        public int Client_Parameter_ID { get; set; }
-        public int Parameter_ID { get; set; }
-        public int Client_ID { get; set; }
+        public int Id { get; set; }
+        public int ParameterId { get; set; }
+        public int ClientId { get; set; }
+        public virtual Clients.Clients Client { get; set; }
         public string Client_Parameter_Name { get; set; }
         public string Client_Parameter_Key { get; set; }
         public string Client_Parameter_Description { get; set; }
@@ -18,6 +19,5 @@ namespace RAIDPlatform.Data.Models.Client.Client_Parameters
         public int Updated_By_ID { get; set; }
         public string Updated_By_Name { get; set; }
         public DateTime Updated_Date { get; set; }
-        public virtual Clients.Clients Client { get; set; }
     }
 }
