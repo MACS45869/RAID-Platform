@@ -4,7 +4,7 @@ namespace RAIDPlatform.Data.Models.Master.Modules
     public class Modules
     {
         [Key]
-        public int Modules_ID { get; set; }
+        public int Id { get; set; }
         public string Modules_Name { get; set; }
         public string Modules_Key { get; set; }
         public string? Modules_Description { get; set; }

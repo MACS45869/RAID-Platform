@@ -4,7 +4,7 @@ namespace RAIDPlatform.Data.Models.Master
     public class Parameters
     {
         [Key]
-        public int Parameter_ID { get; set; }
+        public int Id { get; set; }
         public string Parameter_Name { get; set; }
         public string Parameter_Key { get; set; }
         public string Parameter_Description { get; set; }

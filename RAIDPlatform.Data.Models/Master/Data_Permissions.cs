@@ -5,11 +5,11 @@ namespace RAIDPlatform.Data.Models.Master.Data_Permissions
     public class Data_Permissions
     {
         [Key]
-        public int Data_Permission_ID { get; set; }
+        public int Id { get; set; }
         public string Data_Permission_Name { get; set; }
         public string Data_Permission_Key { get; set; }
         public string? Data_Permission_Description { get; set; }
-        public int? Data_Permission_Type_ID { get; set; }
+        public int? Data_Permission_Type_Id { get; set; }
         public string? Data_Permission_Type_Value { get; set; }
         public int Parent_ID { get; set; }
         public bool Is_Header { get; set; }
