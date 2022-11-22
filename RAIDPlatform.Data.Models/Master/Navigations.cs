@@ -4,7 +4,7 @@ namespace RAIDPlatform.Data.Models.Master.Navigations
     public class Navigations
     {
         [Key]
-        public int Navigation_ID { get; set; }
+        public int Id { get; set; }
         public string Navigation_Name { get; set; }
         public string Navigation_Key { get; set; }
         public string? Navigation_Description { get; set; }
