@@ -8,7 +8,7 @@ namespace RAIDPlatform.Data.Models.Master.Application_Feature_Map
         public int Id { get; set; }
 
         public int ApplicationId { get; set; }
-        public virtual Applications.Applications Applications { get; set; }
+        public virtual Applications.Applications Application { get; set; }
 
         public int FeaturePermissionId { get; set; }
         public virtual Feature_Permissions.Feature_Permissions FeaturePermission { get; set; }
