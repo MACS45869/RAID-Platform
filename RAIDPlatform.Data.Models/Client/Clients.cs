@@ -5,7 +5,7 @@ namespace RAIDPlatform.Data.Models.Client.Clients
     public class Clients
     {
         [Key]
-        public int Client_ID { get; set; }
+        public int Id { get; set; }
         public string Client_Name { get; set; }
         public string Client_Key { get; set; }
         public string? Client_Description { get; set; }
@@ -21,7 +21,7 @@ namespace RAIDPlatform.Data.Models.Client.Clients
         public string? Secondary_Contact_Email { get; set; }
         public string? Secondary_Contact_Landline { get; set; }
         public string? Secondary_Contact_Cell { get; set; }
-        public int Status_ID { get; set; }
+        public int StatusId { get; set; }
         public string Status_Value { get; set; }
         public int Created_By_ID { get; set; }
         public string Created_By_Name { get; set; }

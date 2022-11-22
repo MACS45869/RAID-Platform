@@ -5,10 +5,10 @@ namespace RAIDPlatform.Data.Models.Client.Client_Application_Security_Group_Feat
     public class Client_Application_Security_Group_Feature_Map
     {
         [Key]
-        public int Client_Application_Security_Group_Feature_Map_ID { get; set; }
-        public int Client_Application_Security_Group_ID { get; set; }
-        public int Client_Feature_ID { get; set; }
+        public int Id { get; set; }
+        public int ClientApplicationSecurityGroupId { get; set; }
         public virtual Client_Application_Security_Group ClientApplicationSecurityGroup { get; set; }
+        public int ClientFeatureId { get; set; }
         public virtual Client_Features.Client_Features ClientFeatureID {get;set;}
     }
 }
