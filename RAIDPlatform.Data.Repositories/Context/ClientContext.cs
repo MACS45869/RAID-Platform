@@ -29,7 +29,7 @@ namespace RAIDPlatform.Data.Repositories.Context
     public class ClientContext : BaseDbContext<ClientContext>
     {
         internal object client_Application_Security_Group;
-
+        private readonly IConfiguration configuration;
         public DbSet<Client_Application_Category> client_Application_Categories { get; set; }
         public DbSet<Users> Users { get; set; }
         public DbSet<Client_Application_Category_Data_Map> client_Application_Category_Data_Maps { get; set; }
