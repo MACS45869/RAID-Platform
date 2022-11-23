@@ -49,7 +49,7 @@ namespace RAIDPlatform.Web.Api.Controller
         public async Task<IActionResult> UpdateApp([FromBody] Applications applications, [FromRoute] int id)
         {
             await this.masterRepository.UpdateApplication(id, applications);
-            return Ok(applications.Application_ID);
+            return Ok(applications.Id);
         }
 
         [HttpDelete("Application/delete/{id}")]

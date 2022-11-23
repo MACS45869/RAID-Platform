@@ -79,7 +79,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
         {
             var _qs = await Clients
 
-               .Where(x => x.Client_ID == clientId).FirstOrDefaultAsync();
+               .Where(x => x.Id == clientId).FirstOrDefaultAsync();
 
             return _qs;
         }
@@ -103,7 +103,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
                 Secondary_Contact_Email = clients.Secondary_Contact_Email,
                 Secondary_Contact_Landline = clients.Secondary_Contact_Landline,
                 Secondary_Contact_Cell = clients.Secondary_Contact_Cell,
-                Status_ID = clients.Status_ID,
+                StatusId = clients.StatusId,
                 Status_Value = clients.Status_Value,
                 Created_By_ID = clients.Created_By_ID,
                 Created_By_Name = clients.Created_By_Name,
@@ -115,7 +115,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
             context.clients.Add(rec);
             await context.SaveChangesAsync();
 
-            return clients.Client_ID;
+            return clients.Id;
         }
         public async Task UpdateClients(int clientId, Clients clients)
         {
@@ -137,7 +137,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
                 ua.Secondary_Contact_Email = clients.Secondary_Contact_Email;
                 ua.Secondary_Contact_Landline = clients.Secondary_Contact_Landline;
                 ua.Secondary_Contact_Cell = clients.Secondary_Contact_Cell;
-                ua.Status_ID = clients.Status_ID;
+                ua.StatusId = clients.StatusId;
                 ua.Status_Value = clients.Status_Value;
                 ua.Created_By_ID = clients.Created_By_ID;
                 ua.Created_By_Name = clients.Created_By_Name;
@@ -152,7 +152,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
         }
         public async Task DeleteClients(int clientId)
         {
-            var ca = new Clients() { Client_ID = clientId };
+            var ca = new Clients() { Id = clientId };
 
             context.clients.Remove(ca);
             await context.SaveChangesAsync();
@@ -167,9 +167,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
         {
             var _qs = await Client_Application_Category
                 .Include(x => x.Client)
-                .Include(x => x.Application)
-                .Include(x => x.Status).ThenInclude(x => x.Parameter)
-                .Where(x => x.Client_Application_Category_ID == clientCategoryId)
+                .Where(x => x.Id == clientCategoryId)
                 .FirstOrDefaultAsync();
             return _qs;
         }
@@ -177,8 +175,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
         public async Task<List<Client_Application_Category>> GetAllClientApplicationCategoryByApplication(int appID)
         {
                 var _qs = await Client_Application_Category
-                .Include(x => x.Application)
-                .Where(x => x.Application_ID == appID)
+                .Where(x => x.Id== appID)
                 .ToListAsync();
             return _qs;
 
@@ -188,9 +185,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
             var _qs = await Client_Application_Category
 
                 .Include(x => x.Client)
-                .Include(x => x.Application)
-                .Include(x => x.Status).ThenInclude(x => x.Parameter)
-                .Where(x => x.Client_ID == clientID).ToListAsync();
+                .Where(x => x.Id == clientID).ToListAsync();
 
             return _qs;
         }
@@ -199,12 +194,12 @@ namespace RAIDPlatform.Data.Repositories.Repositories
         {
             var rec = new Client_Application_Category()
             {
-                Client_ID = client_Application_Category.Client_ID,
-                Application_ID = client_Application_Category.Application_ID,
+                ClientId = client_Application_Category.ClientId,
+                ApplicationId = client_Application_Category.ApplicationId,
                 Client_Application_Category_Name = client_Application_Category.Client_Application_Category_Name,
                 Client_Application_Category_Key = client_Application_Category.Client_Application_Category_Key,
                 Client_Application_Category_Description = client_Application_Category.Client_Application_Category_Description,
-                Status_ID = client_Application_Category.Status_ID,
+                StatusId = client_Application_Category.StatusId,
                 Status_Value = client_Application_Category.Status_Value,
                 Created_By_ID = client_Application_Category.Created_By_ID,
                 Created_By_Name = client_Application_Category.Created_By_Name,
@@ -216,7 +211,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
             context.client_Application_Categories.Add(rec);
             await context.SaveChangesAsync();
 
-            return client_Application_Category.Client_Application_Category_ID;
+            return client_Application_Category.Id;
         }
         public async Task UpdateClientApplicationCategory(int clientApplicationCategoryId, Client_Application_Category client_Application_Category)
         {
@@ -224,12 +219,12 @@ namespace RAIDPlatform.Data.Repositories.Repositories
             if (ua != null)
             {
 
-                ua.Client_ID = client_Application_Category.Client_ID;
-                ua.Application_ID = client_Application_Category.Application_ID;
+                ua.ClientId = client_Application_Category.ClientId;
+                ua.ApplicationId = client_Application_Category.ApplicationId;
                 ua.Client_Application_Category_Name = client_Application_Category.Client_Application_Category_Name;
                 ua.Client_Application_Category_Key = client_Application_Category.Client_Application_Category_Key;
                 ua.Client_Application_Category_Description = client_Application_Category.Client_Application_Category_Description;
-                ua.Status_ID = client_Application_Category.Status_ID;
+                ua.StatusId = client_Application_Category.StatusId;
                 ua.Status_Value = client_Application_Category.Status_Value;
                 ua.Updated_By_ID = client_Application_Category.Updated_By_ID;
                 ua.Updated_By_Name = client_Application_Category.Updated_By_Name;
@@ -241,7 +236,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
         }
         public async Task DeleteClientApplicationCategory(int clientApplicationCategoryId)
         {
-            Client_Application_Category ca = new Client_Application_Category() { Client_Application_Category_ID = clientApplicationCategoryId };
+            Client_Application_Category ca = new Client_Application_Category() { Id = clientApplicationCategoryId };
 
             context.client_Application_Categories.Remove(ca);
             await context.SaveChangesAsync();
@@ -256,9 +251,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
             var _qs = await Client_Application_Security_Group
 
                 .Include(x => x.Client)
-                .Include(x => x.Application)
-                .Include(x => x.Status).ThenInclude(x => x.Parameter)
-                .Where(x => x.Client_ID == clientID).ToListAsync();
+                .Where(x => x.Id == clientID).ToListAsync();
 
             return _qs;
         }
@@ -267,9 +260,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
         {
             var _qs = await Client_Application_Security_Group
                 .Include(xx => xx.Client)
-                .Include(xx => xx.Application)
-                .Include(xx => xx.Status).ThenInclude(xx => xx.Parameter)
-                .Where(xx => xx.Client_Application_Security_Group_ID == clientApplicationSecurityGroupId)
+                .Where(xx => xx.Id == clientApplicationSecurityGroupId)
                 .FirstOrDefaultAsync();
             return _qs;
         }
@@ -277,12 +268,12 @@ namespace RAIDPlatform.Data.Repositories.Repositories
         {
             var rec = new Client_Application_Security_Group()
             {
-                Client_ID = client_Application_Security_Group.Client_ID,
-                Application_ID = client_Application_Security_Group.Application_ID,
+                ClientId = client_Application_Security_Group.ClientId,
+                ApplicationId = client_Application_Security_Group.ApplicationId,
                 Client_Application_Security_Group_Name = client_Application_Security_Group.Client_Application_Security_Group_Name,
                 Client_Application_Security_Group_Key = client_Application_Security_Group.Client_Application_Security_Group_Key,
                 Client_Application_Security_Group_Description = client_Application_Security_Group.Client_Application_Security_Group_Description,
-                Status_ID = client_Application_Security_Group.Status_ID,
+                StatusId = client_Application_Security_Group.StatusId,
                 Status_Value = client_Application_Security_Group.Status_Value,
                 Created_By_ID = client_Application_Security_Group.Created_By_ID,
                 Created_By_Name = client_Application_Security_Group.Created_By_Name,
@@ -293,19 +284,19 @@ namespace RAIDPlatform.Data.Repositories.Repositories
             };
             context.client_Application_Security_Groups.Add(rec);
             await context.SaveChangesAsync();
-            return client_Application_Security_Group.Client_Application_Security_Group_ID;
+            return client_Application_Security_Group.Id;
         }
         public async Task UpdateClientApplicationSecurityGroup(int clientApplicationSecurityGroupId, Client_Application_Security_Group client_Application_Security_Group)
         {
             var ua = await context.client_Application_Security_Groups.FindAsync(clientApplicationSecurityGroupId);
             if (ua != null)
             {
-                ua.Client_ID = client_Application_Security_Group.Client_ID;
-                ua.Application_ID = client_Application_Security_Group.Application_ID;
+                ua.ClientId = client_Application_Security_Group.ClientId;
+                ua.ApplicationId = client_Application_Security_Group.ApplicationId;
                 ua.Client_Application_Security_Group_Name = client_Application_Security_Group.Client_Application_Security_Group_Name;
                 ua.Client_Application_Security_Group_Key = client_Application_Security_Group.Client_Application_Security_Group_Key;
                 ua.Client_Application_Security_Group_Description = client_Application_Security_Group.Client_Application_Security_Group_Description;
-                ua.Status_ID = client_Application_Security_Group.Status_ID;
+                ua.StatusId = client_Application_Security_Group.StatusId;
                 ua.Status_Value = client_Application_Security_Group.Status_Value;
                 ua.Updated_By_ID = client_Application_Security_Group.Updated_By_ID;
                 ua.Updated_By_Name = client_Application_Security_Group.Updated_By_Name;
@@ -317,7 +308,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
         }
         public async Task DeleteClientApplicationSecurityGroup(int clientApplicationSecurityGroupId)
         {
-            var ca = new Client_Application_Security_Group() { Client_Application_Security_Group_ID = clientApplicationSecurityGroupId };
+            var ca = new Client_Application_Security_Group() { Id = clientApplicationSecurityGroupId };
 
             context.client_Application_Security_Groups.Remove(ca);
             await context.SaveChangesAsync();
@@ -332,13 +323,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
         public async Task<Users> GetUsersByID(int userId)
         {
             var _us = await Users
-                .Include(x => x.Client)
-                .Include(x => x.User_Type)
-                .Include(x => x.Status)
-                .Include(x => x.Designation)
-                .Include(x => x.Reporting_To)
-                .Include(x => x.Org_Hierarchy)
-                .Where(x => x.User_ID == userId)
+                .Where(x => x.Id == userId)
                 .AsNoTracking()
                 .FirstOrDefaultAsync();
             return _us;
@@ -346,14 +331,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
         public async Task<List<Users>> GetAllUserByClient(int clientID)
         {
             var _qs = await Users
-
-                .Include(x => x.Client)
-                .Include(x => x.User_Type)
-                .Include(x => x.Status)
-                .Include(x => x.Designation)
-                .Include(x => x.Reporting_To)
-                .Include(x => x.Org_Hierarchy)
-                .Where(x => x.Client_ID == clientID).ToListAsync();
+                .Where(x => x.Id == clientID).ToListAsync();
 
             return _qs;
         }
@@ -362,25 +340,25 @@ namespace RAIDPlatform.Data.Repositories.Repositories
         {
             var rec = new Users()
             {
-                User_ID = users.User_ID,
-                Client_ID = users.Client_ID,
-                User_Type_ID = users.User_Type_ID,
+                Id = users.Id,
+                ClientId = users.ClientId,
+                UserTypeId = users.UserTypeId,
                 User_Type_Value = users.User_Type_Value,
                 Is_AD_User  = users.Is_AD_User,
                 User_Email = users.User_Email,
                 User_Name = users.User_Name,
                 Phone_Number = users.Phone_Number,
-                Designation_ID = users.Designation_ID,
+                DesignationId = users.DesignationId,
                 Designation_Value = users.Designation_Value,
-                Reporting_To_ID = users.Reporting_To_ID,
+                ReportingToId = users.ReportingToId,
                 Reporting_To_Name = users.Reporting_To_Name,
-                Org_Hierarchy_ID = users.Org_Hierarchy_ID,
+                OrgHierarchyId = users.OrgHierarchyId,
                 Org_Hierarchy_Value = users.Org_Hierarchy_Value,
                 User_Password = users.User_Password,
                 User_OTP = users.User_OTP,
                 User_OTP_Expiry = users.User_OTP_Expiry,
                 User_OTP_Expired = users.User_OTP_Expired,
-                Status_ID = users.Status_ID,
+                StatusId = users.StatusId,
                 Status_Value = users.Status_Value,
                 Created_By_ID = users.Created_By_ID,
                 Created_By_Name = users.Created_By_Name,
@@ -393,32 +371,32 @@ namespace RAIDPlatform.Data.Repositories.Repositories
             context.Users.Add(rec);
             await context.SaveChangesAsync();
 
-            return users.User_ID;
+            return users.Id;
         }
         public async Task UpdateUsers(int userId, Users users)
         {
             var ua = await context.Users.FindAsync(userId);
             if (ua != null)
             {
-                ua.User_ID = users.User_ID;
-                ua.Client_ID = users.Client_ID;
-                ua.User_Type_ID = users.User_Type_ID;
+                ua.Id = users.Id;
+                ua.ClientId = users.ClientId;
+                ua.UserTypeId = users.UserTypeId;
                 ua.User_Type_Value = users.User_Type_Value;
                 ua.Is_AD_User = users.Is_AD_User;
                 ua.User_Email = users.User_Email;
                 ua.User_Name = users.User_Name;
                 ua.Phone_Number = users.Phone_Number;
-                ua.Designation_ID = users.Designation_ID;
+                ua.DesignationId = users.DesignationId;
                 ua.Designation_Value = users.Designation_Value;
-                ua.Reporting_To_ID = users.Reporting_To_ID;
+                ua.ReportingToId = users.ReportingToId;
                 ua.Reporting_To_Name = users.Reporting_To_Name;
-                ua.Org_Hierarchy_ID = users.Org_Hierarchy_ID;
+                ua.OrgHierarchyId = users.OrgHierarchyId;
                 ua.Org_Hierarchy_Value = users.Org_Hierarchy_Value;
                 ua.User_Password = users.User_Password;
                 ua.User_OTP = users.User_OTP;
                 ua.User_OTP_Expiry = users.User_OTP_Expiry;
                 ua.User_OTP_Expired = users.User_OTP_Expired;
-                ua.Status_ID = users.Status_ID;
+                ua.StatusId = users.StatusId;
                 ua.Status_Value = users.Status_Value;
                 ua.Updated_By_ID = users.Updated_By_ID;
                 ua.Updated_By_Name = users.Updated_By_Name;
@@ -431,7 +409,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
         {
             var ca = new Users() 
             {
-                User_ID = userId 
+                Id = userId 
             };
 
             context.Users.Remove(ca);

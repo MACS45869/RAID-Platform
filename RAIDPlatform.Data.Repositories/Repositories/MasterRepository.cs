@@ -65,7 +65,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
         {
             var _qs = await Applications
 
-               .Where(x => x.Application_ID == appId).FirstOrDefaultAsync();
+               .Where(x => x.Id == appId).FirstOrDefaultAsync();
 
             return _qs;
         }
@@ -88,7 +88,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
             context.applications.Add(rec);
             await context.SaveChangesAsync();
 
-            return app.Application_ID;
+            return app.Id;
         }
         public async Task UpdateApplication(int appId, Applications app)
         {
@@ -112,7 +112,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
         }
         public async Task DeleteApplication(int appId)
         {
-            var app = new Applications() { Application_ID = appId };
+            var app = new Applications() { Id = appId };
 
             context.applications.Remove(app);
             await context.SaveChangesAsync();

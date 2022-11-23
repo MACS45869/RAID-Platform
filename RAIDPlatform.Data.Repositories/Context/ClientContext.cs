@@ -22,6 +22,7 @@ using RAIDPlatform.Data.Models.Master.Applications;
 using RAIDPlatform.Data.Models.Master.Parameter_Values;
 using System.Reflection.Metadata;
 using RAIDPlatform.Data.Models.Master;
+using Microsoft.Extensions.Configuration;
 
 namespace RAIDPlatform.Data.Repositories.Context
 {
@@ -49,95 +50,17 @@ namespace RAIDPlatform.Data.Repositories.Context
         public DbSet<Parameter_Values> parameter_Values { get; set; }
 
 
-        public ClientContext(DbContextOptions<ClientContext> options) : base(options)
+        public ClientContext(DbContextOptions<ClientContext> options, IConfiguration configuration) : base(options)
         {
+            this.configuration = configuration;
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Client_Application_Category>(entity =>
-            {
-                entity.HasOne(x => x.Client).WithOne().HasForeignKey<Clients>(fk => fk.Client_ID);
-                entity.HasOne(x => x.Application).WithOne().HasForeignKey<Applications>(fk => fk.Application_ID);
-                entity.HasOne(x => x.Status).WithOne().HasForeignKey<Parameter_Values>(fk => fk.Parameter_Value_ID);
-                entity.ToTable("Client_Application_Category");
-            });
-            modelBuilder.Entity<Parameter_Values>().ToTable("Parameter_Values")
-                .HasOne(x => x.Parameter).WithOne().HasForeignKey<Parameters>(fk => fk.Parameter_ID);
-            //.ToTable("Client_Application_Category")
-            //.HasOne(x => x.Client)
-            //.WithOne()
-            //.HasForeignKey<Clients>(fk => fk.Client_ID);
-            modelBuilder.Entity<Users>(entity =>
-            {
-                entity.HasOne(x => x.Client).WithOne().HasForeignKey<Clients>(fk => fk.Client_ID);
-                entity.HasOne(x => x.Status).WithMany(x => x.Statuses).HasForeignKey(fk => fk.Status_ID);
-                entity.HasOne(x => x.Designation).WithMany(x => x.Designations).HasForeignKey(fk => fk.Designation_ID);
-                entity.HasOne(x => x.Reporting_To).WithMany(x => x.Reporting_Tos).HasForeignKey(fk => fk.Reporting_To_ID);
-                entity.HasOne(x => x.Org_Hierarchy).WithMany(x => x.Org_Hierarchies).HasForeignKey(fk => fk.Org_Hierarchy_ID);
-                entity.HasOne(x => x.User_Type).WithMany(x => x.User_Types).HasForeignKey(fk => fk.User_Type_ID);
-                entity.HasKey(x => x.User_ID);
-                entity.ToTable("Users");
-            });
-
-
-
-            modelBuilder.Entity<Client_Application_Category_Data_Map>().ToTable("Client_Application_Category_Data_Map");
-
-            modelBuilder.Entity<Client_Application_Category_Data_Values>().ToTable("Client_Application_Category_Data_Values");
-
-            modelBuilder.Entity<Client_Application_Security_Group>(entity =>
-            {
-                entity.HasOne(x => x.Client).WithOne().HasForeignKey<Clients>(fk => fk.Client_ID);
-                entity.HasOne(x => x.Application).WithOne().HasForeignKey<Applications>(fk => fk.Application_ID);
-                entity.HasOne(x => x.Status).WithOne().HasForeignKey<Parameter_Values>(fk => fk.Parameter_Value_ID);
-                entity.ToTable("Client_Application_Security_Group");
-            });
-
-            modelBuilder.Entity<Client_Application_Security_Group_Category_Map>().ToTable("Client_Application_Security_Group_Category_Map");
-
-            modelBuilder.Entity<Client_Application_Security_Group_Feature_Map>().ToTable("Client_Application_Security_Group_Feature_Map");
-
-            modelBuilder.Entity<Client_Data>().ToTable("Client_Data")
-                .HasOne(x => x.Client).WithOne().HasForeignKey<Clients>(fk => fk.Client_ID);
-
-            modelBuilder.Entity<Client_Features>().ToTable("Client_Features")
-                .HasOne(x => x.Client)
-                .WithOne()
-                .HasForeignKey<Clients>(fk => fk.Client_ID);
-
-            modelBuilder.Entity<Client_Module_Map>().ToTable("Client_Module_Map")
-                .HasOne(x => x.Client)
-                .WithOne()
-                .HasForeignKey<Clients>(fk => fk.Client_ID);
-
-            modelBuilder.Entity<Client_Navigation_Feature_Map>().ToTable("Client_Navigation_Feature_Map");
-
-            modelBuilder.Entity<Client_Navigations>().ToTable("Client_Navigations")
-                .HasOne(x => x.Client)
-                .WithOne()
-                .HasForeignKey<Clients>(fk => fk.Client_ID);
-
-            modelBuilder.Entity<Client_Parameter_Values>().ToTable("Client_Parameter_Values");
-
-            modelBuilder.Entity<Client_Parameters>().ToTable("Client_Parameters")
-                .HasOne(x => x.Client)
-                .WithOne()
-                .HasForeignKey<Clients>(fk => fk.Client_ID);
-
-            modelBuilder.Entity<Clients>().ToTable("Clients");
-
-            modelBuilder.Entity<User_Category_Map>().ToTable("User_Category_Map")
-                .HasOne(x => x.User)
-                .WithOne()
-                .HasForeignKey<Users>(fk => fk.User_ID);
-
-            modelBuilder.Entity<User_Security_Group_Map>().ToTable("User_Security_Group_Map")
-                .HasOne(x => x.User)
-                .WithOne()
-                .HasForeignKey<Users>(fk => fk.User_ID);
-
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.ConstructDatabaseModel(configuration);
+            // modelBuilder.SeedNotificationKeys(configuration);
         }
 
     }

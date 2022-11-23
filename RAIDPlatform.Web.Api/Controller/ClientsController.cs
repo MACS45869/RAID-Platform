@@ -150,7 +150,7 @@ namespace RAIDPlatform.Web.Api.Controller
         public async Task<IActionResult> UpdateClients([FromBody] Clients clients, [FromRoute] int id)
         {
             await this.clientRepository.UpdateClients(id, clients);
-            return Ok(clients.Client_ID);
+            return Ok(clients.Id);
         }
 
         [HttpDelete("Client/delete/{id}")]
@@ -214,7 +214,7 @@ namespace RAIDPlatform.Web.Api.Controller
         public async Task<IActionResult> UpdateClientApplicationCategory([FromBody] Client_Application_Category client_Application_Category, [FromRoute] int id)
         {
             await this.clientRepository.UpdateClientApplicationCategory(id, client_Application_Category);
-            return Ok(client_Application_Category.Client_Application_Category_ID);
+            return Ok(client_Application_Category.Id);
         }
 
         [HttpDelete("Client-Application-Category/delete/{id}")]
@@ -268,7 +268,7 @@ namespace RAIDPlatform.Web.Api.Controller
         public async Task<IActionResult> UpdateClientApplicationSecurityGroup([FromBody] Client_Application_Security_Group client_Application_Security_Group, [FromRoute] int id)
         {
             await this.clientRepository.UpdateClientApplicationSecurityGroup(id, client_Application_Security_Group);
-            return Ok(client_Application_Security_Group.Client_Application_Security_Group_ID);
+            return Ok(client_Application_Security_Group.Id);
         }
 
         [HttpDelete("Client-Application-Security-Group/delete/{id}")]
@@ -322,14 +322,14 @@ namespace RAIDPlatform.Web.Api.Controller
         public async Task<IActionResult> UpdateUser([FromBody] Users users, [FromRoute] int id)
         {
             await this.clientRepository.UpdateUsers(id, users);
-            return Ok(users.User_ID);
+            return Ok(users.Id);
         }
 
         [HttpDelete("User/delete/{id}")]
         public async Task<IActionResult> DeleteUser(Users users, [FromRoute] int id)
         {
             await this.clientRepository.DeleteUsers(id);
-            return Ok(users.User_ID);
+            return Ok(users.Id);
         }
     }
 }

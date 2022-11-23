@@ -11,7 +11,7 @@ namespace RAIDPlatform.Web.Api.DTO.ClientDTO
         public string Client_Application_Category_Key { get; set; }
         public string Client_Application_Category_Description { get; set; }
         public int Application_ID { get; set; }
-        public int Status_ID { get; set; }
+        public int StatusId { get; set; }
         public string Status_Value { get; set; }
         public int Created_By_ID { get; set; }
         public string Created_By_Name { get; set; }
