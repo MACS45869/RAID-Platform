@@ -611,7 +611,7 @@ namespace RAIDPlatform.Data.Repositories.Migrations
                         column: x => x.ClientApplicationSecurityGroupId,
                         principalTable: "Client_Application_Security_Group",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -754,7 +754,7 @@ namespace RAIDPlatform.Data.Repositories.Migrations
                         column: x => x.UserSecurityGroupMapId,
                         principalTable: "User_Security_Group_Map",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_User_Category_Map_Users_UserId",
                         column: x => x.UserId,
@@ -786,7 +786,7 @@ namespace RAIDPlatform.Data.Repositories.Migrations
                         column: x => x.ClientDataId,
                         principalTable: "Client_Data",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -796,8 +796,7 @@ namespace RAIDPlatform.Data.Repositories.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ClientApplicationSecurityGroupId = table.Column<int>(type: "int", nullable: false),
-                    ClientFeatureId = table.Column<int>(type: "int", nullable: false),
-                    ClientFeatureIDId = table.Column<int>(type: "int", nullable: false)
+                    ClientFeatureId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -810,10 +809,10 @@ namespace RAIDPlatform.Data.Repositories.Migrations
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Client_Application_Security_Group_Feature_Map_Client_Features_ClientFeatureIDId",
-                        column: x => x.ClientFeatureIDId,
+                        column: x => x.ClientFeatureId,
                         principalTable: "Client_Features",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -839,7 +838,7 @@ namespace RAIDPlatform.Data.Repositories.Migrations
                         column: x => x.ClientNavigationId,
                         principalTable: "Client_Navigations",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -975,9 +974,9 @@ namespace RAIDPlatform.Data.Repositories.Migrations
                 column: "ClientApplicationSecurityGroupId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Client_Application_Security_Group_Feature_Map_ClientFeatureIDId",
+                name: "IX_Client_Application_Security_Group_Feature_Map_ClientFeatureId",
                 table: "Client_Application_Security_Group_Feature_Map",
-                column: "ClientFeatureIDId");
+                column: "ClientFeatureId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Client_Data_ApplicationDataMapId",

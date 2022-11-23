@@ -8,11 +8,17 @@ using RAIDPlatform.Data.Repositories.Repositories;
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(c =>
+{
+    //c.OrderActionsBy((apiDesc) => $"{apiDesc.ActionDescriptor.RouteValues["controller"]}_{apiDesc.RelativePath}");
+});
+
 //DatabaseConnection
 //var connString = builder.Configuration.GetConnectionString("RAIDPlatform");
 builder.Services.AddDbContext<MasterContext>(
                 options => options.UseSqlServer(builder.Configuration.GetConnectionString("RAIDPlatform")));
-builder.Services.AddControllers();
 builder.Services.AddScoped<MasterContext>();
 builder.Services.AddScoped<IMasterRepository, MasterRepository>();
 
@@ -29,13 +35,14 @@ var app = builder.Build();
 
 
 // Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Error");
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
-app.UseStaticFiles();
-
+//app.UseHttpsRedirection();
 app.UseAuthorization();
 //For routing
 app.UseMvc();
+app.MapControllers();
 app.Run();

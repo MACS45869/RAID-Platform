@@ -10,7 +10,6 @@ using RAIDPlatform.Services.ClientService;
 using RAIDPlatform.Utilities;
 using RAIDPlatform.Web.Api.DTO.ClientDTO;
 using Microsoft.EntityFrameworkCore;
-using RAIDPlatform.Web.Api.Pages;
 
 namespace RAIDPlatform.Web.Api.Controller
 {
