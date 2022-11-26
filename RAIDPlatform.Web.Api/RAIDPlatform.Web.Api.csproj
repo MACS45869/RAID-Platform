@@ -31,8 +31,4 @@
 		<ProjectReference Include="..\RAIDPlatform.Services\RAIDPlatform.Services.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="DTO\ClientDTO\" />
-	</ItemGroup>
-
 </Project>

@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using RAIDPlatform.Data.Repositories.Context;
 using RAIDPlatform.Data.Repositories.Interfaces;
 using RAIDPlatform.Data.Repositories.Repositories;
+using RAIDPlatform.Services.ClientService;
 
 var builder = WebApplication.CreateBuilder(args);
-// Add services to the container.
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -26,6 +26,10 @@ builder.Services.AddDbContext<ClientContext>(
                 options => options.UseSqlServer(builder.Configuration.GetConnectionString("RAIDPlatform")));
 builder.Services.AddScoped<ClientContext>();
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
+
+//Services
+builder.Services.AddScoped<IClientService, ClientService>();
+//builder.Services.AddScoped<IMasterService, MasterService>();
 
 builder.Services.AddMvc(options => options.EnableEndpointRouting = false);
 

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using RAIDPlatform.Data.Models.Client;
 using RAIDPlatform.Data.Models.Client.Client_Application_Category;
 using RAIDPlatform.Data.Models.Client.Client_Application_Category_Data_Map;
 using RAIDPlatform.Data.Models.Client.Client_Application_Category_Data_Values;
@@ -16,13 +17,7 @@ using RAIDPlatform.Data.Models.Client.Clients;
 using RAIDPlatform.Data.Models.Client.User_Category_Map;
 using RAIDPlatform.Data.Models.Client.User_Security_Group_Map;
 using RAIDPlatform.Data.Models.Client.Users;
-using RAIDPlatform.Data.Models.Client;
-using RAIDPlatform.Data.Models.Master.Parameter_Values;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using RAIDPlatform.Data.Models.Master;
 using RAIDPlatform.Data.Models.Master.Application_Data_Map;
 using RAIDPlatform.Data.Models.Master.Application_Feature_Map;
 using RAIDPlatform.Data.Models.Master.Application_Module_Map;
@@ -34,7 +29,7 @@ using RAIDPlatform.Data.Models.Master.Feature_Permissions;
 using RAIDPlatform.Data.Models.Master.Modules;
 using RAIDPlatform.Data.Models.Master.Navigation_Feature_Map;
 using RAIDPlatform.Data.Models.Master.Navigations;
-using RAIDPlatform.Data.Models.Master;
+using RAIDPlatform.Data.Models.Master.Parameter_Values;
 
 namespace RAIDPlatform.Data.Repositories.Context
 {

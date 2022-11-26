@@ -10,325 +10,523 @@ using RAIDPlatform.Services.ClientService;
 using RAIDPlatform.Utilities;
 using RAIDPlatform.Web.Api.DTO.ClientDTO;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
+using RAIDPlatform.Web.Api.DTO;
+using RAIDPlatform.Web.Api.DTO.RequestDtos;
 
 namespace RAIDPlatform.Web.Api.Controller
 {
 
     public class ClientsController : ControllerBase
     {
-        private readonly IClientRepository clientRepository;
-        public ClientsController(IClientRepository _clientRepo)
-        {
-            this.clientRepository = _clientRepo;
-        }
+        //private readonly IClientRepository clientRepository;
+        //public ClientsController(IClientRepository _clientRepo)
+        //{
+        //    this.clientRepository = _clientRepo;
+        //}
         //For Services:
-        //private readonly IClientService _clientService;
-        //private readonly IMapper _mapper;
-        //public ClientsController(IClientService clientService, IMapper mapper)
-        //{
-        //    _clientService = clientService;
-        //    _mapper = mapper;
-        //}
-
-        //[HttpGet]
-        //[Route("Client-Application-Category-all")]
-        //public async Task<IActionResult> GetAllClientApplicationCategory()
-        //{
-        //    try
-        //    {
-        //        var query = await _clientService.GetAllApplicationCategory();
-        //        List<Client_Application_Category_Dto> _doc = _mapper.Map<List<Client_Application_Category_Dto>>(query.Data);
-
-        //        if (query.Success)
-        //        {
-        //            return Ok(new Response<List<Client_Application_Category_Dto>>()
-        //            {
-        //                Success = query.Success,
-        //                Message = query.Message,
-        //                Data = _doc
-        //            });
-        //        }
-        //        else
-        //        {
-        //            return BadRequest(query);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return (CatchStatements(ex, "Application Category fetching failed due to"));
-        //    }
-        //}
-        //[HttpGet]
-        //[Route("Client-Application-Category/getById/{id}")]
-        //public async Task<IActionResult> GetClientApplicationCategoryByID([FromRoute] int id)
-        //{
-        //    try
-        //    {
-        //        var query = await _clientService.GetClientApplicationCategoryByIdAsync(id);
-
-        //        if (query.Success)
-        //        {
-        //            return Ok(new Response<Client_Application_Category_Dto>()
-        //            {
-        //                Success = query.Success,
-        //                Message = query.Message,
-        //                Data = _mapper.Map<Client_Application_Category_Dto>(query.Data)
-        //            });
-        //        }
-        //        else
-        //        {
-        //            return BadRequest(query);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return (CatchStatements(ex, "Application Category fetching failed due to "));
-        //    }
-        //}
-        //private IActionResult CatchStatements(Exception exe, string msg)
-        //{
-
-        //    if (exe.InnerException != null && exe.InnerException is DbUpdateException)
-        //        return BadRequest(new Response<int>()
-        //        {
-        //            Success = false,
-        //            Message = exe.InnerException.ToString(),
-        //            Error = new Error()
-        //            {
-        //                Code = ErrorCodes.DB_ERROR,
-        //                Cause = exe.Message + (exe.InnerException != null && !String.IsNullOrEmpty(exe.InnerException.Message) ? $"INNEX [{exe.InnerException.Message}]" : "")
-        //            }
-        //        });
-        //    return BadRequest(new Response<int>()
-        //    {
-        //        Success = false,
-        //        Message = $"[{msg}] [{exe.Message}]",
-        //        Error = new Error()
-        //        {
-        //            Code = ErrorCodes.UNKNOWN_ERROR,
-        //            Cause = exe.Message
-        //        }
-        //    });
-        //}
-    
-      
-
-        [HttpGet("client-all")]
-        public async Task<IActionResult> GetAllClients()
+        private readonly IClientService _clientService;
+        private readonly IMapper _mapper;
+        public ClientsController(IClientService clientService, IMapper mapper)
         {
-            var query = await clientRepository.GetAllClient();
-            if (query != null)
-                return Ok(query);
-            else
-                return BadRequest(query);
+            _clientService = clientService;
+            _mapper = mapper;
         }
-
-        [HttpGet("Clients/getById/{id}")]
-        public async Task<IActionResult> GetClientsByID([FromRoute] int id)
+        private IActionResult CatchStatements(Exception exe, string msg)
         {
 
-            var clients = await this.clientRepository.GetClientsByID(id);
-            if (clients == null)
+            if (exe.InnerException != null && exe.InnerException is DbUpdateException)
+                return BadRequest(new Response<int>()
+                {
+                    Success = false,
+                    Message = exe.InnerException.ToString(),
+                    Error = new Error()
+                    {
+                        Code = ErrorCodes.DB_ERROR,
+                        Cause = exe.Message + (exe.InnerException != null && !String.IsNullOrEmpty(exe.InnerException.Message) ? $"INNEX [{exe.InnerException.Message}]" : "")
+                    }
+                });
+            return BadRequest(new Response<int>()
             {
-                return NotFound();
-            }
-            return Ok(clients);
+                Success = false,
+                Message = $"[{msg}] [{exe.Message}]",
+                Error = new Error()
+                {
+                    Code = ErrorCodes.UNKNOWN_ERROR,
+                    Cause = exe.Message
+                }
+            });
         }
-
-        [HttpPost("add-clients")]
-        public async Task<IActionResult> AddClients([FromBody] Clients clients)
-        {
-            var query = await clientRepository.AddClient(clients);
-            if (query > 0)
-                return Ok(query);
-            else
-                return BadRequest(query);
-        }
-
-        [HttpPost("Client/update/{id}")]
-        public async Task<IActionResult> UpdateClients([FromBody] Clients clients, [FromRoute] int id)
-        {
-            await this.clientRepository.UpdateClients(id, clients);
-            return Ok(clients.Id);
-        }
-
-        [HttpDelete("Client/delete/{id}")]
-        public async Task<IActionResult> DeleteClient(Clients clients,[FromRoute] int id)
-        {
-            await this.clientRepository.DeleteClients(id);
-            return Ok(clients.Client_Name);
-        }
-        
-        [HttpGet("Client-Application-Category-all")]
+        [HttpGet]
+        [Route("api/client/clientapplicationcategory/all")]
         public async Task<IActionResult> GetAllClientApplicationCategory()
         {
-            var query = await clientRepository.GetAllClientApplicationCategory();
-            if (query != null)
-                return Ok(query);
-            else
-                return BadRequest(query);
-        }
-        [HttpGet("Client-Application-Category-all/application/{id}")]
-        public async Task<IActionResult> GetAllClientApplicationCategoryByApplication([FromRoute] int id)
-        {
-            var query = await clientRepository.GetAllClientApplicationCategoryByApplication(id);
-            if (query != null)
-                return Ok(query);
-            else
-                return BadRequest(query);
-        }
+            try
+            {
+                var query = await _clientService.GetAllClientApplicationCategoryAsync();
+                List<Client_Application_Category_Dto> _doc = _mapper.Map<List<Client_Application_Category_Dto>>(query.Data);
 
-        [HttpGet("Client-Application-Category-all/client/{id}")]
-        public async Task<IActionResult> GetAllClientApplicationCategoryByClient([FromRoute]int id)
-        {
-            var query = await clientRepository.GetAllClientApplicationCategoryByClient(id);
-            if (query != null)
-                return Ok(query);
-            else
-                return BadRequest(query);
+                if (query.Success)
+                {
+                    return Ok(new Response<List<Client_Application_Category_Dto>>()
+                    {
+                        Success = query.Success,
+                        Message = query.Message,
+                        Data = _doc
+                    });
+                }
+                else
+                {
+                    return BadRequest(query);
+                }
+            }
+            catch (Exception ex)
+            {
+                return (CatchStatements(ex, "Client Application Category fetching failed due to"));
+            }
         }
-        [HttpGet("Client-Application-Category/getById/{id}")]
+        [HttpGet]
+        [Route("api/client/clientapplicationcategory/{id}")]
         public async Task<IActionResult> GetClientApplicationCategoryByID([FromRoute] int id)
         {
-
-            var cag = await this.clientRepository.GetClientApplicationCategoryByID(id);
-            if (cag == null)
+            try
             {
-                return NotFound();
+                var query = await _clientService.GetClientApplicationCategoryByIdAsync(id);
+
+                if (query.Success)
+                {
+                    return Ok(new Response<Client_Application_Category_Dto>()
+                    {
+                        Success = query.Success,
+                        Message = query.Message,
+                        Data = _mapper.Map<Client_Application_Category_Dto>(query.Data)
+                    });
+                }
+                else
+                {
+                    return BadRequest(query);
+                }
             }
-            return Ok(cag);
+            catch (Exception ex)
+            {
+                return (CatchStatements(ex, "Client Application Category fetching failed due to "));
+            }
+        }
+      
+        [HttpPost]
+        [Route("api/client/clientapplicationcategory/add")]
+        public async Task<IActionResult> AddClientApplicationCategory([FromBody] AddClientApplicationCategoryDTO addClientApplicationCategoryDTO)
+        {
+            try
+            {
+                Client_Application_Category client_Application_Category = _mapper.Map<Client_Application_Category>(addClientApplicationCategoryDTO);
+                var query = await _clientService.AddClientApplicationCategoryAsync(client_Application_Category);
+
+                if (query.Success)
+                {
+                    return Ok(query);
+                }
+                else
+                {
+                    return BadRequest(query);
+                }
+            }
+            catch (Exception ex)
+            {
+                return (CatchStatements(ex, "Client Application Category inserting failed due to "));
+            }
         }
 
-        [HttpPost("Client-Application-Category/add")]
-        public async Task<IActionResult> AddClientApplicationCategory([FromBody] Client_Application_Category client_Application_Category)
+        [HttpPost]
+        [Route("api/client/clientapplicationcategory/update")]
+        public async Task<IActionResult> UpdateClientApplicationCategory([FromBody] UpdateClientApplicationCategoryDTO updateClientApplicationCategoryDTO)
         {
-            var query = await clientRepository.AddClientApplicationCategory(client_Application_Category);
-            if (query > 0)
-                return Ok(query);
-            else
-                return BadRequest(query);
+            try
+            {
+                Client_Application_Category client_Application_Category = _mapper.Map<Client_Application_Category>(updateClientApplicationCategoryDTO);
+                var query = await _clientService.UpdateClientApplicationCategoryAsync(client_Application_Category, client_Application_Category.Id);
+
+                if (query.Success)
+                {
+                    return Ok(new Response<Client_Application_Category_Dto>()
+                    {
+                        Success = query.Success,
+                        Message = query.Message,
+                        Data = _mapper.Map<Client_Application_Category_Dto>(query.Data)
+                    });
+                }
+                else
+                {
+                    return BadRequest(query);
+                }
+            }
+            catch (Exception ex)
+            {
+                return (CatchStatements(ex, "Client Application Category Updating failed due to "));
+            }
+        }
+        [HttpDelete]
+        [Route("api/client/clientapplicationcategory/delete/{id}")]
+        public async Task<IActionResult> DeleteClientApplicationCategoryById([FromRoute] int id)
+        {
+            try
+            {
+                var query = await _clientService.DeleteClientApplicationCategoryAsync(id);
+                if (query.Success)
+                {
+                    return Ok(query);
+                }
+                else
+                {
+                    return BadRequest(query);
+                }
+            }
+            catch (Exception ex)
+            {
+                return (CatchStatements(ex, "Exception occurred while deleting Client Application Category. Exception: "));
+            }
         }
 
-        [HttpPost("Client-Application-Category/update/{id}")]
-        public async Task<IActionResult> UpdateClientApplicationCategory([FromBody] Client_Application_Category client_Application_Category, [FromRoute] int id)
+        [HttpGet]
+        [Route("api/client/clientapplicationcategory/byclientid/{id}")]
+        public async Task<IActionResult> GetClientApplicationCategoryByApplicationID([FromRoute] int id)
         {
-            await this.clientRepository.UpdateClientApplicationCategory(id, client_Application_Category);
-            return Ok(client_Application_Category.Id);
-        }
+            try
+            {
+                var query = await _clientService.GetAllClientApplicationCategoryByClientIdAsync(id);
 
-        [HttpDelete("Client-Application-Category/delete/{id}")]
-        public async Task<IActionResult> DeleteClientApplicationCategory(Client_Application_Category client_Application_Category, [FromRoute] int id)
-        {
-            await this.clientRepository.DeleteClientApplicationCategory(id);
-            return Ok(client_Application_Category.Client_Application_Category_Name);
+                if (query.Success)
+                {
+                    return Ok(new Response<Client_Application_Category_Dto>()
+                    {
+                        Success = query.Success,
+                        Message = query.Message,
+                        Data = _mapper.Map<Client_Application_Category_Dto>(query.Data)
+                    });
+                }
+                else
+                {
+                    return BadRequest(query);
+                }
+            }
+            catch (Exception ex)
+            {
+                return (CatchStatements(ex, "Client Application Category By Client Id fetching failed due to "));
+            }
         }
-        
-        [HttpGet("Client-Application-Security-Group-all")]
+        [HttpGet]
+        [Route("api/client/clientapplicationsecuritygroup/all")]
         public async Task<IActionResult> GetAllClientApplicationSecurityGroup()
         {
-            var query = await clientRepository.GetAllClientApplicationSecurityGroup();
-            if (query != null)
-                return Ok(query);
-            else
-                return BadRequest(query);
+            try
+            {
+                var query = await _clientService.GetAllClientApplicationSecurityGroupAsync();
+                List<Client_Application_Security_Group_Dto> _doc = _mapper.Map<List<Client_Application_Security_Group_Dto>>(query.Data);
+
+                if (query.Success)
+                {
+                    return Ok(new Response<List<Client_Application_Security_Group_Dto>>()
+                    {
+                        Success = query.Success,
+                        Message = query.Message,
+                        Data = _doc
+                    });
+                }
+                else
+                {
+                    return BadRequest(query);
+                }
+            }
+            catch (Exception ex)
+            {
+                return (CatchStatements(ex, "Client Application Security Group fetching failed due to"));
+            }
         }
-        [HttpGet("Client-Application-Security-Group-all/ByClient/{id}")]
-        public async Task<IActionResult> GetAllClientApplicationSecurityGroupByClient(int id)
-        {
-            var query = await clientRepository.GetAllClientApplicationSecurityGroupByClient(id);
-            if (query != null)
-                return Ok(query);
-            else
-                return BadRequest(query);
-        }
-        [HttpGet("Client-Application-Security-Group/getById/{id}")]
+        [HttpGet]
+        [Route("api/client/clientapplicationsecuritygroup/{id}")]
         public async Task<IActionResult> GetClientApplicationSecurityGroupByID([FromRoute] int id)
         {
-
-            var cag = await this.clientRepository.GetClientApplicationSecurityGroupById(id);
-            if (cag == null)
+            try
             {
-                return NotFound();
+                var query = await _clientService.GetClientApplicationSecurityGroupByIdAsync(id);
+
+                if (query.Success)
+                {
+                    return Ok(new Response<Client_Application_Security_Group_Dto>()
+                    {
+                        Success = query.Success,
+                        Message = query.Message,
+                        Data = _mapper.Map<Client_Application_Security_Group_Dto>(query.Data)
+                    });
+                }
+                else
+                {
+                    return BadRequest(query);
+                }
             }
-            return Ok(cag);
-        }
-
-        [HttpPost("Client-Application-Security-Group/add")]
-        public async Task<IActionResult> AddClientApplicationSecurityGroup([FromBody] Client_Application_Security_Group client_Application_Security_Group)
-        {
-            var query = await clientRepository.AddClientApplicationSecurityGroup(client_Application_Security_Group);
-            if (query > 0)
-                return Ok(query);
-            else
-                return BadRequest(query);
-        }
-
-        [HttpPost("Client-Application-Security-Group/update/{id}")]
-        public async Task<IActionResult> UpdateClientApplicationSecurityGroup([FromBody] Client_Application_Security_Group client_Application_Security_Group, [FromRoute] int id)
-        {
-            await this.clientRepository.UpdateClientApplicationSecurityGroup(id, client_Application_Security_Group);
-            return Ok(client_Application_Security_Group.Id);
-        }
-
-        [HttpDelete("Client-Application-Security-Group/delete/{id}")]
-        public async Task<IActionResult> DeleteClientApplicationSecurityGroup(Client_Application_Security_Group client_Application_Security_Group, [FromRoute] int id)
-        {
-            await this.clientRepository.DeleteClientApplicationSecurityGroup(id);
-            return Ok(client_Application_Security_Group.Client_Application_Security_Group_Name);
-        }
-        
-        [HttpGet("User-all")]
-        public async Task<IActionResult> GetAllUser()
-        {
-            var query = await clientRepository.GetAllUsers();
-            if (query != null)
-                return Ok(query);
-            else
-                return BadRequest(query);
-        }
-        [HttpGet("User/all/ByClient/{id}")]
-        public async Task<IActionResult> GetAllUserByClient(int id)
-        {
-            var query = await clientRepository.GetAllUserByClient(id);
-            if (query != null)
-                return Ok(query);
-            else
-                return BadRequest(query);
-        }
-        [HttpGet("User/getById/{id}")]
-        public async Task<IActionResult> GetUserByID([FromRoute] int id)
-        {
-
-            var cag = await this.clientRepository.GetUsersByID(id);
-            if (cag == null)
+            catch (Exception ex)
             {
-                return NotFound();
+                return (CatchStatements(ex, "Client Application Security Group fetching failed due to "));
             }
-            return Ok(cag);
         }
 
-        [HttpPost("User/add")]
-        public async Task<IActionResult> AddUser([FromBody] Users users)
+        [HttpPost]
+        [Route("api/client/clientapplicationcategory/add")]
+        public async Task<IActionResult> AddClientApplicationSecurityGroup([FromBody] AddClientApplicationSecurityGroupDTO addClientApplicationSecurityGroupDTO)
         {
-            var query = await clientRepository.AddUser(users);
-            if (query > 0)
-                return Ok(query);
-            else
-                return BadRequest(query);
+            try
+            {
+                Client_Application_Security_Group client_Application_Security_Group = _mapper.Map<Client_Application_Security_Group>(addClientApplicationSecurityGroupDTO);
+                var query = await _clientService.AddClientApplicationSecurityGroupAsync(client_Application_Security_Group);
+
+                if (query.Success)
+                {
+                    return Ok(query);
+                }
+                else
+                {
+                    return BadRequest(query);
+                }
+            }
+            catch (Exception ex)
+            {
+                return (CatchStatements(ex, "Client Application Security Group inserting failed due to "));
+            }
         }
 
-        [HttpPost("User/update/{id}")]
-        public async Task<IActionResult> UpdateUser([FromBody] Users users, [FromRoute] int id)
+        [HttpPost]
+        [Route("api/client/clientapplicationsecuritygroup/update")]
+        public async Task<IActionResult> UpdateClientApplicationSecurityGroup([FromBody] UpdateClientApplicationCategoryDTO updateClientApplicationCategoryDTO)
         {
-            await this.clientRepository.UpdateUsers(id, users);
-            return Ok(users.Id);
+            try
+            {
+                Client_Application_Security_Group client_Application_Security_Group = _mapper.Map<Client_Application_Security_Group>(updateClientApplicationCategoryDTO);
+                var query = await _clientService.UpdateClientApplicationSecurityGroupAsync(client_Application_Security_Group, client_Application_Security_Group.Id);
+
+                if (query.Success)
+                {
+                    return Ok(new Response<Client_Application_Security_Group_Dto>()
+                    {
+                        Success = query.Success,
+                        Message = query.Message,
+                        Data = _mapper.Map<Client_Application_Security_Group_Dto>(query.Data)
+                    });
+                }
+                else
+                {
+                    return BadRequest(query);
+                }
+            }
+            catch (Exception ex)
+            {
+                return (CatchStatements(ex, "Client Application Security Group Updating failed due to "));
+            }
+        }
+        [HttpDelete]
+        [Route("api/client/clientapplicationsecuritygroup/delete/{id}")]
+        public async Task<IActionResult> DeleteClientApplicationSecurityGroupById([FromRoute] int id)
+        {
+            try
+            {
+                var query = await _clientService.DeleteClientApplicationSecurityGroupAsync(id);
+                if (query.Success)
+                {
+                    return Ok(query);
+                }
+                else
+                {
+                    return BadRequest(query);
+                }
+            }
+            catch (Exception ex)
+            {
+                return (CatchStatements(ex, "Exception occurred while deleting Client Application Security Group. Exception: "));
+            }
         }
 
-        [HttpDelete("User/delete/{id}")]
-        public async Task<IActionResult> DeleteUser(Users users, [FromRoute] int id)
+        [HttpGet]
+        [Route("api/client/clientapplicationsecuritygroup/byclientid/{id}")]
+        public async Task<IActionResult> GetClientApplicationSecurityGroupByCientID([FromRoute] int id)
         {
-            await this.clientRepository.DeleteUsers(id);
-            return Ok(users.Id);
+            try
+            {
+                var query = await _clientService.GetAllClientApplicationSecurityGroupByClientIdAsync(id);
+
+                if (query.Success)
+                {
+                    return Ok(new Response<Client_Application_Security_Group_Dto>()
+                    {
+                        Success = query.Success,
+                        Message = query.Message,
+                        Data = _mapper.Map<Client_Application_Security_Group_Dto>(query.Data)
+                    });
+                }
+                else
+                {
+                    return BadRequest(query);
+                }
+            }
+            catch (Exception ex)
+            {
+                return (CatchStatements(ex, "Client Application Security Group By Client Id fetching failed due to "));
+            }
+        }
+        [HttpGet]
+        [Route("api/client/users/all")]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            try
+            {
+                var query = await _clientService.GetAllUsersAsync();
+                List<Users_Dto> _doc = _mapper.Map<List<Users_Dto>>(query.Data);
+
+                if (query.Success)
+                {
+                    return Ok(new Response<List<Users_Dto>>()
+                    {
+                        Success = query.Success,
+                        Message = query.Message,
+                        Data = _doc
+                    });
+                }
+                else
+                {
+                    return BadRequest(query);
+                }
+            }
+            catch (Exception ex)
+            {
+                return (CatchStatements(ex, "Users fetching failed due to"));
+            }
+        }
+        [HttpGet]
+        [Route("api/client/Users/{id}")]
+        public async Task<IActionResult> GetUsersByID([FromRoute] int id)
+        {
+            try
+            {
+                var query = await _clientService.GetUsersByIdAsync(id);
+
+                if (query.Success)
+                {
+                    return Ok(new Response<Users_Dto>()
+                    {
+                        Success = query.Success,
+                        Message = query.Message,
+                        Data = _mapper.Map<Users_Dto>(query.Data)
+                    });
+                }
+                else
+                {
+                    return BadRequest(query);
+                }
+            }
+            catch (Exception ex)
+            {
+                return (CatchStatements(ex, "Users fetching failed due to "));
+            }
+        }
+
+        [HttpPost]
+        [Route("api/client/Users/add")]
+        public async Task<IActionResult> AddUsers([FromBody] AddUsersDTO addUsersDTO)
+        {
+            try
+            {
+                Users users = _mapper.Map<Users>(addUsersDTO);
+                var query = await _clientService.AddUserAsync(users);
+
+                if (query.Success)
+                {
+                    return Ok(query);
+                }
+                else
+                {
+                    return BadRequest(query);
+                }
+            }
+            catch (Exception ex)
+            {
+                return (CatchStatements(ex, "Users inserting failed due to "));
+            }
+        }
+
+        [HttpPost]
+        [Route("api/client/users/update")]
+        public async Task<IActionResult> UpdateUsers([FromBody] UpdateUsersDTO updateUsersDTO)
+        {
+            try
+            {
+                Users users = _mapper.Map<Users>(updateUsersDTO);
+                var query = await _clientService.UpdateUsersAsync(users, users.Id);
+
+                if (query.Success)
+                {
+                    return Ok(new Response<Users_Dto>()
+                    {
+                        Success = query.Success,
+                        Message = query.Message,
+                        Data = _mapper.Map<Users_Dto>(query.Data)
+                    });
+                }
+                else
+                {
+                    return BadRequest(query);
+                }
+            }
+            catch (Exception ex)
+            {
+                return (CatchStatements(ex, "Users Updating failed due to "));
+            }
+        }
+        [HttpDelete]
+        [Route("api/client/users/delete/{id}")]
+        public async Task<IActionResult> DeleteUsersById([FromRoute] int id)
+        {
+            try
+            {
+                var query = await _clientService.DeleteUsersAsync(id);
+                if (query.Success)
+                {
+                    return Ok(query);
+                }
+                else
+                {
+                    return BadRequest(query);
+                }
+            }
+            catch (Exception ex)
+            {
+                return (CatchStatements(ex, "Exception occurred while deleting Users. Exception: "));
+            }
+        }
+
+        [HttpGet]
+        [Route("api/client/users/byclientid/{id}")]
+        public async Task<IActionResult> GetUsersByClientID([FromRoute] int id)
+        {
+            try
+            {
+                var query = await _clientService.GetAllUsersByClientIdAsync(id);
+
+                if (query.Success)
+                {
+                    return Ok(new Response<Users_Dto>()
+                    {
+                        Success = query.Success,
+                        Message = query.Message,
+                        Data = _mapper.Map<Users_Dto>(query.Data)
+                    });
+                }
+                else
+                {
+                    return BadRequest(query);
+                }
+            }
+            catch (Exception ex)
+            {
+                return (CatchStatements(ex, "Users By Client Id fetching failed due to "));
+            }
         }
     }
 }

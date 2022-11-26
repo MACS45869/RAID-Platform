@@ -1,6 +1,9 @@
 ﻿using AutoMapper;
+using RAIDPlatform.Data.Models.Client;
 using RAIDPlatform.Data.Models.Client.Client_Application_Category;
+using RAIDPlatform.Data.Models.Client.Users;
 using RAIDPlatform.Web.Api.DTO;
+using RAIDPlatform.Web.Api.DTO.RequestDtos;
 
 namespace RAIDPlatform.Web.Api.MapperProfiles
 {
@@ -10,6 +13,11 @@ namespace RAIDPlatform.Web.Api.MapperProfiles
             CreateMap<Client_Application_Category, UpdateClientApplicationCategoryDTO>().ReverseMap();
             CreateMap<Client_Application_Category, AddClientApplicationCategoryDTO>().ReverseMap();
 
+            CreateMap<Client_Application_Security_Group, UpdateClientApplicationSecurityGroupDTO>().ReverseMap();
+            CreateMap<Client_Application_Security_Group, AddClientApplicationSecurityGroupDTO>().ReverseMap();
+
+            CreateMap<Users, UpdateUsersDTO>().ReverseMap();
+            CreateMap<Users, AddUsersDTO>().ReverseMap();
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace RAIDPlatform.Data.Models.Client.Clients
 {
-    public class Clients
+    public class Clients 
     {
         [Key]
         public int Id { get; set; }
