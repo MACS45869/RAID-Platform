@@ -68,7 +68,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
             User_Security_Group_Map = context.user_Security_Group_Map;
             Client_Navigations = context.client_Navigation;
             Users = context.Users;
-           // Users.AsNoTracking();
+            // Users.AsNoTracking();
         }
         public async Task<List<Clients>> GetAllClient()
         {
@@ -371,21 +371,22 @@ namespace RAIDPlatform.Data.Repositories.Repositories
             await context.SaveChangesAsync();
             return users.Id;
         }
-    }
-    public async Task<bool> DeleteUsers(int userId)
-    {
-        var ca = new Users() { Id = userId };
-        if (ca != null)
+        public async Task<bool> DeleteUsers(int userId)
         {
-            context.Users.Remove(ca);
-            await context.SaveChangesAsync();
+            var ca = new Users() { Id = userId };
+            if (ca != null)
+            {
+                context.Users.Remove(ca);
+                await context.SaveChangesAsync();
 
-            return true;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
-        else
-        {
-            return false;
-        }
+  
     }
 
 }
