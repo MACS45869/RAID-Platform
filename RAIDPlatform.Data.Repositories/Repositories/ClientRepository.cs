@@ -161,7 +161,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
         public async Task<List<Client_Application_Category>> GetAllClientApplicationCategory()
         {
             var category = await Client_Application_Category
-                .Include(x => x.Client  )
+                .Include(x => x.Client)
                 .ToListAsync();
             return category;
         }
@@ -217,9 +217,9 @@ namespace RAIDPlatform.Data.Repositories.Repositories
         }
         public async Task<int> UpdateClientApplicationCategory(Client_Application_Category client_Application_Category)
         {
-                Client_Application_Category.Update(client_Application_Category);
-                await context.SaveChangesAsync();
-                return client_Application_Category.Id;
+            Client_Application_Category.Update(client_Application_Category);
+            await context.SaveChangesAsync();
+            return client_Application_Category.Id;
         }
         public async Task<bool> DeleteClientApplicationCategory(int clientApplicationCategoryId)
         {
@@ -234,7 +234,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
             {
                 return false;
             }
-           
+
         }
         public async Task<List<Client_Application_Security_Group>> GetAllClientApplicationSecurityGroup()
         {
@@ -319,9 +319,10 @@ namespace RAIDPlatform.Data.Repositories.Repositories
                 .FirstOrDefaultAsync();
             return _us;
         }
-        public async Task<List<Users>> GetAllUserByClient(int clientID)
+        public async Task<List<Users>> GetAllUserByClientId(int clientID)
         {
             var _qs = await Users
+                .Include(x => x.ClientId)
                 .Where(x => x.Id == clientID).ToListAsync();
 
             return _qs;
@@ -335,7 +336,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
                 ClientId = users.ClientId,
                 UserTypeId = users.UserTypeId,
                 User_Type_Value = users.User_Type_Value,
-                Is_AD_User  = users.Is_AD_User,
+                Is_AD_User = users.Is_AD_User,
                 User_Email = users.User_Email,
                 User_Name = users.User_Name,
                 Phone_Number = users.Phone_Number,
@@ -370,9 +371,9 @@ namespace RAIDPlatform.Data.Repositories.Repositories
             await context.SaveChangesAsync();
             return users.Id;
         }
-        }
-        public async Task<bool> DeleteUsers(int userId)
-        {
+    }
+    public async Task<bool> DeleteUsers(int userId)
+    {
         var ca = new Users() { Id = userId };
         if (ca != null)
         {
@@ -385,16 +386,8 @@ namespace RAIDPlatform.Data.Repositories.Repositories
         {
             return false;
         }
-        }
-        public async Task<List<Users>> GetAllUsersByClientId(int clientID)
-        {
-            var _qs = await Users
-
-                .Include(x => x.Client)
-                .Where(x => x.Id == clientID)
-                .ToListAsync();
-
-            return _qs;
-        }
     }
+
+}
+
 

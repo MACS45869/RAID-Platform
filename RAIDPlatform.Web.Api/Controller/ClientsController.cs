@@ -400,7 +400,7 @@ namespace RAIDPlatform.Web.Api.Controller
             }
         }
         [HttpGet]
-        [Route("api/client/Users/{id}")]
+        [Route("api/client/users/{id}")]
         public async Task<IActionResult> GetUsersByID([FromRoute] int id)
         {
             try
@@ -428,7 +428,7 @@ namespace RAIDPlatform.Web.Api.Controller
         }
 
         [HttpPost]
-        [Route("api/client/Users/add")]
+        [Route("api/client/users/add")]
         public async Task<IActionResult> AddUsers([FromBody] AddUsersDTO addUsersDTO)
         {
             try

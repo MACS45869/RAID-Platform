@@ -31,7 +31,7 @@ namespace RAIDPlatform.Data.Repositories.Interfaces
         Task<List<Client_Application_Category>> GetAllClientApplicationCategoryByApplicationId(int appID);
         Task<List<Client_Application_Category>> GetAllClientApplicationCategoryByClientId(int clientID);
         Task<List<Client_Application_Security_Group>> GetAllClientApplicationSecurityGroupByClientId(int clientID);
-        Task<List<Users>> GetAllUsersByClientId(int clientID);
-
+        // Task<List<Users>> GetAllUsersByClientId(int clientID);
+        Task<List<Users>> GetAllUserByClientId(int clientID);
     }
 }

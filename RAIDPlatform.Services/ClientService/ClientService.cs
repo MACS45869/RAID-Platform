@@ -373,7 +373,7 @@ namespace RAIDPlatform.Services.ClientService
         }
         public async Task<Response<List<Users>>> GetAllUsersByClientIdAsync(int Id)
         {
-            var query = await _clientRepository.GetAllUsersByClientId(Id);
+            var query = await _clientRepository.GetAllUserByClientId(Id);
             if (query == null || query.Count <= 0)
             {
                 return new Response<List<Users>>()
@@ -478,18 +478,18 @@ namespace RAIDPlatform.Services.ClientService
                     ua.Data.Updated_By_ID = users.Updated_By_ID;
                     ua.Data.Updated_By_Name = users.Updated_By_Name;
                     ua.Data.Updated_Date = DateTime.Now.Date;
-                  
-                    await _clientRepository.UpdateUsers(users);
-                    var response = await _clientRepository.UpdateUsers(users);
-
-                    return new Response<Users>()
-                    {
-                        Success = response > 0 ? true : false,
-                        Message = response > 0 ? $"Successfully Updated Users." : "",
-                        Data = response > 0 ? ua.Data : null
-                    };
                 }
+                await _clientRepository.UpdateUsers(users);
+                var response = await _clientRepository.UpdateUsers(users);
+
+                return new Response<Users>()
+                {
+                    Success = response > 0 ? true : false,
+                    Message = response > 0 ? $"Successfully Updated Users." : "",
+                    Data = response > 0 ? ua.Data : null
+                };
             }
+
             catch (Exception ex)
             {
                 return new Response<Users>()
