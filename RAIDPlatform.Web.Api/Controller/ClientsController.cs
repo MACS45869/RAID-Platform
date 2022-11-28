@@ -271,7 +271,7 @@ namespace RAIDPlatform.Web.Api.Controller
         }
 
         [HttpPost]
-        [Route("api/client/clientapplicationcategory/add")]
+        [Route("api/client/clientapplicationsecuritygroup/add")]
         public async Task<IActionResult> AddClientApplicationSecurityGroup([FromBody] AddClientApplicationSecurityGroupDTO addClientApplicationSecurityGroupDTO)
         {
             try

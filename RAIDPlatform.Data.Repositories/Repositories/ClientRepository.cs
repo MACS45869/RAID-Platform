@@ -223,10 +223,10 @@ namespace RAIDPlatform.Data.Repositories.Repositories
         }
         public async Task<bool> DeleteClientApplicationCategory(int clientApplicationCategoryId)
         {
-            Client_Application_Category ca = new Client_Application_Category() { Id = clientApplicationCategoryId };
-            if (ca != null)
+            var qs = Client_Application_Category.Where(x => x.Id == clientApplicationCategoryId).FirstOrDefault();
+            if (qs != null)
             {
-                context.client_Application_Categories.Remove(ca);
+                Client_Application_Category.Remove(qs);
                 await context.SaveChangesAsync();
                 return true;
             }
@@ -234,7 +234,6 @@ namespace RAIDPlatform.Data.Repositories.Repositories
             {
                 return false;
             }
-
         }
         public async Task<List<Client_Application_Security_Group>> GetAllClientApplicationSecurityGroup()
         {
@@ -292,10 +291,10 @@ namespace RAIDPlatform.Data.Repositories.Repositories
         }
         public async Task<bool> DeleteClientApplicationSecurityGroup(int clientApplicationSecurityGroupId)
         {
-            var ca = new Client_Application_Security_Group() { Id = clientApplicationSecurityGroupId };
-            if (ca != null)
+            var qs = Client_Application_Security_Group.Where(x => x.Id == clientApplicationSecurityGroupId).FirstOrDefault();
+            if (qs != null)
             {
-                context.client_Application_Security_Groups.Remove(ca);
+                Client_Application_Security_Group.Remove(qs);
                 await context.SaveChangesAsync();
                 return true;
             }
@@ -373,12 +372,11 @@ namespace RAIDPlatform.Data.Repositories.Repositories
         }
         public async Task<bool> DeleteUsers(int userId)
         {
-            var ca = new Users() { Id = userId };
-            if (ca != null)
+            var qs = Users.Where(x => x.Id == userId).FirstOrDefault();
+            if (qs != null)
             {
-                context.Users.Remove(ca);
+                Users.Remove(qs);
                 await context.SaveChangesAsync();
-
                 return true;
             }
             else
@@ -386,9 +384,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
                 return false;
             }
         }
-  
-    }
-
+      }
 }
 
 
