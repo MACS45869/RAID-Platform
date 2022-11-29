@@ -87,7 +87,6 @@ namespace RAIDPlatform.Data.Repositories.Repositories
         {
             var rec = new Clients()
             {
-
                 Client_Name = clients.Client_Name,
                 Client_Key = clients.Client_Key,
                 Client_Description = clients.Client_Description,
@@ -239,6 +238,9 @@ namespace RAIDPlatform.Data.Repositories.Repositories
         {
             var sg = await Client_Application_Security_Group
                 .Include(x => x.Client)
+                .Include(x => x.Application)
+                .Include(x => x.Application_Feature_Map)
+                .Include(x => x.Feature_Permission)
                 .ToListAsync();
             return sg;
         }
@@ -247,16 +249,21 @@ namespace RAIDPlatform.Data.Repositories.Repositories
             var _qs = await Client_Application_Security_Group
 
                 .Include(x => x.Client)
+                .Include(x => x.Application)
+                .Include(x => x.Application_Feature_Map)
+                .Include(x => x.Feature_Permission)
                 .Where(x => x.Id == clientID)
                 .ToListAsync();
 
             return _qs;
         }
-
         public async Task<Client_Application_Security_Group> GetClientApplicationSecurityGroupById(int clientApplicationSecurityGroupId)
         {
             var _qs = await Client_Application_Security_Group
-                .Include(xx => xx.Client)
+                .Include(x => x.Client)
+                .Include(x => x.Application)
+                .Include(x => x.Application_Feature_Map)
+                .Include(x => x.Feature_Permission)
                 .Where(xx => xx.Id == clientApplicationSecurityGroupId)
                 .FirstOrDefaultAsync();
             return _qs;
@@ -331,7 +338,6 @@ namespace RAIDPlatform.Data.Repositories.Repositories
         {
             var rec = new Users()
             {
-                Id = users.Id,
                 ClientId = users.ClientId,
                 UserTypeId = users.UserTypeId,
                 User_Type_Value = users.User_Type_Value,
@@ -384,7 +390,28 @@ namespace RAIDPlatform.Data.Repositories.Repositories
                 return false;
             }
         }
-      }
+        //public async Task<List<Client_Application_Security_Group>> GetAllClientApplicationSecurityGroupFeaturePermissions()
+        //{
+        //    var sg = await Client_Application_Security_Group
+        //        .Include(x => x.Client)
+        //        .Include(x => x.Application)
+        //        .Include(x => x.Application_Feature_Map)
+        //        .Include(x => x.Feature_Permission)
+        //        .ToListAsync();
+        //    return sg;
+        //}
+        //public async Task<Client_Application_Security_Group> GetClientApplicationSecurityGroupFeaturePermissionsById(int clientApplicationSecurityGroupId)
+        //{
+        //    var _qs = await Client_Application_Security_Group
+        //        .Include(xx => xx.Client)
+        //        .Include(xx => xx.Application)
+        //        .Include(xx => xx.Application_Feature_Map)
+        //        .Include(xx => xx.Feature_Permission)
+        //        .Where(xx => xx.Id == clientApplicationSecurityGroupId)
+        //        .FirstOrDefaultAsync();
+        //    return _qs;
+        //}
+    }
 }
 
 

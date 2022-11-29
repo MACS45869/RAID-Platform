@@ -1,4 +1,7 @@
-﻿using RAIDPlatform.Data.Models.Master.Applications;
+﻿using AutoMapper.Configuration.Annotations;
+using RAIDPlatform.Data.Models.Master.Application_Feature_Map;
+using RAIDPlatform.Data.Models.Master.Applications;
+using RAIDPlatform.Data.Models.Master.Feature_Permissions;
 using RAIDPlatform.Data.Models.Master.Parameter_Values;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -25,6 +28,11 @@ namespace RAIDPlatform.Data.Models.Client
         //[NotMapped]
         public int ClientId { get; set; }
         public virtual Clients.Clients Client { get; set; }
+        
+        public virtual Applications Application { get; set; }
+        public virtual Application_Feature_Map Application_Feature_Map { get; set; }
+        public virtual Feature_Permissions Feature_Permission { get; set; }
+
 
     }
 }
