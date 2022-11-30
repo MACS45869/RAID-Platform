@@ -1,5 +1,6 @@
 ﻿using RAIDPlatform.Data.Models.Client;
 using RAIDPlatform.Data.Models.Client.Client_Application_Category;
+using RAIDPlatform.Data.Models.Client.Clients;
 using RAIDPlatform.Data.Models.Client.Users;
 using RAIDPlatform.Data.Repositories.Interfaces;
 using RAIDPlatform.Data.Repositories.Repositories;
@@ -530,6 +531,170 @@ namespace RAIDPlatform.Services.ClientService
                 {
                     Success = false,
                     Message = $"Exception occurred while deleting Users. Reason: {ex.Message}"
+                };
+            }
+        }
+
+        public async Task<Response<List<Clients>>> GetAllClientsAsync()
+        {
+            var query = await _clientRepository.GetAllClient();
+            if (query == null || query.Count <= 0)
+            {
+                return new Response<List<Clients>>()
+                {
+                    Success = false,
+                    Message = "No Data found"
+                };
+            }
+
+            return new Response<List<Clients>>()
+            {
+                Success = true,
+                Message = $"{query.Count} fetched successfully",
+                Data = query
+            };
+        } 
+        public async Task<Response<Clients>> GetClientByIdAsync(int id)
+        {
+            try
+            {
+                var response = await _clientRepository.GetClientsByID(id);
+                return new Response<Clients>()
+                {
+                    Success = response != null ? true : false,
+                    Message = response != null ? $"Successfully fetched Client." : "Sorry, No Client found",
+                    Data = response != null ? response : null
+
+                };
+
+            }
+            catch (Exception ex)
+            {
+                return new Response<Clients>()
+                {
+                    Success = false,
+                    Message = $"Error occurred while Client responses. Reason: {ex.Message}",
+                    Data = null
+                };
+            }
+        }
+        public async Task<Response<int>> AddClientAsync(Clients clients)
+        {
+            try
+            {
+                var query = await _clientRepository.AddClient(clients);
+
+                if (query != 0)
+                {
+
+                    return new Response<int>()
+                    {
+                        Success = true,
+                        Message = $"Client Added Successfully",
+                        Data = query
+                    };
+                }
+                else
+                {
+                    return new Response<int>()
+                    {
+                        Success = false,
+                        Message = "Failed to add Client."
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                return new Response<int>()
+                {
+                    Success = false,
+                    Message = $"Failed to add Client. Reason: {ex.Message}"
+                };
+            }
+        }
+        public async Task<Response<Clients>> UpdateClientsAsync(Clients clients, int Id)
+        {
+            var ua = await GetClientByIdAsync(Id);
+
+            try
+            {
+                if (ua != null)
+                {
+                    ua.Data.Client_Name = clients.Client_Name;
+                    ua.Data.Client_Key = clients.Client_Key;
+                    ua.Data.Client_Description = clients.Client_Description;
+                    ua.Data.Primary_Address = clients.Primary_Address;
+                    ua.Data.Primary_Email = clients.Primary_Email;
+                    ua.Data.Primary_Landline = clients.Primary_Landline;
+                    ua.Data.Primary_Cell = clients.Primary_Cell;
+                    ua.Data.Primary_Contact_Name = clients.Primary_Contact_Name;
+                    ua.Data.Primary_Contact_Email = clients.Primary_Contact_Email;
+                    ua.Data.Primary_Contact_Landline = clients.Primary_Contact_Landline;
+                    ua.Data.Primary_Contact_Cell = clients.Primary_Contact_Cell;
+                    ua.Data.Secondary_Contact_Name = clients.Secondary_Contact_Name;
+                    ua.Data.Secondary_Contact_Email = clients.Secondary_Contact_Email;
+                    ua.Data.Secondary_Contact_Landline = clients.Secondary_Contact_Landline;
+                    ua.Data.Secondary_Contact_Cell = clients.Secondary_Contact_Cell;
+                    ua.Data.StatusId = clients.StatusId;
+                    ua.Data.Status_Value = clients.Status_Value;
+                    ua.Data.Created_By_ID = clients.Created_By_ID;
+                    ua.Data.Created_By_Name = clients.Created_By_Name;
+                    ua.Data.Created_Date = clients.Created_Date;
+                    ua.Data.Updated_By_ID = clients.Updated_By_ID;
+                    ua.Data.Updated_By_Name = clients.Updated_By_Name;
+                    ua.Data.Updated_Date = clients.Updated_Date;
+                }
+                await _clientRepository.UpdateClients(clients);
+                var response = await _clientRepository.UpdateClients(clients);
+
+                return new Response<Clients>()
+                {
+                    Success = response > 0 ? true : false,
+                    Message = response > 0 ? $"Successfully Updated Clients." : "",
+                    Data = response > 0 ? ua.Data : null
+                };
+            }
+
+            catch (Exception ex)
+            {
+                return new Response<Clients>()
+                {
+                    Success = false,
+                    Message = $"Error occurred while updating Clients. Reason: {ex.Message}",
+                    Data = null
+                };
+            }
+        }
+        public async Task<Response<bool>> DeleteClientAsync(int id)
+        {
+            try
+            {
+                var query = await _clientRepository.DeleteClients(id);
+                if (query)
+                {
+                    return new Response<bool>()
+                    {
+                        Success = query,
+                        Message = "Client successfully deleted",
+                        Data = true
+                    };
+                }
+                else
+                {
+                    return new Response<bool>()
+                    {
+                        Success = query,
+                        Message = "Failed to delete Clients",
+                        Data = false
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                return new Response<bool>()
+                {
+                    Success = false,
+                    Message = $"Exception occurred while deleting Clients. Reason: {ex.Message}"
                 };
             }
         }

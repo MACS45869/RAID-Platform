@@ -5,6 +5,7 @@ namespace RAIDPlatform.Web.Api.DTO.ClientDTO
 {
     public class Client_Application_Security_Group_Dto
     {
+        public int Id { get; set; }
         public int ApplicationId { get; set; }
         public string Client_Application_Security_Group_Name { get; set; }
         public string Client_Application_Security_Group_Key { get; set; }

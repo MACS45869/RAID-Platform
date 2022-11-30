@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RAIDPlatform.Data.Repositories.Context;
 
@@ -11,9 +12,10 @@ using RAIDPlatform.Data.Repositories.Context;
 namespace RAIDPlatform.Data.Repositories.Migrations
 {
     [DbContext(typeof(ClientContext))]
-    partial class ClientContextModelSnapshot : ModelSnapshot
+    [Migration("20221129131049_second")]
+    partial class second
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

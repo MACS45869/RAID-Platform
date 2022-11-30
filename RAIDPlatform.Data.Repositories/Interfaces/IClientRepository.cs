@@ -11,8 +11,8 @@ namespace RAIDPlatform.Data.Repositories.Interfaces
         Task<List<Clients>> GetAllClient();
         Task<Clients> GetClientsByID(int clientId);
         Task<int> AddClient(Clients clients);
-        Task UpdateClients(int clientId, Clients clients);
-        Task DeleteClients(int clientId);
+        Task<int> UpdateClients(Clients clients);
+        Task<bool> DeleteClients(int clientId);
         Task<List<Client_Application_Category>> GetAllClientApplicationCategory();
         Task<Client_Application_Category> GetClientApplicationCategoryById(int clientCategoryId);
         Task<int> AddClientApplicationCategory(Client_Application_Category client_Application_Category);

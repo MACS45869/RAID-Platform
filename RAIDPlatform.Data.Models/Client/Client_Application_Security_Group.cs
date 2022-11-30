@@ -13,6 +13,7 @@ namespace RAIDPlatform.Data.Models.Client
         [Key]
         public int Id { get; set; }
         public int ApplicationId { get; set; }
+        public virtual Applications? Application { get; set; }
         public string Client_Application_Security_Group_Name { get; set; }
         public string Client_Application_Security_Group_Key { get; set; }
         public string? Client_Application_Security_Group_Description { get; set; }
@@ -28,10 +29,6 @@ namespace RAIDPlatform.Data.Models.Client
         //[NotMapped]
         public int ClientId { get; set; }
         public virtual Clients.Clients Client { get; set; }
-        
-        public virtual Applications Application { get; set; }
-        public virtual Application_Feature_Map Application_Feature_Map { get; set; }
-        public virtual Feature_Permissions Feature_Permission { get; set; }
 
 
     }

@@ -1,5 +1,6 @@
 ﻿using RAIDPlatform.Data.Models.Client;
 using RAIDPlatform.Data.Models.Client.Client_Application_Category;
+using RAIDPlatform.Data.Models.Client.Clients;
 using RAIDPlatform.Data.Models.Client.Users;
 using RAIDPlatform.Utilities;
 
@@ -25,5 +26,10 @@ namespace RAIDPlatform.Services.ClientService
         Task<Response<Users>> GetUsersByIdAsync(int id);
         Task<Response<List<Users>>> GetAllUsersByClientIdAsync(int Id);
         Task<Response<List<Users>>> GetAllUsersAsync();
+        Task<Response<List<Clients>>> GetAllClientsAsync();
+        Task<Response<Clients>> GetClientByIdAsync(int id);
+        Task<Response<int>> AddClientAsync(Clients clients);
+        Task<Response<Clients>> UpdateClientsAsync(Clients clients, int Id);
+        Task<Response<bool>> DeleteClientAsync(int id);
     }
 }

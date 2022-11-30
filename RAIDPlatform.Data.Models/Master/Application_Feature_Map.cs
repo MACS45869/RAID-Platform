@@ -13,7 +13,7 @@ namespace RAIDPlatform.Data.Models.Master.Application_Feature_Map
         public int FeaturePermissionId { get; set; }
         public virtual Feature_Permissions.Feature_Permissions FeaturePermission { get; set; }
 
-        public int ModuleId { get; set; }
+        public int? ModuleId { get; set; }
         public virtual Modules.Modules Module { get; set; }
     }
 }

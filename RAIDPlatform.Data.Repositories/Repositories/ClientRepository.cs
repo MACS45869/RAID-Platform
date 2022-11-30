@@ -116,45 +116,25 @@ namespace RAIDPlatform.Data.Repositories.Repositories
 
             return clients.Id;
         }
-        public async Task UpdateClients(int clientId, Clients clients)
+        public async Task<int> UpdateClients(Clients clients)
         {
-            var ua = await context.clients.FindAsync(clientId);
-            if (ua != null)
-            {
-                ua.Client_Name = clients.Client_Name;
-                ua.Client_Key = clients.Client_Key;
-                ua.Client_Description = clients.Client_Description;
-                ua.Primary_Address = clients.Primary_Address;
-                ua.Primary_Email = clients.Primary_Email;
-                ua.Primary_Landline = clients.Primary_Landline;
-                ua.Primary_Cell = clients.Primary_Cell;
-                ua.Primary_Contact_Name = clients.Primary_Contact_Name;
-                ua.Primary_Contact_Email = clients.Primary_Contact_Email;
-                ua.Primary_Contact_Landline = clients.Primary_Contact_Landline;
-                ua.Primary_Contact_Cell = clients.Primary_Contact_Cell;
-                ua.Secondary_Contact_Name = clients.Secondary_Contact_Name;
-                ua.Secondary_Contact_Email = clients.Secondary_Contact_Email;
-                ua.Secondary_Contact_Landline = clients.Secondary_Contact_Landline;
-                ua.Secondary_Contact_Cell = clients.Secondary_Contact_Cell;
-                ua.StatusId = clients.StatusId;
-                ua.Status_Value = clients.Status_Value;
-                ua.Created_By_ID = clients.Created_By_ID;
-                ua.Created_By_Name = clients.Created_By_Name;
-                ua.Created_Date = clients.Created_Date;
-                ua.Updated_By_ID = clients.Updated_By_ID;
-                ua.Updated_By_Name = clients.Updated_By_Name;
-                ua.Updated_Date = clients.Updated_Date;
-
-                Clients.Update(ua);
-                await context.SaveChangesAsync();
-            }
-        }
-        public async Task DeleteClients(int clientId)
-        {
-            var ca = new Clients() { Id = clientId };
-
-            context.clients.Remove(ca);
+            Clients.Update(clients);
             await context.SaveChangesAsync();
+            return clients.Id;
+        }
+        public async Task<bool> DeleteClients(int clientId)
+        {
+            var qs = Clients.Where(x => x.Id == clientId).FirstOrDefault();
+            if (qs != null)
+            {
+                Clients.Remove(qs);
+                await context.SaveChangesAsync();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public async Task<List<Client_Application_Category>> GetAllClientApplicationCategory()
@@ -238,9 +218,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
         {
             var sg = await Client_Application_Security_Group
                 .Include(x => x.Client)
-                .Include(x => x.Application)
-                .Include(x => x.Application_Feature_Map)
-                .Include(x => x.Feature_Permission)
+                .Include(x => x.Application).ThenInclude(x => x.Application_Feature_Map).ThenInclude(x => x.FeaturePermission)
                 .ToListAsync();
             return sg;
         }
@@ -250,8 +228,8 @@ namespace RAIDPlatform.Data.Repositories.Repositories
 
                 .Include(x => x.Client)
                 .Include(x => x.Application)
-                .Include(x => x.Application_Feature_Map)
-                .Include(x => x.Feature_Permission)
+                .ThenInclude(x => x.Application_Feature_Map)
+                .ThenInclude(x => x.FeaturePermission)
                 .Where(x => x.Id == clientID)
                 .ToListAsync();
 
@@ -262,9 +240,9 @@ namespace RAIDPlatform.Data.Repositories.Repositories
             var _qs = await Client_Application_Security_Group
                 .Include(x => x.Client)
                 .Include(x => x.Application)
-                .Include(x => x.Application_Feature_Map)
-                .Include(x => x.Feature_Permission)
-                .Where(xx => xx.Id == clientApplicationSecurityGroupId)
+                .ThenInclude(x => x.Application_Feature_Map)
+                .ThenInclude(x => x.FeaturePermission)
+                .Where(x => x.Id == clientApplicationSecurityGroupId)
                 .FirstOrDefaultAsync();
             return _qs;
         }

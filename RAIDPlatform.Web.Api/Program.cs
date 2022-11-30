@@ -1,4 +1,5 @@
 
+using FluentAssertions.Common;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using RAIDPlatform.Data.Repositories.Context;
@@ -35,6 +36,9 @@ builder.Services.AddMvc(options => options.EnableEndpointRouting = false);
 
 builder.Services.AddAutoMapper(typeof(Program));
 
+builder.Services.AddControllers().AddNewtonsoftJson(options =>
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+);
 var app = builder.Build();
 
 

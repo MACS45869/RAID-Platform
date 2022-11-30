@@ -19,12 +19,6 @@ namespace RAIDPlatform.Web.Api.Controller
 
     public class ClientsController : ControllerBase
     {
-        //private readonly IClientRepository clientRepository;
-        //public ClientsController(IClientRepository _clientRepo)
-        //{
-        //    this.clientRepository = _clientRepo;
-        //}
-        //For Services:
         private readonly IClientService _clientService;
         private readonly IMapper _mapper;
         public ClientsController(IClientService clientService, IMapper mapper)
@@ -225,12 +219,13 @@ namespace RAIDPlatform.Web.Api.Controller
 
                 if (query.Success)
                 {
-                    return Ok(new Response<List<Client_Application_Security_Group_Dto>>()
-                    {
-                        Success = query.Success,
-                        Message = query.Message,
-                        Data = _doc
-                    });
+                    //return Ok(new Response<List<Client_Application_Security_Group_Dto>>()
+                    //{
+                    //    Success = query.Success,
+                    //    Message = query.Message,
+                    //    Data = _doc
+                    //});
+                    return Ok(query);
                 }
                 else
                 {
@@ -269,7 +264,6 @@ namespace RAIDPlatform.Web.Api.Controller
                 return (CatchStatements(ex, "Client Application Security Group fetching failed due to "));
             }
         }
-
         [HttpPost]
         [Route("api/client/clientapplicationsecuritygroup/add")]
         public async Task<IActionResult> AddClientApplicationSecurityGroup([FromBody] AddClientApplicationSecurityGroupDTO addClientApplicationSecurityGroupDTO)

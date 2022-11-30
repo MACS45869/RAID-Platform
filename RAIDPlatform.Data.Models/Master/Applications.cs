@@ -17,5 +17,6 @@ namespace RAIDPlatform.Data.Models.Master.Applications
         public int Updated_By_ID { get; set; }
         public string? Updated_By_Name { get; set; }
         public DateTime Updated_Date { get; set; }
+        public virtual ICollection<Application_Feature_Map.Application_Feature_Map> Application_Feature_Map { get; set; }
     }
 }
