@@ -112,9 +112,9 @@ namespace RAIDPlatform.Data.Repositories.Repositories
                 Updated_Date = clients.Updated_Date
             };
             context.clients.Add(rec);
-            await context.SaveChangesAsync();
+           var saved =  await context.SaveChangesAsync();
 
-            return clients.Id;
+            return saved;
         }
         public async Task<int> UpdateClients(Clients clients)
         {
@@ -190,9 +190,9 @@ namespace RAIDPlatform.Data.Repositories.Repositories
                 Updated_Date = client_Application_Category.Updated_Date
             };
             context.client_Application_Categories.Add(rec);
-            await context.SaveChangesAsync();
+            var saved = await context.SaveChangesAsync();
 
-            return client_Application_Category.Id;
+            return saved;
         }
         public async Task<int> UpdateClientApplicationCategory(Client_Application_Category client_Application_Category)
         {
@@ -265,8 +265,8 @@ namespace RAIDPlatform.Data.Repositories.Repositories
                 Updated_Date = client_Application_Security_Group.Updated_Date
             };
             context.client_Application_Security_Groups.Add(rec);
-            await context.SaveChangesAsync();
-            return client_Application_Security_Group.Id;
+            var saved = await context.SaveChangesAsync();
+            return saved;
         }
         public async Task<int> UpdateClientApplicationSecurityGroup(Client_Application_Security_Group client_Application_Security_Group)
         {
@@ -344,9 +344,9 @@ namespace RAIDPlatform.Data.Repositories.Repositories
 
             };
             context.Users.Add(rec);
-            await context.SaveChangesAsync();
+            var saved = await context.SaveChangesAsync();
 
-            return users.Id;
+            return saved;
         }
         public async Task<int> UpdateUsers(Users users)
         {

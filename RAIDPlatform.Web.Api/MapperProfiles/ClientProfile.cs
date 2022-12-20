@@ -11,7 +11,8 @@ namespace RAIDPlatform.Web.Api.MapperProfiles
     public class ClientProfile : Profile
     {
         public ClientProfile() {
-            
+
+            CreateMap<Client_Application_Category, Client_Application_Category_Dto>().ReverseMap();
             CreateMap<Client_Application_Category, UpdateClientApplicationCategoryDTO>().ReverseMap();
             CreateMap<Client_Application_Category, AddClientApplicationCategoryDTO>().ReverseMap();
 
@@ -19,6 +20,7 @@ namespace RAIDPlatform.Web.Api.MapperProfiles
             CreateMap<Client_Application_Security_Group, UpdateClientApplicationSecurityGroupDTO>().ReverseMap();
             CreateMap<Client_Application_Security_Group, AddClientApplicationSecurityGroupDTO>().ReverseMap();
 
+            CreateMap<Users, Users_Dto>().ReverseMap();
             CreateMap<Users, UpdateUsersDTO>().ReverseMap();
             CreateMap<Users, AddUsersDTO>().ReverseMap();
         }

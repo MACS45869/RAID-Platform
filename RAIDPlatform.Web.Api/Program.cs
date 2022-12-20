@@ -1,12 +1,9 @@
-
-using FluentAssertions.Common;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using RAIDPlatform.Data.Repositories.Context;
 using RAIDPlatform.Data.Repositories.Interfaces;
 using RAIDPlatform.Data.Repositories.Repositories;
 using RAIDPlatform.Services.ClientService;
-using System.Configuration;
+using RAIDPlatform.Services.MasterService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +17,6 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 //DatabaseConnection
-//var connString = builder.Configuration.GetConnectionString("RAIDPlatform");
 builder.Services.AddDbContext<MasterContext>(
                 options => options.UseSqlServer(builder.Configuration.GetConnectionString("RAIDPlatform")));
 builder.Services.AddScoped<MasterContext>();
@@ -33,7 +29,7 @@ builder.Services.AddScoped<IClientRepository, ClientRepository>();
 
 //Services
 builder.Services.AddScoped<IClientService, ClientService>();
-//builder.Services.AddScoped<IMasterService, MasterService>();
+builder.Services.AddScoped<IMasterService, MasterService>();
 
 builder.Services.AddMvc(options => options.EnableEndpointRouting = false);
 

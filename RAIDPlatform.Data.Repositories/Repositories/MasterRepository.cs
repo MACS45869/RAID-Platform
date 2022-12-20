@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using RAIDPlatform.Data.Models.Client.Users;
+using RAIDPlatform.Data.Models.Master;
 using RAIDPlatform.Data.Models.Master.Application_Data_Map;
 using RAIDPlatform.Data.Models.Master.Application_Feature_Map;
 using RAIDPlatform.Data.Models.Master.Application_Module_Map;
@@ -12,11 +12,8 @@ using RAIDPlatform.Data.Models.Master.Modules;
 using RAIDPlatform.Data.Models.Master.Navigation_Feature_Map;
 using RAIDPlatform.Data.Models.Master.Navigations;
 using RAIDPlatform.Data.Models.Master.Parameter_Values;
-using RAIDPlatform.Data.Models.Master;
 using RAIDPlatform.Data.Repositories.Context;
 using RAIDPlatform.Data.Repositories.Interfaces;
-using System.Net;
-using static System.Reflection.Metadata.BlobBuilder;
 
 namespace RAIDPlatform.Data.Repositories.Repositories
 {
@@ -116,6 +113,69 @@ namespace RAIDPlatform.Data.Repositories.Repositories
 
             context.applications.Remove(app);
             await context.SaveChangesAsync();
+        }
+        public async Task<List<Feature_Permissions>> GetAllFeaturePermissions()
+        {
+            var fp = await Feature_Permissions
+                .ToListAsync();
+            return fp;
+        }
+        public async Task<Feature_Permissions> GetFeaturePermissionById(int featurePermissionId)
+        {
+            var _fp = await Feature_Permissions
+                .Where(x => x.Id == featurePermissionId)
+                .FirstOrDefaultAsync();
+            return _fp;
+        }
+        public async Task<int> AddFeaturePermission(Feature_Permissions feature_Permissions)
+        {
+            try
+            {
+                var rec = new Feature_Permissions()
+                {
+                    Feature_Permission_Name = feature_Permissions.Feature_Permission_Name,
+                    Feature_Permission_Description = feature_Permissions.Feature_Permission_Description,
+                    Feature_Permission_Key = feature_Permissions.Feature_Permission_Key,
+                    Parent_ID = feature_Permissions.Parent_ID,
+                    Is_Header = feature_Permissions.Is_Header,
+                    Sequence_Number = feature_Permissions.Sequence_Number,
+                    Created_By_ID = feature_Permissions.Created_By_ID,
+                    Created_By_Name = feature_Permissions.Created_By_Name,
+                    Created_Date = feature_Permissions.Created_Date,
+                    Updated_By_ID = feature_Permissions.Updated_By_ID,
+                    Updated_By_Name = feature_Permissions.Updated_By_Name,
+                    Updated_Date = feature_Permissions.Updated_Date
+                };
+                context.feature_Permissions.Add(rec);
+                var saved = await context.SaveChangesAsync();
+
+                return saved;
+            }
+            catch (Exception ex)
+            {
+                return -1;
+            }
+            
+        }
+        public async Task<int> UpdateFeaturePermission(Feature_Permissions feature_Permissions)
+        {
+            Feature_Permissions.Update(feature_Permissions);
+            await context.SaveChangesAsync();
+            return feature_Permissions.Id;
+        }
+        public async Task<bool> DeleteFeaturePermission(int featurePermissionId)
+        {
+            var qs = Feature_Permissions.Where(x => x.Id == featurePermissionId).FirstOrDefault();
+            if (qs != null)
+            {
+                Feature_Permissions.Remove(qs);
+                await context.SaveChangesAsync();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
