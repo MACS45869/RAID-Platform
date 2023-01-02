@@ -45,6 +45,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
 
         public ClientRepository(ClientContext context)
         {
+            this.context = context;
             Client_Application_Category = context.client_Application_Categories;
             Client_Application_Category_Data_Map = context.client_Application_Category_Data_Maps;
             Client_Application_Category_Data_Values = context.client_Application_Category_Data_Values;
@@ -105,7 +106,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
                 Updated_Date = clients.Updated_Date
             };
             context.clients.Add(rec);
-            var saved =  await context.SaveChangesAsync();
+            var saved = await context.SaveChangesAsync();
 
             return saved;
         }
@@ -257,8 +258,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
                 Updated_By_Name = client_Application_Security_Group.Updated_By_Name,
                 Updated_Date = client_Application_Security_Group.Updated_Date
             };
-           // context.client_Application_Security_Groups.Add(rec);
-           
+
             Client_Application_Security_Group.Add(rec);
             var saved = await context.SaveChangesAsync();
             return saved;

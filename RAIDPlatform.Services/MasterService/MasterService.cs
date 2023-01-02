@@ -120,8 +120,11 @@ namespace RAIDPlatform.Services.MasterService
                         ua.Data.Updated_By_Name = feature_Permissions.Updated_By_Name;
                         ua.Data.Updated_Date = DateTime.Now.Date;
                     }
-                    await _masterRepository.UpdateFeaturePermission(feature_Permissions);
-                    var response = await _masterRepository.UpdateFeaturePermission(feature_Permissions);
+                    //await _masterRepository.UpdateFeaturePermission(ua); // Useless code, not required (Remove this line)
+
+                    // We will send the "ua" variable because it has the original data which has been modified in the above if statement body
+                    // not the variable which is new coming from outside service
+                    var response = await _masterRepository.UpdateFeaturePermission(ua.Data);
 
                     return new Response<Feature_Permissions>()
                     {
