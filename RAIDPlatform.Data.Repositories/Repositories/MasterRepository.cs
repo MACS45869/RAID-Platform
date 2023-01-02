@@ -141,7 +141,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
                     Sequence_Number = feature_Permissions.Sequence_Number,
                     Created_By_ID = feature_Permissions.Created_By_ID,
                     Created_By_Name = feature_Permissions.Created_By_Name,
-                    Created_Date = feature_Permissions.Created_Date,
+                    Created_Date = feature_Permissions.Created_Date,    
                     Updated_By_ID = feature_Permissions.Updated_By_ID,
                     Updated_By_Name = feature_Permissions.Updated_By_Name,
                     Updated_Date = feature_Permissions.Updated_Date

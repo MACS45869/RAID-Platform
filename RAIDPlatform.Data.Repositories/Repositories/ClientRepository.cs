@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using RAIDPlatform.Data.Models.Client;
 using RAIDPlatform.Data.Models.Client.Client_Application_Category;
 using RAIDPlatform.Data.Models.Client.Client_Application_Category_Data_Map;
@@ -17,13 +16,8 @@ using RAIDPlatform.Data.Models.Client.Clients;
 using RAIDPlatform.Data.Models.Client.User_Category_Map;
 using RAIDPlatform.Data.Models.Client.User_Security_Group_Map;
 using RAIDPlatform.Data.Models.Client.Users;
-using RAIDPlatform.Data.Models.Master.Applications;
-using RAIDPlatform.Data.Repositories.Base;
 using RAIDPlatform.Data.Repositories.Context;
 using RAIDPlatform.Data.Repositories.Interfaces;
-using System;
-using System.Diagnostics.Metrics;
-using System.Threading.Tasks;
 
 namespace RAIDPlatform.Data.Repositories.Repositories
 {
@@ -68,7 +62,6 @@ namespace RAIDPlatform.Data.Repositories.Repositories
             User_Security_Group_Map = context.user_Security_Group_Map;
             Client_Navigations = context.client_Navigation;
             Users = context.Users;
-            // Users.AsNoTracking();
         }
         public async Task<List<Clients>> GetAllClient()
         {
@@ -112,7 +105,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
                 Updated_Date = clients.Updated_Date
             };
             context.clients.Add(rec);
-           var saved =  await context.SaveChangesAsync();
+            var saved =  await context.SaveChangesAsync();
 
             return saved;
         }
@@ -264,7 +257,9 @@ namespace RAIDPlatform.Data.Repositories.Repositories
                 Updated_By_Name = client_Application_Security_Group.Updated_By_Name,
                 Updated_Date = client_Application_Security_Group.Updated_Date
             };
-            context.client_Application_Security_Groups.Add(rec);
+           // context.client_Application_Security_Groups.Add(rec);
+           
+            Client_Application_Security_Group.Add(rec);
             var saved = await context.SaveChangesAsync();
             return saved;
         }

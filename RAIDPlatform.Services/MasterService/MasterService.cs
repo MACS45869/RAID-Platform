@@ -100,7 +100,7 @@ namespace RAIDPlatform.Services.MasterService
                 return new Response<Feature_Permissions>()
                 {
                     Success = false,
-                    Message = $"Sorry no Feature Permission found. Reason: Sorry, No Feature Permission found",
+                    Message = $"Sorry no Feature Permission found.",
                     Data = null
                 };
             }
