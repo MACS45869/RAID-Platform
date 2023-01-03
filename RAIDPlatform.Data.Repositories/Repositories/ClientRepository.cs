@@ -160,7 +160,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
             var _qs = await Client_Application_Category
 
                 .Include(x => x.Client)
-                .Where(x => x.Id == clientID).ToListAsync();
+                .Where(x => x.ClientId == clientID).ToListAsync();
 
             return _qs;
         }
@@ -224,7 +224,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
                 .Include(x => x.Application)
                 .ThenInclude(x => x.Application_Feature_Map)
                 .ThenInclude(x => x.FeaturePermission)
-                .Where(x => x.Id == clientID)
+                .Where(x => x.ClientId == clientID)
                 .ToListAsync();
 
             return _qs;
@@ -301,8 +301,8 @@ namespace RAIDPlatform.Data.Repositories.Repositories
         public async Task<List<Users>> GetAllUserByClientId(int clientID)
         {
             var _qs = await Users
-                .Include(x => x.ClientId)
-                .Where(x => x.Id == clientID).ToListAsync();
+                .Include(x => x.Client)
+                .Where(x => x.ClientId == clientID).ToListAsync();
 
             return _qs;
         }

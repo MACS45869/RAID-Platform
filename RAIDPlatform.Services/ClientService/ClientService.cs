@@ -132,8 +132,8 @@ namespace RAIDPlatform.Services.ClientService
                     ua.Data.Updated_By_Name = client_Application_Category.Updated_By_Name;
                     ua.Data.Updated_Date = DateTime.Now.Date;
                 }
-                await _clientRepository.UpdateClientApplicationCategory(client_Application_Category);
-                var response = await _clientRepository.UpdateClientApplicationCategory(client_Application_Category);
+               // await _clientRepository.UpdateClientApplicationCategory(client_Application_Category);
+                var response = await _clientRepository.UpdateClientApplicationCategory(ua.Data);
 
                 return new Response<Client_Application_Category>()
                 {
@@ -300,8 +300,8 @@ namespace RAIDPlatform.Services.ClientService
                     ua.Data.Updated_By_Name = client_Application_Security_Group.Updated_By_Name;
                     ua.Data.Updated_Date = DateTime.Now.Date;
                 }
-                await _clientRepository.UpdateClientApplicationSecurityGroup(client_Application_Security_Group);
-                var response = await _clientRepository.UpdateClientApplicationSecurityGroup(client_Application_Security_Group);
+               // await _clientRepository.UpdateClientApplicationSecurityGroup(client_Application_Security_Group);
+                var response = await _clientRepository.UpdateClientApplicationSecurityGroup(ua.Data);
 
                 return new Response<Client_Application_Security_Group>()
                 {
@@ -480,8 +480,8 @@ namespace RAIDPlatform.Services.ClientService
                     ua.Data.Updated_By_Name = users.Updated_By_Name;
                     ua.Data.Updated_Date = DateTime.Now.Date;
                 }
-                await _clientRepository.UpdateUsers(users);
-                var response = await _clientRepository.UpdateUsers(users);
+               // await _clientRepository.UpdateUsers(users);
+                var response = await _clientRepository.UpdateUsers(ua.Data);
 
                 return new Response<Users>()
                 {
@@ -644,8 +644,8 @@ namespace RAIDPlatform.Services.ClientService
                     ua.Data.Updated_By_Name = clients.Updated_By_Name;
                     ua.Data.Updated_Date = clients.Updated_Date;
                 }
-                await _clientRepository.UpdateClients(clients);
-                var response = await _clientRepository.UpdateClients(clients);
+              //  await _clientRepository.UpdateClients(clients);
+                var response = await _clientRepository.UpdateClients(ua.Data);
 
                 return new Response<Clients>()
                 {

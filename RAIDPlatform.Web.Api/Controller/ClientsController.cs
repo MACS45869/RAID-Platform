@@ -183,7 +183,7 @@ namespace RAIDPlatform.Web.Api.Controller
 
         [HttpGet]
         [Route("api/client/clientapplicationcategory/byclientid/{id}")]
-        public async Task<IActionResult> GetClientApplicationCategoryByApplicationID([FromRoute] int id)
+        public async Task<IActionResult> GetClientApplicationCategoryByClientID([FromRoute] int id)
         {
             try
             {
@@ -191,11 +191,11 @@ namespace RAIDPlatform.Web.Api.Controller
 
                 if (query.Success)
                 {
-                    return Ok(new Response<Client_Application_Category_Dto>()
+                    return Ok(new Response<List<Client_Application_Category_Dto>>()
                     {
                         Success = query.Success,
                         Message = query.Message,
-                        Data = _mapper.Map<Client_Application_Category_Dto>(query.Data)
+                        Data = _mapper.Map<List<Client_Application_Category_Dto>>(query.Data)
                     });
                 }
                 else
@@ -348,11 +348,11 @@ namespace RAIDPlatform.Web.Api.Controller
 
                 if (query.Success)
                 {
-                    return Ok(new Response<Client_Application_Security_Group_Dto>()
+                    return Ok(new Response<List<Client_Application_Security_Group_Dto>>()
                     {
                         Success = query.Success,
                         Message = query.Message,
-                        Data = _mapper.Map<Client_Application_Security_Group_Dto>(query.Data)
+                        Data = _mapper.Map<List<Client_Application_Security_Group_Dto>>(query.Data)
                     });
                 }
                 else
@@ -505,11 +505,11 @@ namespace RAIDPlatform.Web.Api.Controller
 
                 if (query.Success)
                 {
-                    return Ok(new Response<Users_Dto>()
+                    return Ok(new Response<List<Users_Dto>>()
                     {
                         Success = query.Success,
                         Message = query.Message,
-                        Data = _mapper.Map<Users_Dto>(query.Data)
+                        Data = _mapper.Map<List<Users_Dto>>(query.Data)
                     });
                 }
                 else
