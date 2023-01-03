@@ -1,5 +1,8 @@
 ﻿
 using RAIDPlatform.Data.Models.Client.Client_Application_Category;
+using RAIDPlatform.Data.Models.Client.Users;
+using RAIDPlatform.Data.Models.Master.Application_Feature_Map;
+using RAIDPlatform.Data.Models.Master.Applications;
 using RAIDPlatform.Data.Models.Master.Feature_Permissions;
 using RAIDPlatform.Data.Repositories.Interfaces;
 using RAIDPlatform.Data.Repositories.Repositories;
@@ -176,6 +179,68 @@ namespace RAIDPlatform.Services.MasterService
                     Message = $"Exception occurred while deleting Feature Permission. Reason: {ex.Message}"
                 };
             }
+        }
+        public async Task<Response<List<Applications>>> GetAllApplicationsAsync()
+        {
+            var query = await _masterRepository.GetAllApplications();
+            if (query == null || query.Count <= 0)
+            {
+                return new Response<List<Applications>>()
+                {
+                    Success = false,
+                    Message = "No Data found"
+                };
+            }
+
+            return new Response<List<Applications>>()
+            {
+                Success = true,
+                Message = $"{query.Count} fetched successfully",
+                Data = query
+            };
+        }
+        public async Task<Response<Applications>> GetApplicationByIdAsync(int id)
+        {
+            try
+            {
+                var response = await _masterRepository.GetApplicationByID(id);
+                return new Response<Applications>()
+                {
+                    Success = response != null ? true : false,
+                    Message = response != null ? $"Successfully fetched Application." : "Sorry, No Application found",
+                    Data = response != null ? response : null
+
+                };
+
+            }
+            catch (Exception ex)
+            {
+                return new Response<Applications>()
+                {
+                    Success = false,
+                    Message = $"Error occurred while Application responses. Reason: {ex.Message}",
+                    Data = null
+                };
+            }
+        }
+        public async Task<Response<List<Application_Feature_Map>>> GetAllFeaturePermissionByApplicationIdAsync(int Id)
+        {
+            var query = await _masterRepository.GetAllFeaturePermissionByApplicationId(Id);
+            if (query == null || query.Count <= 0)
+            {
+                return new Response<List<Application_Feature_Map>>()
+                {
+                    Success = false,
+                    Message = "No Data found"
+                };
+            }
+
+            return new Response<List<Application_Feature_Map>>()
+            {
+                Success = true,
+                Message = $"{query.Count} fetched successfully",
+                Data = query
+            };
         }
     }
 }

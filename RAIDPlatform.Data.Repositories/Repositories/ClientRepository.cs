@@ -211,8 +211,8 @@ namespace RAIDPlatform.Data.Repositories.Repositories
         public async Task<List<Client_Application_Security_Group>> GetAllClientApplicationSecurityGroup()
         {
             var sg = await Client_Application_Security_Group
+                .Include(x => x.Application)
                 .Include(x => x.Client)
-                .Include(x => x.Application).ThenInclude(x => x.Application_Feature_Map).ThenInclude(x => x.FeaturePermission)
                 .ToListAsync();
             return sg;
         }

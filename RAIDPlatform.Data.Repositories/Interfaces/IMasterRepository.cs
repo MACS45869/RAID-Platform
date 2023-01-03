@@ -1,4 +1,5 @@
-﻿using RAIDPlatform.Data.Models.Master.Applications;
+﻿using RAIDPlatform.Data.Models.Master.Application_Feature_Map;
+using RAIDPlatform.Data.Models.Master.Applications;
 using RAIDPlatform.Data.Models.Master.Feature_Permissions;
 
 namespace RAIDPlatform.Data.Repositories.Interfaces
@@ -15,5 +16,6 @@ namespace RAIDPlatform.Data.Repositories.Interfaces
         Task<int> AddFeaturePermission(Feature_Permissions feature_Permissions);
         Task<int> UpdateFeaturePermission(Feature_Permissions feature_Permissions);
         Task<bool> DeleteFeaturePermission(int featurePermissionId);
+        Task<List<Application_Feature_Map>> GetAllFeaturePermissionByApplicationId(int appId);
     }
 }

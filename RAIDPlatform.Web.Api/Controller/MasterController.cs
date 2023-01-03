@@ -177,5 +177,87 @@ namespace RAIDPlatform.Web.Api.Controller
                 return (CatchStatements(ex, "Exception occurred while deleting Feature Permission. Exception: "));
             }
         }
+        [HttpGet]
+        [Route("api/master/applicationfeaturepermission/byapplicationid/{id}")]
+        public async Task<IActionResult> GetAllFeaturePermissionsByApplicationID([FromRoute] int id)
+        {
+            try
+            {
+                var query = await _masterService.GetAllFeaturePermissionByApplicationIdAsync(id);
+
+                if (query.Success)
+                {
+                    return Ok(new Response<List<Application_Feature_Map_Dto>>()
+                    {
+                        Success = query.Success,
+                        Message = query.Message,
+                        Data = _mapper.Map<List<Application_Feature_Map_Dto>>(query.Data)
+                    });
+                }
+                else
+                {
+                    return BadRequest(query);
+                }
+            }
+            catch (Exception ex)
+            {
+                return (CatchStatements(ex, "Feature Permissions By Application Id fetching failed due to "));
+            }
+        }
+        [HttpGet]
+        [Route("api/master/applications/all")]
+        public async Task<IActionResult> GetAllApplications()
+        {
+            try
+            {
+                var query = await _masterService.GetAllApplicationsAsync();
+                List<Applications_Dto> _doc = _mapper.Map<List<Applications_Dto>>(query.Data);
+
+                if (query.Success)
+                {
+                    return Ok(new Response<List<Applications_Dto>>()
+                    {
+                        Success = query.Success,
+                        Message = query.Message,
+                        Data = _doc
+                    });
+                }
+                else
+                {
+                    return BadRequest(query);
+                }
+            }
+            catch (Exception ex)
+            {
+                return (CatchStatements(ex, "Applications fetching failed due to"));
+            }
+        }
+        [HttpGet]
+        [Route("api/master/applications/{id}")]
+        public async Task<IActionResult> GetApplicationByID([FromRoute] int id)
+        {
+            try
+            {
+                var query = await _masterService.GetApplicationByIdAsync(id);
+
+                if (query.Success)
+                {
+                    return Ok(new Response<Applications_Dto>()
+                    {
+                        Success = query.Success,
+                        Message = query.Message,
+                        Data = _mapper.Map<Applications_Dto>(query.Data)
+                    });
+                }
+                else
+                {
+                    return BadRequest(query);
+                }
+            }
+            catch (Exception ex)
+            {
+                return (CatchStatements(ex, "Application fetching failed due to "));
+            }
+        }
     }
 }

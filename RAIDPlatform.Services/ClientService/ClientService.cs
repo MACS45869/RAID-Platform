@@ -17,6 +17,8 @@ namespace RAIDPlatform.Services.ClientService
         {
             _clientRepository = clientRepository;
         }
+
+        
         public async Task<Response<List<Client_Application_Category>>> GetAllClientApplicationCategoryAsync()
         {
             var query = await _clientRepository.GetAllClientApplicationCategory();

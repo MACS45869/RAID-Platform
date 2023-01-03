@@ -1,4 +1,6 @@
-﻿using RAIDPlatform.Data.Models.Master.Feature_Permissions;
+﻿using RAIDPlatform.Data.Models.Master.Application_Feature_Map;
+using RAIDPlatform.Data.Models.Master.Applications;
+using RAIDPlatform.Data.Models.Master.Feature_Permissions;
 using RAIDPlatform.Utilities;
 
 namespace RAIDPlatform.Services.MasterService
@@ -10,5 +12,8 @@ namespace RAIDPlatform.Services.MasterService
         Task<Response<int>> AddFeaturePermissionAsync(Feature_Permissions feature_Permissions);
         Task<Response<Feature_Permissions>> UpdateFeaturePermissionAsync(Feature_Permissions feature_Permissions, int Id);
         Task<Response<bool>> DeleteFeaturePermissionAsync(int id);
+        Task<Response<List<Applications>>> GetAllApplicationsAsync();
+        Task<Response<Applications>> GetApplicationByIdAsync(int id);
+        Task<Response<List<Application_Feature_Map>>> GetAllFeaturePermissionByApplicationIdAsync(int Id);
     }
 }

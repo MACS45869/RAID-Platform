@@ -54,15 +54,18 @@ namespace RAIDPlatform.Data.Repositories.Repositories
         }
         public async Task<List<Applications>> GetAllApplications()
         {
-            var apps = await Applications.ToListAsync();
+            var apps = await Applications
+                .ToListAsync();
             return apps;
         }
 
         public async Task<Applications> GetApplicationByID(int appId)
         {
             var _qs = await Applications
-
-               .Where(x => x.Id == appId).FirstOrDefaultAsync();
+                .Include(x => x.Application_Feature_Map)
+                .ThenInclude(x => x.FeaturePermission)
+               .Where(x => x.Id == appId)
+               .FirstOrDefaultAsync();
 
             return _qs;
         }
@@ -177,5 +180,14 @@ namespace RAIDPlatform.Data.Repositories.Repositories
                 return false;
             }
         }
+        public async Task<List<Application_Feature_Map>> GetAllFeaturePermissionByApplicationId(int appId)
+        {
+            var _qs = await Application_Feature_Map
+               .Include(x => x.FeaturePermission)
+               .Where(x => x.ApplicationId == appId)
+               .ToListAsync();
+            return _qs;
+        }
+
     }
 }

@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using RAIDPlatform.Web.Api.DTO;
 using RAIDPlatform.Web.Api.DTO.RequestDtos;
+using RAIDPlatform.Web.Api.Minimal;
 
 namespace RAIDPlatform.Web.Api.Controller
 {
@@ -215,7 +216,7 @@ namespace RAIDPlatform.Web.Api.Controller
             try
             {
                 var query = await _clientService.GetAllClientApplicationSecurityGroupAsync();
-                List<Client_Application_Security_Group_Dto> _doc = _mapper.Map<List<Client_Application_Security_Group_Dto>>(query.Data);
+                List<MinimalClientApplicationSecurityGroupDto> _doc = _mapper.Map<List<MinimalClientApplicationSecurityGroupDto>>(query.Data);
 
                 if (query.Success)
                 {
@@ -225,7 +226,7 @@ namespace RAIDPlatform.Web.Api.Controller
                     //    Message = query.Message,
                     //    Data = _doc
                     //});
-                    return Ok(query);
+                    return Ok(_doc);
                 }
                 else
                 {
@@ -234,7 +235,7 @@ namespace RAIDPlatform.Web.Api.Controller
             }
             catch (Exception ex)
             {
-                return (CatchStatements(ex, "Client Application Security Group fetching failed due to"));
+                return (CatchStatements(ex, "Client Application Security Groups fetching failed due to"));
             }
         }
         [HttpGet]
@@ -520,6 +521,61 @@ namespace RAIDPlatform.Web.Api.Controller
             catch (Exception ex)
             {
                 return (CatchStatements(ex, "Users By Client Id fetching failed due to "));
+            }
+        }
+        [HttpGet]
+        [Route("api/clients/all")]
+        public async Task<IActionResult> GetAllClients()
+        {
+            try
+            {
+                var query = await _clientService.GetAllClientsAsync();
+                List<Clients_Dto> _doc = _mapper.Map<List<Clients_Dto>>(query.Data);
+
+                if (query.Success)
+                {
+                    return Ok(new Response<List<Clients_Dto>>()
+                    {
+                        Success = query.Success,
+                        Message = query.Message,
+                        Data = _doc
+                    });
+                }
+                else
+                {
+                    return BadRequest(query);
+                }
+            }
+            catch (Exception ex)
+            {
+                return (CatchStatements(ex, "Clients fetching failed due to"));
+            }
+        }
+        [HttpGet]
+        [Route("api/client/{id}")]
+        public async Task<IActionResult> GetClientsByID([FromRoute] int id)
+        {
+            try
+            {
+                var query = await _clientService.GetClientByIdAsync(id);
+
+                if (query.Success)
+                {
+                    return Ok(new Response<Clients_Dto>()
+                    {
+                        Success = query.Success,
+                        Message = query.Message,
+                        Data = _mapper.Map<Clients_Dto>(query.Data)
+                    });
+                }
+                else
+                {
+                    return BadRequest(query);
+                }
+            }
+            catch (Exception ex)
+            {
+                return (CatchStatements(ex, "Client fetching failed due to "));
             }
         }
     }
