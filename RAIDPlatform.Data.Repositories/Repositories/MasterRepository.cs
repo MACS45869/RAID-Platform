@@ -117,6 +117,16 @@ namespace RAIDPlatform.Data.Repositories.Repositories
             context.applications.Remove(app);
             await context.SaveChangesAsync();
         }
+        public async Task<List<Applications>> GetAllDataPermissionsByApplicationId(int appId)
+        {
+            var _qs = await Applications
+               .Include(x => x.Application_Data_Map)
+               .ThenInclude(x => x.DataPermission)
+               .Where(x => x.Id == appId)
+               .ToListAsync();
+            return _qs;
+        }
+
         public async Task<List<Feature_Permissions>> GetAllFeaturePermissions()
         {
             var fp = await Feature_Permissions
@@ -188,6 +198,6 @@ namespace RAIDPlatform.Data.Repositories.Repositories
                .ToListAsync();
             return _qs;
         }
-
+        
     }
 }

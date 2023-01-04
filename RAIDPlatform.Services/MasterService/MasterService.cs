@@ -1,6 +1,7 @@
 ﻿
 using RAIDPlatform.Data.Models.Client.Client_Application_Category;
 using RAIDPlatform.Data.Models.Client.Users;
+using RAIDPlatform.Data.Models.Master.Application_Data_Map;
 using RAIDPlatform.Data.Models.Master.Application_Feature_Map;
 using RAIDPlatform.Data.Models.Master.Applications;
 using RAIDPlatform.Data.Models.Master.Feature_Permissions;
@@ -242,5 +243,26 @@ namespace RAIDPlatform.Services.MasterService
                 Data = query
             };
         }
+
+        public async Task<Response<List<Applications>>> GetAllDataPermissionByApplicationIdAsync(int Id)
+        {
+            var query = await _masterRepository.GetAllDataPermissionsByApplicationId(Id);
+            if (query == null || query.Count <= 0)
+            {
+                return new Response<List<Applications>>()
+                {
+                    Success = false,
+                    Message = "No Data found"
+                };
+            }
+
+            return new Response<List<Applications>>()
+            {
+                Success = true,
+                Message = $"{query.Count} fetched successfully",
+                Data = query
+            };
+        }
+
     }
 }

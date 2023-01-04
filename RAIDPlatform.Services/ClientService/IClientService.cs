@@ -14,6 +14,7 @@ namespace RAIDPlatform.Services.ClientService
         Task<Response<int>> AddClientApplicationCategoryAsync(Client_Application_Category client_Application_Category);
         Task<Response<bool>> DeleteClientApplicationCategoryAsync(int id);
         Task<Response<List<Client_Application_Category>>> GetAllClientApplicationCategoryByClientIdAsync(int Id);
+        Task<Response<List<Client_Application_Category>>> GetAllClientApplicationCategoryByApplicationIdAsync(int Id);
         Task<Response<List<Client_Application_Security_Group>>> GetAllClientApplicationSecurityGroupAsync();
         Task<Response<List<Client_Application_Security_Group>>> GetAllClientApplicationSecurityGroupByClientIdAsync(int Id);
         Task<Response<Client_Application_Security_Group>> GetClientApplicationSecurityGroupByIdAsync(int id);
@@ -25,6 +26,7 @@ namespace RAIDPlatform.Services.ClientService
         Task<Response<int>> AddUserAsync(Users users);
         Task<Response<Users>> GetUsersByIdAsync(int id);
         Task<Response<List<Users>>> GetAllUsersByClientIdAsync(int Id);
+        Task<Response<List<Users>>> GetAllUsersByApplicationIdAsync(int Id);
         Task<Response<List<Users>>> GetAllUsersAsync();
         Task<Response<List<Clients>>> GetAllClientsAsync();
         Task<Response<Clients>> GetClientByIdAsync(int id);

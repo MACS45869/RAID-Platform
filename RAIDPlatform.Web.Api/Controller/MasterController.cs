@@ -10,6 +10,7 @@ using RAIDPlatform.Services.MasterService;
 using RAIDPlatform.Web.Api.DTO.MasterDTO;
 using RAIDPlatform.Web.Api.DTO.RequestDtos;
 using RAIDPlatform.Data.Models.Master.Feature_Permissions;
+using RAIDPlatform.Web.Api.Minimal;
 
 namespace RAIDPlatform.Web.Api.Controller
 {
@@ -202,6 +203,33 @@ namespace RAIDPlatform.Web.Api.Controller
             catch (Exception ex)
             {
                 return (CatchStatements(ex, "Feature Permissions By Application Id fetching failed due to "));
+            }
+        }
+        [HttpGet]
+        [Route("api/master/applicationdatapermission/byapplicationid/{id}")]
+        public async Task<IActionResult> GetAllDataPermissionsByApplicationID([FromRoute] int id)
+        {
+            try
+            {
+                var query = await _masterService.GetAllDataPermissionByApplicationIdAsync(id);
+
+                if (query.Success)
+                {
+                    return Ok(new Response<List<MinimalApplicationDto>>()
+                    {
+                        Success = query.Success,
+                        Message = query.Message,
+                        Data = _mapper.Map<List<MinimalApplicationDto>>(query.Data)
+                    });
+                }
+                else
+                {
+                    return BadRequest(query);
+                }
+            }
+            catch (Exception ex)
+            {
+                return (CatchStatements(ex, "Data Permissions By Application Id fetching failed due to "));
             }
         }
         [HttpGet]

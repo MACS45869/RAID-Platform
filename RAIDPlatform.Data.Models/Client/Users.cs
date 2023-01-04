@@ -1,5 +1,4 @@
-﻿using RAIDPlatform.Data.Models.Master.Parameter_Values;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace RAIDPlatform.Data.Models.Client.Users
 {

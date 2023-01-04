@@ -38,6 +38,25 @@ namespace RAIDPlatform.Services.ClientService
                 Data = query
             };
         }
+        public async Task<Response<List<Client_Application_Category>>> GetAllClientApplicationCategoryByApplicationIdAsync(int Id)
+        {
+            var query = await _clientRepository.GetAllClientApplicationCategoryByApplicationId(Id);
+            if (query == null || query.Count <= 0)
+            {
+                return new Response<List<Client_Application_Category>>()
+                {
+                    Success = false,
+                    Message = "No Data found"
+                };
+            }
+
+            return new Response<List<Client_Application_Category>>()
+            {
+                Success = true,
+                Message = $"{query.Count} fetched successfully",
+                Data = query
+            };
+        }
         public async Task<Response<List<Client_Application_Category>>> GetAllClientApplicationCategoryByClientIdAsync(int Id)
         {
             var query = await _clientRepository.GetAllClientApplicationCategoryByClientId(Id);
@@ -377,6 +396,25 @@ namespace RAIDPlatform.Services.ClientService
         public async Task<Response<List<Users>>> GetAllUsersByClientIdAsync(int Id)
         {
             var query = await _clientRepository.GetAllUserByClientId(Id);
+            if (query == null || query.Count <= 0)
+            {
+                return new Response<List<Users>>()
+                {
+                    Success = false,
+                    Message = "No Data found"
+                };
+            }
+
+            return new Response<List<Users>>()
+            {
+                Success = true,
+                Message = $"{query.Count} fetched successfully",
+                Data = query
+            };
+        }
+        public async Task<Response<List<Users>>> GetAllUsersByApplicationIdAsync(int Id)
+        {
+            var query = await _clientRepository.GetAllUsersByApplicationId(Id);
             if (query == null || query.Count <= 0)
             {
                 return new Response<List<Users>>()

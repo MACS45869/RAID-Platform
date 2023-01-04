@@ -150,7 +150,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
         public async Task<List<Client_Application_Category>> GetAllClientApplicationCategoryByApplicationId(int appID)
         {
             var _qs = await Client_Application_Category
-            .Where(x => x.Id == appID)
+            .Where(x => x.ApplicationId == appID)
             .ToListAsync();
             return _qs;
 
@@ -306,7 +306,12 @@ namespace RAIDPlatform.Data.Repositories.Repositories
 
             return _qs;
         }
-
+        public async Task<List<Users>> GetAllUsersByApplicationId(int appID)
+        {
+            var users = await Users
+                .ToListAsync();
+            return users;
+        }
         public async Task<int> AddUser(Users users)
         {
             var rec = new Users()

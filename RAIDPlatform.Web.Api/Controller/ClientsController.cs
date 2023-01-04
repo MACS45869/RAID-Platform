@@ -210,6 +210,33 @@ namespace RAIDPlatform.Web.Api.Controller
             }
         }
         [HttpGet]
+        [Route("api/client/clientapplicationcategory/byapplicationid/{id}")]
+        public async Task<IActionResult> GetClientApplicationCategoryByApplicationID([FromRoute] int id)
+        {
+            try
+            {
+                var query = await _clientService.GetAllClientApplicationCategoryByApplicationIdAsync(id);
+
+                if (query.Success)
+                {
+                    return Ok(new Response<List<Client_Application_Category_Dto>>()
+                    {
+                        Success = query.Success,
+                        Message = query.Message,
+                        Data = _mapper.Map<List<Client_Application_Category_Dto>>(query.Data)
+                    });
+                }
+                else
+                {
+                    return BadRequest(query);
+                }
+            }
+            catch (Exception ex)
+            {
+                return (CatchStatements(ex, "Client Application Category By Application Id fetching failed due to "));
+            }
+        }
+        [HttpGet]
         [Route("api/client/clientapplicationsecuritygroup/all")]
         public async Task<IActionResult> GetAllClientApplicationSecurityGroup()
         {
@@ -521,6 +548,33 @@ namespace RAIDPlatform.Web.Api.Controller
             catch (Exception ex)
             {
                 return (CatchStatements(ex, "Users By Client Id fetching failed due to "));
+            }
+        }
+        [HttpGet]
+        [Route("api/client/users/byApplicationid/{id}")]
+        public async Task<IActionResult> GetUsersByApplicationID([FromRoute] int id)
+        {
+            try
+            {
+                var query = await _clientService.GetAllUsersByApplicationIdAsync(id);
+
+                if (query.Success)
+                {
+                    return Ok(new Response<List<Users_Dto>>()
+                    {
+                        Success = query.Success,
+                        Message = query.Message,
+                        Data = _mapper.Map<List<Users_Dto>>(query.Data)
+                    });
+                }
+                else
+                {
+                    return BadRequest(query);
+                }
+            }
+            catch (Exception ex)
+            {
+                return (CatchStatements(ex, "Users By Application Id fetching failed due to "));
             }
         }
         [HttpGet]
