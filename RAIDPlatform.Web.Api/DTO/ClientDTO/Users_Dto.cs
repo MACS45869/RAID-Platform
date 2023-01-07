@@ -7,6 +7,7 @@ namespace RAIDPlatform.Web.Api.DTO.ClientDTO
         public int Id { get; set; }
         public int ClientId { get; set; }
         public int UserTypeId { get; set; }
+        public string EmployeeNo { get; set; }
         public string User_Type_Value { get; set; }
         public bool Is_AD_User { get; set; }
         public string User_Email { get; set; }

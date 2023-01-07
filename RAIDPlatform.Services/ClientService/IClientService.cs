@@ -33,5 +33,6 @@ namespace RAIDPlatform.Services.ClientService
         Task<Response<int>> AddClientAsync(Clients clients);
         Task<Response<Clients>> UpdateClientsAsync(Clients clients, int Id);
         Task<Response<bool>> DeleteClientAsync(int id);
+        Task<Response<List<Client_Application_Security_Group>>> GetAllClientApplicationSecurityGroupByApplicationIdAsync(int Id);
     }
 }

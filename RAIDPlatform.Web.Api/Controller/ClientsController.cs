@@ -236,6 +236,7 @@ namespace RAIDPlatform.Web.Api.Controller
                 return (CatchStatements(ex, "Client Application Category By Application Id fetching failed due to "));
             }
         }
+
         [HttpGet]
         [Route("api/client/clientapplicationsecuritygroup/all")]
         public async Task<IActionResult> GetAllClientApplicationSecurityGroup()
@@ -365,7 +366,33 @@ namespace RAIDPlatform.Web.Api.Controller
                 return (CatchStatements(ex, "Exception occurred while deleting Client Application Security Group. Exception: "));
             }
         }
+        [HttpGet]
+        [Route("api/client/clientapplicationsecuritygroup/byapplicationid/{id}")]
+        public async Task<IActionResult> GetClientApplicationSecurityGroupByApplicationID([FromRoute] int id)
+        {
+            try
+            {
+                var query = await _clientService.GetAllClientApplicationSecurityGroupByApplicationIdAsync(id);
 
+                if (query.Success)
+                {
+                    return Ok(new Response<List<Client_Application_Security_Group_Dto>>()
+                    {
+                        Success = query.Success,
+                        Message = query.Message,
+                        Data = _mapper.Map<List<Client_Application_Security_Group_Dto>>(query.Data)
+                    });
+                }
+                else
+                {
+                    return BadRequest(query);
+                }
+            }
+            catch (Exception ex)
+            {
+                return (CatchStatements(ex, "Client Application Security Group By Application Id fetching failed due to "));
+            }
+        }
         [HttpGet]
         [Route("api/client/clientapplicationsecuritygroup/byclientid/{id}")]
         public async Task<IActionResult> GetClientApplicationSecurityGroupByCientID([FromRoute] int id)

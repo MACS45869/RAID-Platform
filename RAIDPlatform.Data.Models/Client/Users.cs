@@ -9,6 +9,7 @@ namespace RAIDPlatform.Data.Models.Client.Users
         public int ClientId { get; set; }
         public virtual Clients.Clients Client { get; set; }
         public int UserTypeId { get; set; }
+        public string? EmployeeNo {get; set;}
         public string User_Type_Value { get; set; }
         public bool Is_AD_User { get; set; }
         public string User_Email { get; set; }

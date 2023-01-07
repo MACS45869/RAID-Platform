@@ -1,15 +1,11 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using RAIDPlatform.Data.Models.Client.Client_Application_Category;
-using RAIDPlatform.Data.Repositories.Interfaces;
-using RAIDPlatform.Utilities;
-using RAIDPlatform.Web.Api.DTO.ClientDTO;
-using RAIDPlatform.Web.Api.DTO;
+using RAIDPlatform.Data.Models.Master.Feature_Permissions;
 using RAIDPlatform.Services.MasterService;
+using RAIDPlatform.Utilities;
 using RAIDPlatform.Web.Api.DTO.MasterDTO;
 using RAIDPlatform.Web.Api.DTO.RequestDtos;
-using RAIDPlatform.Data.Models.Master.Feature_Permissions;
 using RAIDPlatform.Web.Api.Minimal;
 
 namespace RAIDPlatform.Web.Api.Controller

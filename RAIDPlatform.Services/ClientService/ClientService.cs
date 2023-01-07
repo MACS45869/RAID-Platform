@@ -1,6 +1,8 @@
 ﻿using RAIDPlatform.Data.Models.Client;
 using RAIDPlatform.Data.Models.Client.Client_Application_Category;
+using RAIDPlatform.Data.Models.Client.Client_Application_Security_Group_Category_Map;
 using RAIDPlatform.Data.Models.Client.Clients;
+using RAIDPlatform.Data.Models.Client.User_Security_Group_Map;
 using RAIDPlatform.Data.Models.Client.Users;
 using RAIDPlatform.Data.Repositories.Interfaces;
 using RAIDPlatform.Data.Repositories.Repositories;
@@ -244,6 +246,25 @@ namespace RAIDPlatform.Services.ClientService
                 Data = query
             };
         }
+        public async Task<Response<List<Client_Application_Security_Group>>> GetAllClientApplicationSecurityGroupByApplicationIdAsync(int Id)
+        {
+            var query = await _clientRepository.GetAllClientApplicationSecurityGroupByApplicationId(Id);
+            if (query == null || query.Count <= 0)
+            {
+                return new Response<List<Client_Application_Security_Group>>()
+                {
+                    Success = false,
+                    Message = "No Data found"
+                };
+            }
+
+            return new Response<List<Client_Application_Security_Group>>()
+            {
+                Success = true,
+                Message = $"{query.Count} fetched successfully",
+                Data = query
+            };
+        }
         public async Task<Response<Client_Application_Security_Group>> GetClientApplicationSecurityGroupByIdAsync(int id)
         {
             try
@@ -276,7 +297,33 @@ namespace RAIDPlatform.Services.ClientService
 
                 if (query != 0)
                 {
+                    if (client_Application_Security_Group.UserIds.Count > 0)
+                    {
+                        List<User_Security_Group_Map> newUsers = new List<User_Security_Group_Map>();
 
+                        foreach (var item in client_Application_Security_Group.UserIds)
+                        {
+                            newUsers.Add(
+                                new User_Security_Group_Map() { UserId = item, ClientApplicationSecurityGroupId = query }
+                                );
+                        }
+                        var multiUser = _clientRepository.AddUserSecurityGroupMap(newUsers);
+                    }
+                }
+                if (query != 0)
+                {
+                    if (client_Application_Security_Group.CategoryIds.Count > 0)
+                    {
+                        List<Client_Application_Security_Group_Category_Map> newCategory = new List<Client_Application_Security_Group_Category_Map>();
+
+                        foreach (var item in client_Application_Security_Group.CategoryIds)
+                        {
+                            newCategory.Add(
+                                new Client_Application_Security_Group_Category_Map() { ClientApplicationCategoryId = item, ClientApplicationSecurityGroupId = query }
+                                  );
+                        }
+                        var multiCategory = _clientRepository.AddClientApplicationSecurityGroupCategoryMap(newCategory);
+                    }
                     return new Response<int>()
                     {
                         Success = true,
@@ -284,15 +331,16 @@ namespace RAIDPlatform.Services.ClientService
                         Data = query
                     };
                 }
-                else
-                {
-                    return new Response<int>()
+            
+                    else
                     {
-                        Success = false,
-                        Message = "Failed to add Client Application Security Group."
-                    };
+                        return new Response<int>()
+                        {
+                            Success = false,
+                            Message = "Failed to add Client Application Security Group."
+                        };
+                    }
                 }
-            }
             catch (Exception ex)
             {
                 return new Response<int>()
@@ -499,6 +547,7 @@ namespace RAIDPlatform.Services.ClientService
                 {
                     ua.Data.ClientId = users.ClientId;
                     ua.Data.UserTypeId = users.UserTypeId;
+                    ua.Data.EmployeeNo = users.EmployeeNo;
                     ua.Data.User_Type_Value = users.User_Type_Value;
                     ua.Data.Is_AD_User = users.Is_AD_User;
                     ua.Data.User_Email = users.User_Email;

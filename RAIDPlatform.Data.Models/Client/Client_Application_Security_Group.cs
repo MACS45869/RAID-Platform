@@ -25,11 +25,12 @@ namespace RAIDPlatform.Data.Models.Client
         public int? Updated_By_ID { get; set; }
         public string? Updated_By_Name { get; set; }
         public DateTime? Updated_Date { get; set; }
-
-        //[NotMapped]
         public int ClientId { get; set; }
         public virtual Clients.Clients Client { get; set; }
-
+        [NotMapped]
+        public ICollection<int>? UserIds { get; set; }
+        [NotMapped]
+        public ICollection<int>? CategoryIds { get; set; }
 
     }
 }

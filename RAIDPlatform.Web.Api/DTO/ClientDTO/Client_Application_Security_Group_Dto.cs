@@ -1,6 +1,7 @@
 ﻿using RAIDPlatform.Data.Models.Client.Clients;
 using RAIDPlatform.Data.Models.Master.Applications;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RAIDPlatform.Web.Api.DTO.ClientDTO
 {
@@ -9,7 +10,6 @@ namespace RAIDPlatform.Web.Api.DTO.ClientDTO
         public int Id { get; set; }
         public int ApplicationId { get; set; }
         public virtual Applications Application { get; set; }
-       
         public string Client_Application_Security_Group_Name { get; set; }
         public string Client_Application_Security_Group_Key { get; set; }
         public string? Client_Application_Security_Group_Description { get; set; }
@@ -22,5 +22,9 @@ namespace RAIDPlatform.Web.Api.DTO.ClientDTO
         public string? Updated_By_Name { get; set; }
         public DateTime? Updated_Date { get; set; }
         public int ClientId { get; set; }
-      }
+        [NotMapped]
+        public ICollection<int> UserIds { get; set; }
+        [NotMapped]
+        public ICollection<int> CategoryIds { get; set; }
+    }
 }

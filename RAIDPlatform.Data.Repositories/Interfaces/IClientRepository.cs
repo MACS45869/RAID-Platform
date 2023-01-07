@@ -1,9 +1,9 @@
 ﻿using RAIDPlatform.Data.Models.Client;
 using RAIDPlatform.Data.Models.Client.Client_Application_Category;
+using RAIDPlatform.Data.Models.Client.Client_Application_Security_Group_Category_Map;
 using RAIDPlatform.Data.Models.Client.Clients;
+using RAIDPlatform.Data.Models.Client.User_Security_Group_Map;
 using RAIDPlatform.Data.Models.Client.Users;
-using RAIDPlatform.Data.Models.Master.Application_Data_Map;
-using RAIDPlatform.Data.Models.Master.Applications;
 
 namespace RAIDPlatform.Data.Repositories.Interfaces
 {
@@ -32,7 +32,11 @@ namespace RAIDPlatform.Data.Repositories.Interfaces
         Task<List<Client_Application_Category>> GetAllClientApplicationCategoryByApplicationId(int appID);
         Task<List<Client_Application_Category>> GetAllClientApplicationCategoryByClientId(int clientID);
         Task<List<Client_Application_Security_Group>> GetAllClientApplicationSecurityGroupByClientId(int clientID);
+        Task<List<Client_Application_Security_Group>> GetAllClientApplicationSecurityGroupByApplicationId(int appID);
         Task<List<Users>> GetAllUserByClientId(int clientID);
         Task<List<Users>> GetAllUsersByApplicationId(int appID);
+        Task<List<User_Security_Group_Map>> AddUserSecurityGroupMap(List<User_Security_Group_Map> user_Security_Group_Maps);
+        Task<List<Client_Application_Security_Group_Category_Map>> AddClientApplicationSecurityGroupCategoryMap(List<Client_Application_Security_Group_Category_Map> client_Application_Security_Group_Category_Map);
+       
     }
 }

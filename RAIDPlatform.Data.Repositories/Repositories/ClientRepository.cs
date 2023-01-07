@@ -216,6 +216,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
                 .ToListAsync();
             return sg;
         }
+
         public async Task<List<Client_Application_Security_Group>> GetAllClientApplicationSecurityGroupByClientId(int clientID)
         {
             var _qs = await Client_Application_Security_Group
@@ -229,6 +230,14 @@ namespace RAIDPlatform.Data.Repositories.Repositories
 
             return _qs;
         }
+        public async Task<List<Client_Application_Security_Group>> GetAllClientApplicationSecurityGroupByApplicationId(int appID)
+        {
+            var _qs = await Client_Application_Security_Group
+            .Where(x => x.ApplicationId == appID)
+            .ToListAsync();
+            return _qs;
+
+        }
         public async Task<Client_Application_Security_Group> GetClientApplicationSecurityGroupById(int clientApplicationSecurityGroupId)
         {
             var _qs = await Client_Application_Security_Group
@@ -240,6 +249,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
                 .FirstOrDefaultAsync();
             return _qs;
         }
+
         public async Task<int> AddClientApplicationSecurityGroup(Client_Application_Security_Group client_Application_Security_Group)
         {
             var rec = new Client_Application_Security_Group()
@@ -259,10 +269,11 @@ namespace RAIDPlatform.Data.Repositories.Repositories
                 Updated_Date = client_Application_Security_Group.Updated_Date
             };
 
-            Client_Application_Security_Group.Add(rec);
-            var saved = await context.SaveChangesAsync();
-            return saved;
+            Client_Application_Security_Group.Add(client_Application_Security_Group);
+            await context.SaveChangesAsync();
+            return client_Application_Security_Group.Id;
         }
+      
         public async Task<int> UpdateClientApplicationSecurityGroup(Client_Application_Security_Group client_Application_Security_Group)
         {
             Client_Application_Security_Group.Update(client_Application_Security_Group);
@@ -318,6 +329,7 @@ namespace RAIDPlatform.Data.Repositories.Repositories
             {
                 ClientId = users.ClientId,
                 UserTypeId = users.UserTypeId,
+                EmployeeNo = users.EmployeeNo,
                 User_Type_Value = users.User_Type_Value,
                 Is_AD_User = users.Is_AD_User,
                 User_Email = users.User_Email,
@@ -367,6 +379,19 @@ namespace RAIDPlatform.Data.Repositories.Repositories
             {
                 return false;
             }
+        }
+        public async Task<List<User_Security_Group_Map>> AddUserSecurityGroupMap(List<User_Security_Group_Map> user_Security_Group_Maps)
+        {
+            
+            User_Security_Group_Map.AddRange(user_Security_Group_Maps);
+            await context.SaveChangesAsync();
+            return user_Security_Group_Maps;
+        }
+        public async Task<List<Client_Application_Security_Group_Category_Map>> AddClientApplicationSecurityGroupCategoryMap(List<Client_Application_Security_Group_Category_Map> client_Application_Security_Group_Category_Map)
+        {
+            Client_Application_Security_Group_Category_Map.AddRange(client_Application_Security_Group_Category_Map);
+            await context.SaveChangesAsync();
+            return client_Application_Security_Group_Category_Map;
         }
         //public async Task<List<Client_Application_Security_Group>> GetAllClientApplicationSecurityGroupFeaturePermissions()
         //{

@@ -18,5 +18,7 @@ namespace RAIDPlatform.Web.Api.DTO.RequestDtos
         public string? Updated_By_Name { get; set; }
         public DateTime? Updated_Date { get; set; }
         public int ClientId { get; set; }
+        public ICollection<int> UserIds { get; set; }
+        public ICollection<int> CategoryIds { get; set; }
     }
 }
