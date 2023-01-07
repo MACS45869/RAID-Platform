@@ -1,6 +1,7 @@
 ﻿using RAIDPlatform.Data.Models.Client;
 using RAIDPlatform.Data.Models.Client.Client_Application_Category;
 using RAIDPlatform.Data.Models.Client.Client_Application_Security_Group_Category_Map;
+using RAIDPlatform.Data.Models.Client.Client_Application_Security_Group_Feature_Map;
 using RAIDPlatform.Data.Models.Client.Clients;
 using RAIDPlatform.Data.Models.Client.User_Security_Group_Map;
 using RAIDPlatform.Data.Models.Client.Users;
@@ -8,6 +9,8 @@ using RAIDPlatform.Data.Repositories.Interfaces;
 using RAIDPlatform.Data.Repositories.Repositories;
 using RAIDPlatform.Utilities;
 using System.Text.RegularExpressions;
+using Twilio.Http;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace RAIDPlatform.Services.ClientService
 {
@@ -324,6 +327,22 @@ namespace RAIDPlatform.Services.ClientService
                         }
                         var multiCategory = _clientRepository.AddClientApplicationSecurityGroupCategoryMap(newCategory);
                     }
+                  
+                }
+                if (query != 0)
+                {
+                    if (client_Application_Security_Group.FeatureIds.Count > 0)
+                    {
+                        List<Client_Application_Security_Group_Feature_Map> newFeature = new List<Client_Application_Security_Group_Feature_Map>();
+
+                        foreach (var item in client_Application_Security_Group.FeatureIds)
+                        {
+                            newFeature.Add(
+                                new Client_Application_Security_Group_Feature_Map() { ClientFeatureId = item, ClientApplicationSecurityGroupId = query }
+                                  );
+                        }
+                        var multiFeature = _clientRepository.AddClientApplicationSecurtiyGroupFeatureMap(newFeature);
+                    }
                     return new Response<int>()
                     {
                         Success = true,
@@ -331,15 +350,14 @@ namespace RAIDPlatform.Services.ClientService
                         Data = query
                     };
                 }
-            
-                    else
+                else
+                {
+                    return new Response<int>()
                     {
-                        return new Response<int>()
-                        {
-                            Success = false,
-                            Message = "Failed to add Client Application Security Group."
-                        };
-                    }
+                        Success = false,
+                        Message = "Failed to add Client Application Security Group."
+                    };
+                }
                 }
             catch (Exception ex)
             {
@@ -368,16 +386,74 @@ namespace RAIDPlatform.Services.ClientService
                     ua.Data.Updated_By_ID = client_Application_Security_Group.Updated_By_ID;
                     ua.Data.Updated_By_Name = client_Application_Security_Group.Updated_By_Name;
                     ua.Data.Updated_Date = DateTime.Now.Date;
+                    ua.Data.UserIds = client_Application_Security_Group.UserIds;
+                    ua.Data.CategoryIds = client_Application_Security_Group.CategoryIds;
+                    ua.Data.FeatureIds = client_Application_Security_Group.FeatureIds;
                 }
-               // await _clientRepository.UpdateClientApplicationSecurityGroup(client_Application_Security_Group);
-                var response = await _clientRepository.UpdateClientApplicationSecurityGroup(ua.Data);
-
-                return new Response<Client_Application_Security_Group>()
+               
+                if (ua.Data != null)
                 {
-                    Success = response > 0 ? true : false,
-                    Message = response > 0 ? $"Successfully Updated Client Application Security Group." : "",
-                    Data = response > 0 ? ua.Data : null
-                };
+                    if (client_Application_Security_Group.UserIds.Count > 0)
+                    {
+                        List<User_Security_Group_Map> updateUsers = new List<User_Security_Group_Map>();
+
+                        foreach (var item in client_Application_Security_Group.UserIds)
+                        {
+                            updateUsers.Add(
+                                new User_Security_Group_Map() { UserId = item, ClientApplicationSecurityGroupId = ua.Data.Id }
+                                );
+                        }
+                        var multiUser = _clientRepository.UpdateUserSecurityGroupMap(updateUsers);
+                    }
+                    
+                }
+                if (ua.Data != null)
+                {
+                    if (client_Application_Security_Group.CategoryIds.Count > 0)
+                    {
+                        List<Client_Application_Security_Group_Category_Map> updateCategory = new List<Client_Application_Security_Group_Category_Map>();
+
+                        foreach (var item in client_Application_Security_Group.CategoryIds)
+                        {
+                            updateCategory.Add(
+                                new Client_Application_Security_Group_Category_Map() { ClientApplicationCategoryId = item, ClientApplicationSecurityGroupId = ua.Data.Id }
+                                  );
+                        }
+                        var multiCategory = _clientRepository.UpdateClientApplicationSecurityGroupCategoryMap(updateCategory);
+                    }
+                }
+                if (ua.Data != null)
+                {
+                    if (client_Application_Security_Group.FeatureIds.Count > 0)
+                    {
+                        List<Client_Application_Security_Group_Feature_Map> updateFeature = new List<Client_Application_Security_Group_Feature_Map>();
+
+                        foreach (var item in client_Application_Security_Group.FeatureIds)
+                        {
+                            updateFeature.Add(
+                                new Client_Application_Security_Group_Feature_Map() { ClientFeatureId = item, ClientApplicationSecurityGroupId = ua.Data.Id }
+                                  );
+                        }
+                        var multiFeature = _clientRepository.UpdateClientApplicationSecurtiyGroupFeatureMap(updateFeature);
+                    }
+                    var response = await _clientRepository.UpdateClientApplicationSecurityGroup(ua.Data);
+
+                    return new Response<Client_Application_Security_Group>()
+                    {
+                        Success = response > 0 ? true : false,
+                        Message = response > 0 ? $"Successfully Updated Client Application Security Group." : "",
+                        Data = response > 0 ? ua.Data : null
+                    };
+                }
+                else
+                {
+                    return new Response<Client_Application_Security_Group>()
+                    {
+                        Success = false,
+                        Message = "Failed to update Client Application Security Group."
+                    };
+                }
+      
             }
             catch (Exception ex)
             {

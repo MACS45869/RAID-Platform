@@ -12,7 +12,6 @@ namespace RAIDPlatform.Data.Models.Client.User_Security_Group_Map
         public virtual Users.Users User { get; set; }
         public int ClientApplicationSecurityGroupId { get; set; }
         public virtual Client_Application_Security_Group ClientApplicationSecurityGroup { get; set; }
-        
 
     }
 }

@@ -393,6 +393,31 @@ namespace RAIDPlatform.Data.Repositories.Repositories
             await context.SaveChangesAsync();
             return client_Application_Security_Group_Category_Map;
         }
+        public async Task<List<Client_Application_Security_Group_Feature_Map>> AddClientApplicationSecurtiyGroupFeatureMap(List<Client_Application_Security_Group_Feature_Map> client_Application_Security_Group_Feature_Map)
+        {
+            Client_Application_Security_Group_Feature_Map.AddRange(client_Application_Security_Group_Feature_Map);
+            await context.SaveChangesAsync();
+            return client_Application_Security_Group_Feature_Map;
+        }
+        public async Task<List<User_Security_Group_Map>> UpdateUserSecurityGroupMap(List<User_Security_Group_Map> user_Security_Group_Maps)
+        {
+
+            User_Security_Group_Map.UpdateRange(user_Security_Group_Maps);
+            await context.SaveChangesAsync();
+            return user_Security_Group_Maps;
+        }
+        public async Task<List<Client_Application_Security_Group_Category_Map>> UpdateClientApplicationSecurityGroupCategoryMap(List<Client_Application_Security_Group_Category_Map> client_Application_Security_Group_Category_Map)
+        {
+            Client_Application_Security_Group_Category_Map.UpdateRange(client_Application_Security_Group_Category_Map);
+            await context.SaveChangesAsync();
+            return client_Application_Security_Group_Category_Map;
+        }
+        public async Task<List<Client_Application_Security_Group_Feature_Map>> UpdateClientApplicationSecurtiyGroupFeatureMap(List<Client_Application_Security_Group_Feature_Map> client_Application_Security_Group_Feature_Map)
+        {
+            Client_Application_Security_Group_Feature_Map.UpdateRange(client_Application_Security_Group_Feature_Map);
+            await context.SaveChangesAsync();
+            return client_Application_Security_Group_Feature_Map;
+        }
         //public async Task<List<Client_Application_Security_Group>> GetAllClientApplicationSecurityGroupFeaturePermissions()
         //{
         //    var sg = await Client_Application_Security_Group

@@ -20,5 +20,6 @@ namespace RAIDPlatform.Web.Api.DTO.RequestDtos
         public int ClientId { get; set; }
         public ICollection<int> UserIds { get; set; }
         public ICollection<int> CategoryIds { get; set; }
+        public ICollection<int> FeatureIds { get; set; }
     }
 }

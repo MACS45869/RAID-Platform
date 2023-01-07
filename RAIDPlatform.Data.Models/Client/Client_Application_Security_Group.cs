@@ -31,6 +31,7 @@ namespace RAIDPlatform.Data.Models.Client
         public ICollection<int>? UserIds { get; set; }
         [NotMapped]
         public ICollection<int>? CategoryIds { get; set; }
-
+        [NotMapped]
+        public ICollection<int>? FeatureIds { get; set; }
     }
 }
