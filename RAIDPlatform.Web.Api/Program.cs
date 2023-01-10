@@ -1,3 +1,4 @@
+using FluentAssertions.Common;
 using Microsoft.EntityFrameworkCore;
 using RAIDPlatform.Data.Repositories.Context;
 using RAIDPlatform.Data.Repositories.Interfaces;
@@ -6,7 +7,15 @@ using RAIDPlatform.Services.ClientService;
 using RAIDPlatform.Services.MasterService;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(
+      "CorsPolicy",
+      builder => builder.WithOrigins("http://localhost:4200")
+      .AllowAnyMethod()
+      .AllowAnyHeader()
+      .AllowCredentials());
+});
 
 builder.WebHost.UseUrls("http://0.0.0.0:5001");
 builder.Services.AddControllers();
@@ -42,8 +51,10 @@ var app = builder.Build();
 
 
 // Configure the HTTP request pipeline.
-if(builder.Configuration.GetValue<string>("Swagger") == "on") {
+if (builder.Configuration.GetValue<string>("Swagger") == "on")
+{
     app.UseSwagger();
+    app.UseCors("CorsPolicy");
     app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("swagger/v1/swagger.json", "My API V1");
