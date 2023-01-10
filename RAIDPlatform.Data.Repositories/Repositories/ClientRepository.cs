@@ -214,6 +214,13 @@ namespace RAIDPlatform.Data.Repositories.Repositories
                 .Include(x => x.Application)
                 .Include(x => x.Client)
                 .ToListAsync();
+
+            foreach(var item in sg)
+            {
+                item.UserCount = User_Security_Group_Map.Where(x => x.ClientApplicationSecurityGroupId == item.Id).Count();
+                item.CategoryCount = Client_Application_Security_Group_Category_Map.Where(x => x.ClientApplicationSecurityGroupId == item.Id).Count();
+                item.FeaturePermissionCount = Client_Application_Security_Group_Feature_Map.Where(x => x.ClientApplicationSecurityGroupId == item.Id).Count();
+            }
             return sg;
         }
 
@@ -243,8 +250,9 @@ namespace RAIDPlatform.Data.Repositories.Repositories
             var _qs = await Client_Application_Security_Group
                 .Include(x => x.Client)
                 .Include(x => x.Application)
-                .ThenInclude(x => x.Application_Feature_Map)
-                .ThenInclude(x => x.FeaturePermission)
+                .Include(x => x.Users).ThenInclude(xx => xx.User)
+                .Include(x => x.Categories).ThenInclude(xx => xx.ClientApplicationCategory)
+                .Include(x => x.Features).ThenInclude(xx => xx.ClientFeature)
                 .Where(x => x.Id == clientApplicationSecurityGroupId)
                 .FirstOrDefaultAsync();
             return _qs;

@@ -1,5 +1,6 @@
 ﻿using RAIDPlatform.Data.Models.Client.Clients;
 using RAIDPlatform.Data.Models.Master.Applications;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RAIDPlatform.Web.Api.Minimal
 {
@@ -19,5 +20,8 @@ namespace RAIDPlatform.Web.Api.Minimal
         public string? Updated_By_Name { get; set; }
         public DateTime? Updated_Date { get; set; }
         public int ClientId { get; set; }
-      }
+        public int UserCount { get; set; }
+        public int CategoryCount { get; set; }
+        public int FeaturePermissionCount { get; set; }
+    }
 }

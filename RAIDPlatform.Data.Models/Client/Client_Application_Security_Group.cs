@@ -1,4 +1,5 @@
 ﻿using AutoMapper.Configuration.Annotations;
+using RAIDPlatform.Data.Models.Client.User_Security_Group_Map;
 using RAIDPlatform.Data.Models.Master.Application_Feature_Map;
 using RAIDPlatform.Data.Models.Master.Applications;
 using RAIDPlatform.Data.Models.Master.Feature_Permissions;
@@ -33,5 +34,14 @@ namespace RAIDPlatform.Data.Models.Client
         public ICollection<int>? CategoryIds { get; set; }
         [NotMapped]
         public ICollection<int>? FeatureIds { get; set; }
+        [NotMapped]
+        public int UserCount { get; set; }
+        [NotMapped]
+        public int CategoryCount { get; set; }
+        [NotMapped]
+        public int FeaturePermissionCount { get; set; }
+        public virtual ICollection<User_Security_Group_Map.User_Security_Group_Map> Users { get; set; }
+        public virtual ICollection<Client_Application_Security_Group_Category_Map.Client_Application_Security_Group_Category_Map> Categories { get; set; }
+        public virtual ICollection<Client_Application_Security_Group_Feature_Map.Client_Application_Security_Group_Feature_Map> Features { get; set; }
     }
 }
