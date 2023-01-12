@@ -390,21 +390,29 @@ namespace RAIDPlatform.Data.Repositories.Repositories
         }
         public async Task<List<User_Security_Group_Map>> AddUserSecurityGroupMap(List<User_Security_Group_Map> user_Security_Group_Maps)
         {
-            
-            User_Security_Group_Map.AddRange(user_Security_Group_Maps);
+            foreach (var item in user_Security_Group_Maps)
+            {
+                User_Security_Group_Map.Add(item);
+            }
             await context.SaveChangesAsync();
             return user_Security_Group_Maps;
         }
         public async Task<List<Client_Application_Security_Group_Category_Map>> AddClientApplicationSecurityGroupCategoryMap(List<Client_Application_Security_Group_Category_Map> client_Application_Security_Group_Category_Map)
         {
-            Client_Application_Security_Group_Category_Map.AddRange(client_Application_Security_Group_Category_Map);
+            foreach(var item in client_Application_Security_Group_Category_Map)
+            {
+                Client_Application_Security_Group_Category_Map.Add(item);
+            }
             await context.SaveChangesAsync();
             return client_Application_Security_Group_Category_Map;
         }
         public async Task<List<Client_Application_Security_Group_Feature_Map>> AddClientApplicationSecurtiyGroupFeatureMap(List<Client_Application_Security_Group_Feature_Map> client_Application_Security_Group_Feature_Map)
         {
-            Client_Application_Security_Group_Feature_Map.AddRange(client_Application_Security_Group_Feature_Map);
-            await context.SaveChangesAsync();
+            foreach (var item in client_Application_Security_Group_Feature_Map)
+            {
+                Client_Application_Security_Group_Feature_Map.Add(item);
+            }
+                await context.SaveChangesAsync();
             return client_Application_Security_Group_Feature_Map;
         }
         public async Task<List<User_Security_Group_Map>> UpdateUserSecurityGroupMap(List<User_Security_Group_Map> user_Security_Group_Maps)

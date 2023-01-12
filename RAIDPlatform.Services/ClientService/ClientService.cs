@@ -8,6 +8,7 @@ using RAIDPlatform.Data.Models.Client.Users;
 using RAIDPlatform.Data.Repositories.Interfaces;
 using RAIDPlatform.Data.Repositories.Repositories;
 using RAIDPlatform.Utilities;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Twilio.Http;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
@@ -310,7 +311,7 @@ namespace RAIDPlatform.Services.ClientService
                                 new User_Security_Group_Map() { UserId = item, ClientApplicationSecurityGroupId = query }
                                 );
                         }
-                        var multiUser = _clientRepository.AddUserSecurityGroupMap(newUsers);
+                        var multiUser = await _clientRepository.AddUserSecurityGroupMap(newUsers);
                     }
                 }
                 if (query != 0)
@@ -325,7 +326,7 @@ namespace RAIDPlatform.Services.ClientService
                                 new Client_Application_Security_Group_Category_Map() { ClientApplicationCategoryId = item, ClientApplicationSecurityGroupId = query }
                                   );
                         }
-                        var multiCategory = _clientRepository.AddClientApplicationSecurityGroupCategoryMap(newCategory);
+                        var multiCategory = await _clientRepository.AddClientApplicationSecurityGroupCategoryMap(newCategory);
                     }
                   
                 }
@@ -341,7 +342,7 @@ namespace RAIDPlatform.Services.ClientService
                                 new Client_Application_Security_Group_Feature_Map() { ClientFeatureId = item, ClientApplicationSecurityGroupId = query }
                                   );
                         }
-                        var multiFeature = _clientRepository.AddClientApplicationSecurtiyGroupFeatureMap(newFeature);
+                        var multiFeature = await _clientRepository.AddClientApplicationSecurtiyGroupFeatureMap(newFeature);
                     }
                     return new Response<int>()
                     {
@@ -403,7 +404,7 @@ namespace RAIDPlatform.Services.ClientService
                                 new User_Security_Group_Map() { UserId = item, ClientApplicationSecurityGroupId = ua.Data.Id }
                                 );
                         }
-                        var multiUser = _clientRepository.UpdateUserSecurityGroupMap(updateUsers);
+                        var multiUser = await _clientRepository.UpdateUserSecurityGroupMap(updateUsers);
                     }
                     
                 }
@@ -419,7 +420,7 @@ namespace RAIDPlatform.Services.ClientService
                                 new Client_Application_Security_Group_Category_Map() { ClientApplicationCategoryId = item, ClientApplicationSecurityGroupId = ua.Data.Id }
                                   );
                         }
-                        var multiCategory = _clientRepository.UpdateClientApplicationSecurityGroupCategoryMap(updateCategory);
+                        var multiCategory =  await _clientRepository.UpdateClientApplicationSecurityGroupCategoryMap(updateCategory);
                     }
                 }
                 if (ua.Data != null)
@@ -434,7 +435,7 @@ namespace RAIDPlatform.Services.ClientService
                                 new Client_Application_Security_Group_Feature_Map() { ClientFeatureId = item, ClientApplicationSecurityGroupId = ua.Data.Id }
                                   );
                         }
-                        var multiFeature = _clientRepository.UpdateClientApplicationSecurtiyGroupFeatureMap(updateFeature);
+                        var multiFeature = await _clientRepository.UpdateClientApplicationSecurtiyGroupFeatureMap(updateFeature);
                     }
                     var response = await _clientRepository.UpdateClientApplicationSecurityGroup(ua.Data);
 
